@@ -9,7 +9,7 @@ from lib.db import querier
 # from lib import Validator
 
 
-# Cambios para github
+# Cambios para github solamente de prueba.
 
 class ModeloArticulo(QtCore.QAbstractTableModel):
 
