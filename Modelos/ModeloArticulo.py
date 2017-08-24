@@ -6,62 +6,53 @@ from mysql.connector import errorcode
 from datetime import date, datetime
 from lib.db import querier
 
+# from lib import Validator
 
-class ModeloArticulo(object):
 
-    db = mysql.connector.connect(user = 'admin', password = 'admin1234', host = '127.0.0.1', database = 'corupel')
+class ModeloArticulo(QtCore.QAbstractTableModel):
+
+    # db = mysql.connector.connect(user = 'admin', password = 'admin1234', host = '127.0.0.1', database = 'corupel')
     __querier = querier.Querier( tabla = "articulos", prefijo = "art_")
 
-    def __init__(self, articulo):
-        self.articulo = {}
-        self.propiedades = ('art_ID', 'art_cod_barras',
+    def __init__(self, parent = None):
+        super(ModeloArticulo, self).__init__()
+
+        # self.articulos = [()]
+        self.propiedades = ('art_id', 'prov_id','art_cod_barras',
             'art_descripcion',
             'art_marca', 'art_agrupacion',
-            'art_stock_min', 'art_stock_actual',
+            # 'art_stock_min', 'art_stock_actual',
             'art_activo'
             )
         # self.crearArticulo(articulo)
+        self.__headers = self.propiedades
+        self.articulos = self.__querier.traerElementos(self.__headers)
+        self.articulo = {}
 
     def crearArticulo(self, articuloNuevo):
-        # self.articulo = articuloNuevo
-        # if not self.__esArticuloValido(articuloNuevo):
-        #     #return (ERROR, "El articulo no es valido")
-        #     return "El articulo no es valido"
-        #
-        # for key, value in articuloNuevo.items():
-        #     if self.__esPropiedadValida(key):
-        #         self.articulo[key] = value
-
         self.__querier.insertarElemento(articuloNuevo)
 
+    def verListaArticulos(self, campos = None, condiciones = None, limite = None):
+        if not campos:
+            campos = self.propiedades
 
-    # def toggleArticuloStatus(self):
-    #     if self.articulo[status] == "Activo":
-    #         self.articulo[status] = "Inactivo"
-    #     else:
-    #         self.articulo[status] = "Activo"
-    #     __actualizarArticulo()
+        self.articulos = self.__querier.traerElementos(campos, condiciones, limite)
+        self.layoutChanged.emit()
 
-    def sumarStockArticulo():
-        pass
+    def verDetallesArticulo(self, articulo, campos = None, condiciones = None):
+        # condiciones = ()
 
-    def restarStockArticulo():
-        pass
+        # print (articulo.row())
+        articulo = self.articulos[articulo.row()]
+        condiciones = [('art_id', '=', articulo[0])]
+        resultado = self.__querier.traerElementos(campos, condiciones, 1)
+        self.articulo = resultado[0]
+        # print(self.articulo)
+        return self.articulo
 
-    def verListaArticulos():
-        pass
 
-    def verDetallesArticulo():
-        pass
-
-    def modificarArticulo(self, modificacion):
-        # if not self.__esArticuloValido(modificacion):
-        #     # return (ERROR, "Modificacion no valida")
-        #     return "Las modificaciones no son validas" #Deberia entrar en mas detalle
-
-        # self.articulo = modificacion
-
-        self.__querier.actualizarElemento(modificacion)
+    def modificarArticulo(self, articulo):
+        self.__querier.actualizarElemento(articulo)
 
     def asociarProveedor(self, proveedor = { 'prov_nombre' : 'Indeterminado' }):
         # El ID de proveedor por defecto no debe ser 0000, sino el que sea creado para el proveedor con nombre "Indeterminado"
@@ -77,17 +68,11 @@ class ModeloArticulo(object):
 
     def deshabilitarArticulo(self, articulo):
 
-        #VALIDACIONES
-
-        #===========
-
-        #Funcion propiamente dicha
-
-        articulo['status'] = "Inactivo"
+        articulo['art_activo'] = 0
         self.__querier.actualizarElemento(articulo)
 
     def habilitarArticulo(self, articulo):
-        articulo['status'] = "Activo"
+        articulo['art_activo'] = 1
         self.__querier.actualizarElemento(articulo)
 
     def __esArticuloValido(self, articulo):
@@ -118,38 +103,59 @@ class ModeloArticulo(object):
         return True
 
 # ===============================================================
-# Modelo de tabla para PyQt
+# Funciones para Modelo de tabla para PyQt
 # ===============================================================
-
-class ArticuloTableModel(QtCore.QAbstractTableModel):
-
-    def __init__(self, articulos = [], parent = None):
-        self.articulos = {}
-
-        for articulo in articulos:
-            for key, value in articulo.items():
-                try:
-                    if key in self.propiedades:
-                        self.articulos[key] = value
-                    else:
-                        raise ValueError(key)
-                except ValueError:
-                    print ("El valor {} no es valido para un articulo".format(key))
-
-            if articuloInsertadoEsValido(articulo) == False:
-                #delete articulo
-                pass
-
-
-
-    def articuloInsertadoEsValido(self, articulo):
-        pass
-
     def rowCount(self, parent):
-        pass
+        return len(self.articulos)
+
+    def columnCount(self, parent):
+        return len(self.articulos[0])
+
+    def flags(self, index):
+        return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled
 
     def data(self, index, role):
-        pass
 
-    def insertRows():
-        pass
+        if role == QtCore.Qt.DisplayRole:
+            row = index.row()
+            column = index.column()
+            value = self.articulos[row][column]
+
+            return value
+
+    def setData(self, index, value, role = QtCore.Qt.EditRole):
+        if role == QtCore.Qt.EditRole:
+            row = index.row()
+            column = index.column()
+
+            value = self.articulos[row][column]
+
+            return value
+
+    def headerData(self, section, orientation, role):
+
+        if role == QtCore.Qt.DisplayRole:
+
+            if orientation == QtCore.Qt.Horizontal:
+                return self.__headers[section]
+
+    def insertRows(self, position, rows, parent = QtCore.QModelIndex()):
+        self.beginInsertRows()
+
+
+        self.endInsertRows()
+
+    def insertColumns(self, position, columns, parent = QtCore.QModelIndex()):
+        self.beginInsertColumns()
+        self.endInsertColumns()
+
+    def removeRows():
+
+        self.beginRemoveRows()
+        self.endRemoveRows()
+
+
+    def removeColumns():
+
+        self.beginRemoveColumns()
+        self.endRemoveColumns()

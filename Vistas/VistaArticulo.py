@@ -1,5 +1,5 @@
 # articulo_view.py
-import os
+
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox
 from PyQt5.QtCore import pyqtSignal
@@ -15,11 +15,11 @@ class ArticuloView(QtWidgets.QWidget):
         # Todos los Widgets de PyQT deben ser privados,
         # esto se logra NO COLOCANDO 'self.' sino la variable localmente.
 
-        self.vista = uic.loadUi("vistas/gui/articulos.ui", self)
+        self.vistaDetalle = uic.loadUi("vistas/gui/articulos_detalle.ui", self)
 
-        self.vista.btn_modificar.clicked.connect(self.modificarArticulo)
-        self.vista.btn_nuevo.clicked.connect(self.crearArticulo)
-        self.vista.btn_deshabilitar.clicked.connect(self.deshabilitarArticulo)
+        self.vistaDetalle.btn_modificar.clicked.connect(self.modificarArticulo)
+        self.vistaDetalle.btn_nuevo.clicked.connect(self.crearArticulo)
+        self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarArticulo)
 
     def crearArticulo(self):
         articulo = self.getArticulo()
@@ -36,16 +36,12 @@ class ArticuloView(QtWidgets.QWidget):
         self.senialModificarArticulo.emit(articulo)
 
     def deshabilitarArticulo(self):
-        articuloID = self.vista.findChild(QLineEdit, name = "art_id")
-
+        articuloID = self.vistaDetalle.findChild(QLineEdit, name = "art_id")
         self.senialDeshabilitarArticulo.emit(articuloID)
 
-    def buscarArticulos(self):
-        pass
-
     def getArticulo(self):
-        rawArticulo = self.vista.findChildren(QComboBox)
-        rawArticulo += (self.vista.findChildren(QLineEdit))
+        rawArticulo = self.vistaDetalle.findChildren(QComboBox)
+        rawArticulo += (self.vistaDetalle.findChildren(QLineEdit))
 
         articulo = {}
 
@@ -61,3 +57,12 @@ class ArticuloView(QtWidgets.QWidget):
                 # print(componente.objectName(), componente.currentText())
         print (articulo)
         return articulo
+
+    def setArticulo(self, articulo):
+        print (articulo)
+        self.vistaDetalle.art_id.setText(str(articulo[0]))
+        self.vistaDetalle.prov_id.setText(str(articulo[1]))
+        self.vistaDetalle.art_cod_barras.setText(articulo[2])
+        self.vistaDetalle.art_descripcion.setText(articulo[3])
+        # self.vistaDetalle.art_marca.setText(articulo[4])
+        # self.vistaDetalle.art_agrupacion.setText(articulo[5])
