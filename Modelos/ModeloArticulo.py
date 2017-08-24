@@ -9,6 +9,8 @@ from lib.db import querier
 # from lib import Validator
 
 
+# Cambios para github
+
 class ModeloArticulo(QtCore.QAbstractTableModel):
 
     # db = mysql.connector.connect(user = 'admin', password = 'admin1234', host = '127.0.0.1', database = 'corupel')
