@@ -19,8 +19,6 @@ CREATE TABLE `operarios` (
   `ope_dni` int(13)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `proveedores`
 --

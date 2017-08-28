@@ -1,14 +1,15 @@
 # articulo_view.py
 
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel
+from PyQt5.QtCore import pyqtSignal, QRegExp
 
 class ArticuloView(QtWidgets.QWidget):
 
     senialCrearArticulo = pyqtSignal([dict])
     senialModificarArticulo = pyqtSignal([dict])
     senialDeshabilitarArticulo = pyqtSignal(QComboBox)
+    rx = QRegExp("art_*")
 
     def __init__(self, presenter, parent=None):
         super(ArticuloView, self).__init__(parent)
@@ -40,22 +41,19 @@ class ArticuloView(QtWidgets.QWidget):
         self.senialDeshabilitarArticulo.emit(articuloID)
 
     def getArticulo(self):
-        rawArticulo = self.vistaDetalle.findChildren(QComboBox)
-        rawArticulo += (self.vistaDetalle.findChildren(QLineEdit))
-
+        rawArticulo = self.vistaDetalle.findChildren((QComboBox, QLineEdit, QLabel), self.rx)
         articulo = {}
 
         for componente in rawArticulo:
             if "art_" not in componente.objectName():
                 continue
-            if (type(componente) == QtWidgets.QLineEdit):
-                articulo[componente.objectName()] = componente.text()
-                # print(componente.objectName(), componente.text())
-
-            else:
+            if (type(componente) == QtWidgets.QComboBox):
                 articulo[componente.objectName()] = componente.currentText()
                 # print(componente.objectName(), componente.currentText())
-        print (articulo)
+            else:
+                articulo[componente.objectName()] = componente.text()
+                # print(componente.objectName(), componente.text())
+        print ("\nDEBUG - ARTICULO: ", articulo)
         return articulo
 
     def setArticulo(self, articulo):

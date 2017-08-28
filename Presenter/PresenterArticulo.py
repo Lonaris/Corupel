@@ -2,6 +2,7 @@
 import Vistas.VistaArticulo as AView
 import Vistas.VistaListaArticulos as ALView
 import Modelos.ModeloArticulo as AModel
+from PyQt5.QtCore import Qt
 
 class ArticuloPresenter(object):
     def __init__(self):
@@ -31,6 +32,7 @@ class ArticuloPresenter(object):
 
 
     def verDetalles(self, articulo):
+
         articulo = self.model.verDetallesArticulo(articulo)
         # self.vistaLista.tbl_articulos.setEnabled(False)
         self.vistaDetalle.setArticulo(articulo)
