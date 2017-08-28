@@ -10,7 +10,8 @@ class ArticuloView(QtWidgets.QWidget):
     senialCrearArticulo = pyqtSignal([dict])
     senialModificarArticulo = pyqtSignal([dict])
     senialDeshabilitarArticulo = pyqtSignal(QComboBox)
-    #Inicializamos
+    
+	#Inicializamos el objeto
     def __init__(self, presenter, parent=None):
         super(ArticuloView, self).__init__(parent)
         # Todos los Widgets de PyQT deben ser privados,

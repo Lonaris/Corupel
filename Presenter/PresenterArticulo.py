@@ -1,4 +1,5 @@
 # articulo_presenter.py
+
 import Vistas.VistaArticulo as AView
 import Vistas.VistaListaArticulos as ALView
 import Modelos.ModeloArticulo as AModel

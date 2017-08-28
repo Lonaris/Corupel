@@ -1,20 +1,19 @@
+#__main__.py
+
 import sys, os
 from PyQt5 import QtGui, QtCore, uic, QtWidgets
 import Presenter.PresenterArticulo as APresenter
 
 root = os.path.dirname(os.path.abspath(__file__))
 
-#Creamos una funcion denominada "main" que ejecuta la aplicacion.
 def main():
+	#Instancia para iniciar una aplicación
     app = QtWidgets.QApplication(sys.argv)
-
+	
+	#Instancia para iniciar una aplicación
     mainPresenter = APresenter.ArticuloPresenter()
-
-    # main = VPrincipal.VistaPrincipal(mainPresenter)
-    # main.show()
-    # mainPresenter.vistaDetalle.show()
-    # mainPresenter.vistaLista.show()
-
+	
+	#Ejecutar la aplicación
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
