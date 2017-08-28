@@ -10,13 +10,10 @@ class ArticuloView(QtWidgets.QWidget):
     senialCrearArticulo = pyqtSignal([dict])
     senialModificarArticulo = pyqtSignal([dict])
     senialDeshabilitarArticulo = pyqtSignal(QComboBox)
-<<<<<<< HEAD
     rx = QRegExp("art_*")
 
-=======
-    
+
 	#Inicializamos el objeto
->>>>>>> 3d74ea12e749efcc54d634399024a25c09f0c513
     def __init__(self, presenter, parent=None):
         super(ArticuloView, self).__init__(parent)
         # Todos los Widgets de PyQT deben ser privados,
@@ -52,24 +49,12 @@ class ArticuloView(QtWidgets.QWidget):
 
     #Funcion que trae un articulo y modifica la ifnormacion.
     def getArticulo(self):
-<<<<<<< HEAD
         rawArticulo = self.vistaDetalle.findChildren((QComboBox, QLineEdit, QLabel), self.rx)
-=======
-        rawArticulo = self.vistaDetalle.findChildren(QComboBox)
-        rawArticulo += (self.vistaDetalle.findChildren(QLineEdit))
->>>>>>> 3d74ea12e749efcc54d634399024a25c09f0c513
         articulo = {}
         for componente in rawArticulo:
             if "art_" not in componente.objectName():
                 continue
-<<<<<<< HEAD
             if (type(componente) == QtWidgets.QComboBox):
-=======
-            if (type(componente) == QtWidgets.QLineEdit):
-                articulo[componente.objectName()] = componente.text()
-                # print(componente.objectName(), componente.text())
-            else:
->>>>>>> 3d74ea12e749efcc54d634399024a25c09f0c513
                 articulo[componente.objectName()] = componente.currentText()
                 # print(componente.objectName(), componente.currentText())
             else:
