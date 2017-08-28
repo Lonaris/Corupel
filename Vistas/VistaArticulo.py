@@ -19,6 +19,8 @@ class ArticuloView(QtWidgets.QWidget):
 
         #Traemos el archivo .UI "Articulos_detalle"
         self.vistaDetalle = uic.loadUi("vistas/gui/articulos_detalle.ui", self)
+		
+		#Utilizamos el evento clicked.connect de los botones del archivo .ui para ejecutar la funciones.
         self.vistaDetalle.btn_modificar.clicked.connect(self.modificarArticulo)
         self.vistaDetalle.btn_nuevo.clicked.connect(self.crearArticulo)
         self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarArticulo)
@@ -62,7 +64,7 @@ class ArticuloView(QtWidgets.QWidget):
         print (articulo)
         return articulo
 
-
+	#Funcion que carga un articulo en particular dentro de "Detalle del Producto"
     def setArticulo(self, articulo):
         print (articulo)
         self.vistaDetalle.art_id.setText(str(articulo[0]))
