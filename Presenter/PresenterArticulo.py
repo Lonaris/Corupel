@@ -1,8 +1,10 @@
 # articulo_presenter.py
 
+
 import Vistas.VistaArticulo as AView
 import Vistas.VistaListaArticulos as ALView
 import Modelos.ModeloArticulo as AModel
+
 
 class ArticuloPresenter(object):
     def __init__(self):
