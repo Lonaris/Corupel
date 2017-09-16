@@ -40,13 +40,6 @@ class Querier(object):
         self.__consultar(consulta, elemento)
 
     def actualizarElemento(self, elemento, condiciones = None):
-        if type(elemento) != type({}):
-            raise TypeError("Solo se pueden actualizar elementos del tipo diccionario")
-            return
-        if condiciones == None:
-            raise TypeError("No se puede actualizar un elemento sin proporcionar su id")
-            return
-
         consulta = "UPDATE {} SET ".format(self.tabla)
 
         donde = ""
@@ -57,14 +50,11 @@ class Querier(object):
             if (self.prefijo + "id") in columna.lower():
                 # print("La columna: " + columna + " fue ignorada")
                 total -= 1
-                donde = self.agregarFiltros(columna, " = ", columna)
-                # donde += "{}{} = %({}{})s".format(self.prefijo, columna, self.prefijo, columna)
+                donde = self.__agregarFiltros([(columna, " = ", elemento[columna])])
                 continue
             consulta += "{}{} = %({}{})s".format(self.prefijo,columna,self.prefijo,columna)
-            if index < total-1:
+            if index < total:
                 consulta += ", "
-            else:
-                consulta += "\n"
 
         # if condiciones:
         #     donde = self.__agregarFiltros(condiciones)
@@ -75,27 +65,11 @@ class Querier(object):
         print("\nDEBUG - Consulta actualizar elemento a mysql: ", consulta , "\n")
         self.__consultar(consulta, elemento)
 
-    def existeElemento(self, elemento):
-        # consulta =
-        pass
-
-
     def traerElementos(self, campos = None, condiciones = None, limite = None):
         donde = ""
         consulta = "SELECT "
 
-
-        # totalCondiciones = len(condiciones)
-
-        if not campos:
-            consulta += "* "
-        else:
-            totalCampos = len(campos)
-            for index, campo in enumerate(campos):
-                consulta += "{}".format(campo)
-
-                if index != totalCampos -1:
-                    consulta += ", "
+        consulta += self.__encampar(campos)
 
         consulta += " FROM {} ".format(self.tabla)
 
@@ -119,14 +93,6 @@ class Querier(object):
         cursor.close()
         db.close()
 
-        # listaRespuesta = [[]]
-        # for index, cosa in enumerate(respuesta):
-        #     listaRespuesta.append([])
-        #     for cosita in cosa:
-        #         listaRespuesta[index].append(cosita)
-        #
-        # print (respuesta)
-        # return listaRespuesta
         return respuesta
 
     def __agregarFiltros(self, filtros):
@@ -143,6 +109,19 @@ class Querier(object):
         # donde += campo + condicion + "%({})s".campo
 
         return donde
+
+    def __encampar(self, campos):
+        listaDeCampos = ""
+        if campos:
+            totalCampos = len(campos)
+            for index, campo in enumerate(campos):
+                listaDeCampos += "{}".format(campo)
+
+                if index < totalCampos -1:
+                    listaDeCampos += ", "
+        else:
+            listaDeCampos = " * "
+        return listaDeCampos
 
     def __conectar(self):
         con = mysql.connector.connect(
