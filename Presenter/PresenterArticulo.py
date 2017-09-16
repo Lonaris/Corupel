@@ -1,8 +1,8 @@
 # articulo_presenter.py
 
 
-import Vistas.VistaArticulo as AView
-import Vistas.VistaListaArticulos as ALView
+import Vistas.Articulo.VistaArticulo as AView
+import Vistas.Articulo.VistaListaArticulos as ALView
 import Modelos.ModeloArticulo as AModel
 from PyQt5.QtCore import Qt
 
@@ -17,11 +17,12 @@ class ArticuloPresenter(object):
         self.vistaLista.tbl_articulos.setModel(self.model)
         self.vistaLista.tbl_articulos.doubleClicked.connect(self.verDetalles)
 
-        self.vistaDetalle.senialCrearArticulo.connect(self.crearArticulo)
-        self.vistaDetalle.senialModificarArticulo.connect(self.modificarArticulo)
-        self.vistaDetalle.senialDeshabilitarArticulo.connect(self.deshabilitarArticulo)
+        self.vistaDetalle.btn_nuevo.clicked.connect(self.crearArticulo)
+        self.vistaDetalle.btn_modificar.clicked.connect(self.modificarArticulo)
+        self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarArticulo)
 
-        self.vistaLista.senialBuscarArticulo.connect(self.verArticulos)
+        self.vistaLista.ln_buscar.returnPressed.connect(self.verArticulos)
+        self.vistaLista.btn_buscar.clicked.connect(self.verArticulos)
 
         # self.verArticulos(limite = 5)
 
@@ -44,6 +45,7 @@ class ArticuloPresenter(object):
 
     def crearArticulo(self, articulo):
         # print("DEBUG - Tipo de objeto de artículo_ ", type(articulo))
+        articulo['art_id'] = None
         self.model.crearArticulo(articulo)
 
     def modificarArticulo(self, articulo):

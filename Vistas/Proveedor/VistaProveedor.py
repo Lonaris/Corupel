@@ -1,0 +1,81 @@
+# proveedor_view.py
+
+from PyQt5 import QtWidgets, uic
+from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox
+from PyQt5.QtGui import QRegExpValidator
+from PyQt5.QtCore import pyqtSignal, QRegExp
+
+#Creamos la clase ProveedorView
+class ProveedorView(QtWidgets.QWidget):
+
+    rxProv = QRegExp("prov_*")
+
+	#Inicializamos el objeto
+    def __init__(self, presenter, parent=None):
+        super(ProveedorView, self).__init__(parent)
+        # Todos los Widgets de PyQT deben ser privados,
+        # esto se logra NO COLOCANDO 'self.' sino la variable localmente.
+
+        #Traemos el archivo .UI "Proveedores_detalle"
+        self.vistaDetalle = uic.loadUi("vistas/gui/detalles/proveedor_detalle.ui", self)
+
+        rxId = QRegExp("[0-9]{0,16}")
+        rxNumeros = QRegExp("[0-9]{0,20}")
+
+        self.vistaDetalle.prov_id.setValidator(QRegExpValidator(rxId))
+        self.vistaDetalle.prov_cuit.setValidator(QRegExpValidator(rxNumeros))
+        self.vistaDetalle.prov_telefono.setValidator(QRegExpValidator(rxNumeros))
+        self.vistaDetalle.prov_telefono_dos.setValidator(QRegExpValidator(rxNumeros))
+        self.vistaDetalle.prov_id.textChanged.connect(self.__activarBotones)
+        self.vistaDetalle.prov_activo.setTristate(False)
+
+        self.__activarBotones("")
+
+    #Funcion que trae un proveedor y modifica la ifnormacion.
+    def getProveedor(self):
+        rawProveedor = self.vistaDetalle.findChildren((QLineEdit, QCheckBox), self.rxProv)
+        proveedor = {}
+        for componente in rawProveedor:
+                proveedor[componente.objectName()] = componente.text()
+
+                if type(componente) == QCheckBox:
+                    proveedor[componente.objectName()] = componente.isChecked()
+                # print(componente.objectName(), componente.text())
+        if (proveedor['prov_id']):
+            proveedor['prov_id'] = int(proveedor['prov_id'])
+
+        if proveedor['prov_activo']:
+            proveedor['prov_activo'] = 1
+        else:
+            proveedor['prov_activo'] = 0
+
+        return proveedor
+
+	#Funcion que carga un proveedor en particular dentro de "Detalle del Producto"
+    def setProveedor(self, proveedor):
+        print (proveedor)
+        self.vistaDetalle.prov_id.setText(str(proveedor[0]))
+        self.vistaDetalle.prov_nombre.setText(proveedor[1])
+        self.vistaDetalle.prov_razon_social.setText(proveedor[2])
+        self.vistaDetalle.prov_cuit.setText(proveedor[3])
+        self.vistaDetalle.prov_direccion.setText(proveedor[4])
+        self.vistaDetalle.prov_telefono.setText(proveedor[5])
+        self.vistaDetalle.prov_telefono_dos.setText(proveedor[6])
+        self.vistaDetalle.prov_email.setText(proveedor[7])
+        if proveedor[8]:
+            self.vistaDetalle.prov_activo.setChecked(True)
+        else:
+            self.vistaDetalle.prov_activo.setChecked(False)
+
+    def resetProveedor(self):
+        camposAResetear = self.vistaDetalle.findChildren(QLineEdit, self.rxProv)
+        for campo in camposAResetear:
+            campo.setText("")
+
+    def __activarBotones(self, snl):
+        if snl:
+            self.vistaDetalle.btn_nuevo.setEnabled(False)
+            self.vistaDetalle.btn_modificar.setEnabled(True)
+        else:
+            self.vistaDetalle.btn_nuevo.setEnabled(True)
+            self.vistaDetalle.btn_modificar.setEnabled(False)

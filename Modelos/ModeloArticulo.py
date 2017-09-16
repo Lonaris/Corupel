@@ -5,7 +5,7 @@ import mysql.connector
 from mysql.connector import errorcode
 from datetime import date, datetime
 from lib.db import querier
-
+import cerberus
 # from lib import Validator
 
 
@@ -15,28 +15,68 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
 
     # db = mysql.connector.connect(user = 'admin', password = 'admin1234', host = '127.0.0.1', database = 'corupel')
     __querier = querier.Querier( tabla = "articulos", prefijo = "art_")
+    __v = cerberus.Validator()
 
-    def __init__(self, parent = None):
+
+    def __init__(self, propiedades = None, parent = None):
         super(ModeloArticulo, self).__init__()
 
-        # self.articulos = [()]
-        self.propiedades = ('art_id', 'prov_id','art_cod_barras',
-            'art_descripcion',
-            'art_marca', 'art_agrupacion',
+        self.__propiedades = [
+            'Codigo',
+            'Proveedor',
+            'Codigo de Barras',
+            'Descripcion',
+            'Marca',
+            'Agrupacion',
             # 'art_stock_min', 'art_stock_actual',
-            'art_activo'
-            )
+            'Estado'
+        ]
+        if propiedades:
+            self.__propiedades = propiedades
+
+        self.__schemaArticulo = {
+            'art_id' : {'type' : 'integer' },
+            'prov_id' : {'type' : 'integer' },
+            'art_cod_barras' : {'type' : 'string' },
+            'art_descripcion' : {'type' : 'string' },
+            'art_marca' : {'type' : 'string' },
+            'art_agrupacion' : {'type' : 'string' },
+            # 'art_stock_min',
+            # 'art_stock_actual',
+            'art_activo' : {'type' : 'integer' }
+        }
+
+        self.ASDF = {
+            'Codigo' : 'art_id',
+            'Proveedor' : 'prov_id',
+            'Codigo de Barras' : 'art_cod_barras',
+            'Descripcion' : 'art_descripcion',
+            'Marca' : 'art_marca',
+            'Agrupacion' : 'art_agrupacion',
+            # 'art_stock_min', 'art_stock_actual',
+            # 'Stock' : 'art_stock_actual',
+            # 'Stock mínimo' : 'art_stock_min',
+            'Estado' : 'art_activo',
+        }
+
+        self.__busqueda = []
+
+
+        for propiedad in self.__propiedades:
+            self.__busqueda.append(self.ASDF[propiedad])
+
         # self.crearArticulo(articulo)
-        self.__headers = self.propiedades
-        self.articulos = self.__querier.traerElementos(self.__headers)
+        self.articulos = self.__querier.traerElementos(self.__busqueda)
         self.articulo = {}
 
     def crearArticulo(self, articuloNuevo):
+        print(self.__v.validate(articuloNuevo, self.__schemaArticulo))
+        print("ERRORES: ",self.__v.errors)
         self.__querier.insertarElemento(articuloNuevo)
 
     def verListaArticulos(self, campos = None, condiciones = None, limite = None):
         if not campos:
-            campos = self.propiedades
+            campos = self.__busqueda
 
         self.articulos = self.__querier.traerElementos(campos, condiciones, limite)
         self.layoutChanged.emit()
@@ -77,33 +117,6 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         articulo['art_activo'] = 1
         self.__querier.actualizarElemento(articulo)
 
-    def __esArticuloValido(self, articulo):
-        # propiedades se encuentra en el scope global de la clase
-
-        campos_faltantes = []
-
-        try:
-            for propiedad in self.propiedades:
-                if propiedad not in articulo:
-                    campos_faltantes.insert(0, propiedad)
-            if campos_faltantes:
-                raise ValueError(campos_faltantes)
-        except ValueError as vError:
-            print("Error. Faltan los siguientes campos: ")
-            for error in campos_faltantes:
-                print(error)
-            return False
-        return True
-
-    def __esPropiedadValida(self, propiedad):
-        try:
-            if propiedad not in self.propiedades:
-                raise ValueError(propiedad)
-        except ValueError:
-            print ("El valor {} no es valido para un articulo".format(propiedad))
-            return False
-        return True
-
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
 # ===============================================================
@@ -111,7 +124,10 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         return len(self.articulos)
 
     def columnCount(self, parent):
-        return len(self.articulos[0])
+        if self.articulos:
+            return len(self.articulos[0])
+        else:
+            return 0
 
     def flags(self, index):
         return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled
@@ -139,7 +155,7 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         if role == QtCore.Qt.DisplayRole:
 
             if orientation == QtCore.Qt.Horizontal:
-                return self.__headers[section]
+                return self.__propiedades[section]
 
     def insertRows(self, position, rows, parent = QtCore.QModelIndex()):
         self.beginInsertRows()

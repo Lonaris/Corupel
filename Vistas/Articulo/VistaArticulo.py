@@ -7,9 +7,9 @@ from PyQt5.QtCore import pyqtSignal, QRegExp
 #Creamos la clase ArticuloView
 class ArticuloView(QtWidgets.QWidget):
 
-    senialCrearArticulo = pyqtSignal([dict])
-    senialModificarArticulo = pyqtSignal([dict])
-    senialDeshabilitarArticulo = pyqtSignal(QComboBox)
+    # senialCrearArticulo = pyqtSignal([dict])
+    # senialModificarArticulo = pyqtSignal([dict])
+    # senialDeshabilitarArticulo = pyqtSignal(QComboBox)
     rx = QRegExp("art_*")
 
 
@@ -20,34 +20,12 @@ class ArticuloView(QtWidgets.QWidget):
         # esto se logra NO COLOCANDO 'self.' sino la variable localmente.
 
         #Traemos el archivo .UI "Articulos_detalle"
-        self.vistaDetalle = uic.loadUi("vistas/gui/articulos_detalle.ui", self)
-		
+        self.vistaDetalle = uic.loadUi("vistas/gui/detalles/articulos_detalle.ui", self)
+
 		#Utilizamos el evento clicked.connect de los botones del archivo .ui para ejecutar la funciones.
-        self.vistaDetalle.btn_modificar.clicked.connect(self.modificarArticulo)
-        self.vistaDetalle.btn_nuevo.clicked.connect(self.crearArticulo)
-        self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarArticulo)
-
-
-    #Creamos la funcion crear articulo que va a ser llamada al clickear "btn_nuevo"
-    def crearArticulo(self):
-        articulo = self.getArticulo()
-        articulo.pop('art_id', None)
-        # Hardcode:Debe ser eliminado por propositos de prueba
-        articulo['prov_id'] = 4
-        articulo['art_stock_ideal'] = 4
-        self.senialCrearArticulo.emit(articulo)
-
-
-    #Creamos la funcion modificarArticulo que va a ser llamada al clickear "btn_modificar"
-    def modificarArticulo(self):
-        articulo = self.getArticulo()
-        self.senialModificarArticulo.emit(articulo)
-
-
-    #Creamos la funcion deshabilitarArticulo que va a ser llamada al clickear "btn_deshabilitar"
-    def deshabilitarArticulo(self):
-        articuloID = self.vistaDetalle.findChild(QLineEdit, name = "art_id")
-        self.senialDeshabilitarArticulo.emit(articuloID)
+        # self.vistaDetalle.btn_modificar.clicked.connect(self.modificarArticulo)
+        # self.vistaDetalle.btn_nuevo.clicked.connect(self.crearArticulo)
+        # self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarArticulo)
 
     #Funcion que trae un articulo y modifica la ifnormacion.
     def getArticulo(self):
