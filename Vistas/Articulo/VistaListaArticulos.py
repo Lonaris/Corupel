@@ -9,7 +9,7 @@ class ListaArticuloView(QtWidgets.QWidget):
     def __init__(self, presenter, parent=None):
         super(ListaArticuloView, self).__init__(parent)
 
-        self.vistaLista = uic.loadUi("vistas/gui/articulos_lista.ui", self)
+        self.vistaLista = uic.loadUi("vistas/gui/listas/articulos_lista.ui", self)
 
         # self.vistaLista.btn_buscar.clicked.connect(self.buscarArticulos)
 

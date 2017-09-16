@@ -11,7 +11,7 @@ class ListaProveedoresView(QtWidgets.QWidget):
         # Todos los Widgets de PyQT deben ser privados,
         # esto se logra NO COLOCANDO 'self.' sino la variable localmente.
 
-        mainWindow = uic.loadUi("Vistas/gui/proveedores_lista.ui", self)
+        mainWindow = uic.loadUi("Vistas/gui/listas/proveedores_lista.ui", self)
         mainWindow.tbl_proveedores.horizontalHeader().setStretchLastSection(True)
 
         # pol = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
