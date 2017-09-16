@@ -19,20 +19,16 @@ CREATE TABLE `operarios` (
   `ope_dni` int(13)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Estructura de tabla para la tabla `proveedores`
---
-
 CREATE TABLE `proveedores` (
   `prov_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `prov_nombre` varchar(20) NOT NULL,
-  `prov_razonsocial` varchar(20) NOT NULL,
+  `prov_razon_social` varchar(20) NOT NULL,
   `prov_cuit` varchar(20),
   `prov_direccion` varchar(40),
   `prov_telefono` varchar(20),
   `prov_telefono_dos` varchar(20),
-  `prov_contacto` varchar(20),
-  `prov_mail` varchar(30)
+  `prov_email` varchar(30),
+  `prov_activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -62,8 +58,6 @@ CREATE TABLE `movimientos_egreso` (
   `movi_id` int(16) UNSIGNED NOT NULL,
   `move_cantidad` int(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
 
 CREATE TABLE `ingresos` (
   `ing_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
