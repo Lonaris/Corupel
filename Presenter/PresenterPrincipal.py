@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QModelIndex, QAbstractItemModel
 from Vistas import VistaPrincipal
-from Presenter import PresenterProveedor, PresenterArticulo
+from Presenter import PresenterProveedor, PresenterArticulo, PresenterOperario
 
 class PrincipalPresenter(QtWidgets.QWidget):
 
@@ -13,7 +13,8 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
         pp = PresenterProveedor.ProveedorPresenter()
         pa = PresenterArticulo.ArticuloPresenter()
-        self.presenters = [ pp, pa ]
+        po = PresenterOperario.OperarioPresenter()
+        self.presenters = [ pp, pa, po]
 
         menu = self.vista.menu_navegacion
         contenido = self.vista.contenido

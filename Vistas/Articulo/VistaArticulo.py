@@ -20,7 +20,7 @@ class ArticuloView(QtWidgets.QWidget):
         # esto se logra NO COLOCANDO 'self.' sino la variable localmente.
 
         #Traemos el archivo .UI "Articulos_detalle"
-        self.vistaDetalle = uic.loadUi("vistas/gui/detalles/articulos_detalle.ui", self)
+        self.vistaDetalle = uic.loadUi("vistas/gui/detalles/articulo_detalle.ui", self)
 
 		#Utilizamos el evento clicked.connect de los botones del archivo .ui para ejecutar la funciones.
         # self.vistaDetalle.btn_modificar.clicked.connect(self.modificarArticulo)

@@ -21,6 +21,18 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
     def __init__(self, propiedades = None, parent = None):
         super(ModeloArticulo, self).__init__()
 
+        self.__scArticulo = {
+        'art_id' : {'type' : 'integer' },
+        'prov_id' : {'type' : 'integer' },
+        'art_cod_barras' : {'type' : 'string' },
+        'art_descripcion' : {'type' : 'string' },
+        'art_marca' : {'type' : 'string' },
+        'art_agrupacion' : {'type' : 'string' },
+        # 'art_stock_min',
+        # 'art_stock_actual',
+        'art_activo' : {'type' : 'integer' }
+        }
+
         self.__propiedades = [
             'Codigo',
             'Proveedor',
@@ -31,22 +43,11 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
             # 'art_stock_min', 'art_stock_actual',
             'Estado'
         ]
+
         if propiedades:
             self.__propiedades = propiedades
 
-        self.__schemaArticulo = {
-            'art_id' : {'type' : 'integer' },
-            'prov_id' : {'type' : 'integer' },
-            'art_cod_barras' : {'type' : 'string' },
-            'art_descripcion' : {'type' : 'string' },
-            'art_marca' : {'type' : 'string' },
-            'art_agrupacion' : {'type' : 'string' },
-            # 'art_stock_min',
-            # 'art_stock_actual',
-            'art_activo' : {'type' : 'integer' }
-        }
-
-        self.ASDF = {
+        self.relacion = {
             'Codigo' : 'art_id',
             'Proveedor' : 'prov_id',
             'Codigo de Barras' : 'art_cod_barras',
@@ -61,16 +62,14 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
 
         self.__busqueda = []
 
-
         for propiedad in self.__propiedades:
-            self.__busqueda.append(self.ASDF[propiedad])
+            self.__busqueda.append(self.relacion[propiedad])
 
-        # self.crearArticulo(articulo)
         self.articulos = self.__querier.traerElementos(self.__busqueda)
         self.articulo = {}
 
     def crearArticulo(self, articuloNuevo):
-        print(self.__v.validate(articuloNuevo, self.__schemaArticulo))
+        print(self.__v.validate(articuloNuevo, self.__scArticulo))
         print("ERRORES: ",self.__v.errors)
         self.__querier.insertarElemento(articuloNuevo)
 

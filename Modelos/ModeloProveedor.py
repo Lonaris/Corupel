@@ -30,19 +30,37 @@ class ModeloProveedor(QtCore.QAbstractTableModel):
             'prov_activo' : {'type' : 'integer', 'allowed' : [0, 1]}
         }
 
-        self.__headers = ('Codigo', 'Nombre',
-        'Razon Social', 'Cuit',
-        'Direccion', 'Teléfono',
-        'Teléfono secundario', 'Email'
-        )
+        self.__propiedades = [
+            'Codigo',
+            'Nombre',
+            'Razon Social',
+            'Cuit',
+            'Direccion',
+            'Teléfono',
+            'Teléfono secundario',
+            'Email'
+        ]
 
-        self.propiedades = (
-        'prov_id','prov_nombre',
-        'prov_razon_social','prov_cuit',
-        'prov_direccion','prov_telefono',
-        'prov_telefono_dos','prov_email',
-        )
-        self.proveedores = self.__querier.traerElementos(self.propiedades)
+        if propiedades:
+            self.__propiedades = propiedades
+
+        self.relacion = {
+            'Codigo' : 'prov_id',
+            'Nombre' : 'prov_nombre',
+            'Razon Social' : 'prov_razon_social',
+            'Cuit' : 'prov_cuit',
+            'Direccion' : 'prov_direccion',
+            'Teléfono' : 'prov_telefono',
+            'Teléfono secundario' : 'prov_telefono_dos',
+            'Email' : 'prov_email'
+        }
+
+        self.__busqueda = []
+
+        for propiedad in self.__propiedades:
+            self.__busqueda.append(self.relacion[propiedad])
+
+        self.proveedores = self.__querier.traerElementos(self.__busqueda)
         self.proveedor = {}
 
     def crearProveedor(self, proveedorNuevo):
@@ -56,7 +74,7 @@ class ModeloProveedor(QtCore.QAbstractTableModel):
 
     def verListaProveedores(self, campos = None, condiciones = None, limite = None):
         if not campos:
-            campos = self.propiedades
+            campos = self.__busqueda
 
         self.proveedores = self.__querier.traerElementos(campos, condiciones, limite)
         self.layoutChanged.emit()
@@ -144,20 +162,4 @@ class ModeloProveedor(QtCore.QAbstractTableModel):
         if role == QtCore.Qt.DisplayRole:
 
             if orientation == QtCore.Qt.Horizontal:
-                return self.__headers[section]
-
-    # def insertRows(self, position, rows, parent = QtCore.QModelIndex()):
-    #     self.beginInsertRows()
-    #     self.endInsertRows()
-    #
-    # def insertColumns(self, position, columns, parent = QtCore.QModelIndex()):
-    #     self.beginInsertColumns()
-    #     self.endInsertColumns()
-    #
-    # def removeRows():
-    #     self.beginRemoveRows()
-    #     self.endRemoveRows()
-    #
-    # def removeColumns():
-    #     self.beginRemoveColumns()
-    #     self.endRemoveColumns()
+                return self.__propiedades[section]
