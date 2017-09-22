@@ -470,7 +470,7 @@
        </property>
        <property name="styleSheet">
         <string notr="true">#groupBox_3{
-background-color: #B3C9E8;
+background-color: #F2F6FD;
 }</string>
        </property>
        <property name="title">
@@ -948,7 +948,7 @@ background-color: #F4F4F4}</string>
        </property>
        <property name="styleSheet">
         <string notr="true">#groupBox{
-background-color: #B3C9E8}</string>
+background-color: #F2F6FD}</string>
        </property>
        <property name="title">
         <string/>
