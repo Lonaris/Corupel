@@ -24,7 +24,7 @@ class OperarioPresenter(object):
         self.vistaLista.btn_nuevo.clicked.connect(self.verNuevo)
         # self.verOperarios(limite = 5)
 
-        self.vistaDetalle.ope_id.returnPressed.connect(self.__refrescar)
+        self.vistaDetalle.ope_legajo.returnPressed.connect(self.__refrescar)
 
         self.vistaLista.show()
 
@@ -63,11 +63,11 @@ class OperarioPresenter(object):
         self.model.toggleOperarioActivo(operario)
 
     def __refrescar(self):
-        opeId = self.vistaDetalle.ope_id.text()
+        opeLeg = self.vistaDetalle.ope_legajo.text()
         operario = {}
-        if opeId:
-            operario = self.model.verDetallesOperario(operario = QModelIndex(), condiciones = [('ope_id', ' = ', opeId)])
-            # self.artModel.verListaArticulos(condiciones = [('ope_id', ' = ', opeId)])
+        if opeLeg:
+            operario = self.model.verDetallesOperario(operario = QModelIndex(), condiciones = [('ope_legajo', ' = ', opeLeg)])
+            # self.artModel.verListaArticulos(condiciones = [('ope_id', ' = ', opeLeg)])
             if operario:
                 self.vistaDetalle.setOperario(operario)
         if not operario:
