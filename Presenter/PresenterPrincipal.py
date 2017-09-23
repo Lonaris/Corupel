@@ -62,11 +62,10 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
         self.mostrarArticulos()
 
+    def mostrarProveedores(self):
+        self.contenido.setCurrentIndex(2) # Para DEBUG. Eliminar mas tarde
 
     def mostrarArticulos(self):
-        self.contenido.setCurrentIndex(0) # Para DEBUG. Eliminar mas tarde
-
-    def mostrarProveedores(self):
         self.contenido.setCurrentIndex(1) # Para DEBUG. Eliminar mas tarde
 
     def mostrarIngresos(self):
