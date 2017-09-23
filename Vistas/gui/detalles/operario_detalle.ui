@@ -470,11 +470,11 @@
        <property name="title">
         <string/>
        </property>
-       <layout class="QGridLayout" name="gridLayout_5" columnstretch="20,0">
+       <layout class="QGridLayout" name="gridLayout_5" columnstretch="2,4">
         <property name="horizontalSpacing">
          <number>1</number>
         </property>
-        <item row="3" column="1">
+        <item row="2" column="1">
          <widget class="QLineEdit" name="ope_apellido">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -484,10 +484,10 @@
           </property>
           <property name="font">
            <font>
-            <family>System</family>
-            <pointsize>8</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <family>DokChampa</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="text">
@@ -495,39 +495,7 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_dni">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>System</family>
-            <pointsize>8</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">#label_dni{
-	background-color: #ECF0F1;
-	}</string>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
-          </property>
-          <property name="text">
-           <string>DNI</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
+        <item row="1" column="1">
          <widget class="QLineEdit" name="ope_legajo">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -537,31 +505,10 @@
           </property>
           <property name="font">
            <font>
-            <family>System</family>
-            <pointsize>8</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="ope_id">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>System</family>
-            <pointsize>8</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <family>DokChampa</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="text">
@@ -582,39 +529,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_codigo">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>System</family>
-            <pointsize>8</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">#label_codigo{
-	background-color: #ECF0F1;
-	}</string>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
-          </property>
-          <property name="text">
-           <string>Codigo</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
+        <item row="2" column="0">
          <widget class="QLabel" name="label_apellido">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -624,10 +539,10 @@
           </property>
           <property name="font">
            <font>
-            <family>System</family>
-            <pointsize>8</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <family>DokChampa</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -646,7 +561,7 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
+        <item row="4" column="1">
          <widget class="QLineEdit" name="ope_puesto">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -654,9 +569,17 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="font">
+           <font>
+            <family>DokChampa</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
          </widget>
         </item>
-        <item row="4" column="1">
+        <item row="3" column="1">
          <widget class="QLineEdit" name="ope_nombre">
           <property name="enabled">
            <bool>true</bool>
@@ -669,10 +592,10 @@
           </property>
           <property name="font">
            <font>
-            <family>System</family>
-            <pointsize>8</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <family>DokChampa</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="text">
@@ -680,7 +603,7 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
+        <item row="4" column="0">
          <widget class="QLabel" name="label_puesto">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -690,10 +613,10 @@
           </property>
           <property name="font">
            <font>
-            <family>System</family>
-            <pointsize>8</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <family>DokChampa</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -712,7 +635,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
+        <item row="3" column="0">
          <widget class="QLabel" name="label_nombre">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -722,10 +645,10 @@
           </property>
           <property name="font">
            <font>
-            <family>System</family>
-            <pointsize>8</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <family>DokChampa</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -744,7 +667,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="1" column="0">
          <widget class="QLabel" name="label_legajo">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -754,10 +677,10 @@
           </property>
           <property name="font">
            <font>
-            <family>System</family>
-            <pointsize>8</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <family>DokChampa</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -776,31 +699,8 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
-         <widget class="QLineEdit" name="ope_dni">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0" colspan="2">
+        <item row="5" column="0" colspan="2">
          <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="7" column="0" colspan="2">
-         <spacer name="verticalSpacer_2">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -1443,10 +1343,10 @@
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>MS Shell Dlg 2</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="mouseTracking">
@@ -1527,7 +1427,6 @@
  <tabstops>
   <tabstop>ope_apellido</tabstop>
   <tabstop>ope_nombre</tabstop>
-  <tabstop>ope_dni</tabstop>
   <tabstop>ope_puesto</tabstop>
  </tabstops>
  <resources/>

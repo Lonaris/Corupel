@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Egresos</class>
+ <widget class="QWidget" name="Egresos">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>353</width>
+    <height>309</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label_titulo">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="text">
+      <string>Egresos</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Detalles">
+     <item>
+      <widget class="QGroupBox" name="Operario">
+       <property name="title">
+        <string>Operario</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_legajo">
+          <property name="text">
+           <string>Legajo</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_nombre">
+          <property name="text">
+           <string>Nombre y Apellido</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="ope_nombre"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="ope_legajo"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="Detales_egreso">
+       <property name="title">
+        <string>Detalles</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_orden">
+          <property name="text">
+           <string>N° de orden</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_destino">
+          <property name="text">
+           <string>Destino</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="egr_destino"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="egr_numero"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_sector">
+          <property name="text">
+           <string>Sector</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="egr_sector"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_fecha">
+          <property name="text">
+           <string>Fecha</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QDateEdit" name="egr_fecha">
+          <property name="calendarPopup">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="Articulos">
+     <property name="title">
+      <string>Articulos a Expedir</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QTableWidget" name="tbl_articulos"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Totales">
+     <item>
+      <widget class="QLabel" name="label_total_cant">
+       <property name="text">
+        <string>Total de Articulos</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="egr_total_cant"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_total_cost">
+       <property name="text">
+        <string>Costo Total</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="egr_total_cost"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Botones">
+     <item>
+      <widget class="QPushButton" name="btn_ingresar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#btn_ingresar{
+	background-color: #196F3D;
+	color: #ffffff;
+	font-family: 'Ariall';
+	font-size: 11px;
+	border-radius: 5px;
+	}
+
+#btn_ingresar:hover{
+	background-color: #04B431;
+	}</string>
+       </property>
+       <property name="text">
+        <string>Agregar Articulos</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../ico/insert_to_shopping_cart.ico</normaloff>../ico/insert_to_shopping_cart.ico</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_guardar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#btn_guardar{
+	background-color: #D68910  ;
+	color: #ffffff;
+	font-family: 'Ariall';
+	font-size: 11px;
+	border-radius: 5px;
+	}
+
+#btn_guardar:hover{
+	background-color: #F1C40F ;
+	}</string>
+       </property>
+       <property name="text">
+        <string>Guardar Egreso</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../ico/save.ico</normaloff>../ico/save.ico</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

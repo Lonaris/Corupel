@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>486</width>
+    <height>429</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetMinAndMaxSize</enum>
+   </property>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+       <underline>false</underline>
+       <strikeout>false</strikeout>
+       <stylestrategy>PreferDefault</stylestrategy>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="text">
+      <string>Ingresos</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Comprobantes">
+     <item>
+      <widget class="QGroupBox" name="group_remito">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>Remito</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout_4">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_numero_2">
+          <property name="text">
+           <string>Numero</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_fecha_2">
+          <property name="text">
+           <string>Fecha</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="rem_numero"/>
+        </item>
+        <item row="2" column="1">
+         <widget class="QDateEdit" name="rem_fecha">
+          <property name="calendarPopup">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_tipo_2">
+          <property name="text">
+           <string>Tipo</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="rem_tipo">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>R</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="group_factura">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>Factura</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <property name="formAlignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_numero">
+          <property name="text">
+           <string>Numero</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="fact_numero"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_fecha">
+          <property name="text">
+           <string>Fecha</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QDateEdit" name="fact_fecha">
+          <property name="calendarPopup">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_tipo">
+          <property name="text">
+           <string>Tipo</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="fact_tipo">
+          <item>
+           <property name="text">
+            <string>A</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>B</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>C</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="group_proveedor">
+       <property name="title">
+        <string>Proveedor</string>
+       </property>
+       <layout class="QFormLayout" name="formLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_codigo">
+          <property name="text">
+           <string>Codigo interno</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_nombre_2">
+          <property name="text">
+           <string>Nombre</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="prov_id"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="prov_nombre"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="group_tabla">
+     <property name="title">
+      <string>Articulos a Ingresar</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QTableView" name="tbl_ingresos"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Totales">
+     <item>
+      <widget class="QLabel" name="label_total_cant">
+       <property name="text">
+        <string>Total de Articulos</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="tot_cant"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_total_costo">
+       <property name="text">
+        <string>Costo Total</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="tot_cost"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Botones">
+     <item>
+      <widget class="QPushButton" name="btn_ingresar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#btn_ingresar{
+	background-color: #196F3D;
+	color: #ffffff;
+	font-family: 'Ariall';
+	font-size: 11px;
+	border-radius: 5px;
+	}
+
+#btn_ingresar:hover{
+	background-color: #04B431;
+	}</string>
+       </property>
+       <property name="text">
+        <string>Agregar Articulos</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../ico/insert_to_shopping_cart.ico</normaloff>../ico/insert_to_shopping_cart.ico</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_guardar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#btn_guardar{
+	background-color: #D68910  ;
+	color: #ffffff;
+	font-family: 'Ariall';
+	font-size: 11px;
+	border-radius: 5px;
+	}
+
+#btn_guardar:hover{
+	background-color: #F1C40F ;
+	}</string>
+       </property>
+       <property name="text">
+        <string>Guardar Ingreso</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../ico/save.ico</normaloff>../ico/save.ico</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>rem_tipo</tabstop>
+  <tabstop>rem_numero</tabstop>
+  <tabstop>rem_fecha</tabstop>
+  <tabstop>fact_tipo</tabstop>
+  <tabstop>fact_numero</tabstop>
+  <tabstop>fact_fecha</tabstop>
+  <tabstop>prov_id</tabstop>
+  <tabstop>prov_nombre</tabstop>
+  <tabstop>tot_cant</tabstop>
+  <tabstop>tot_cost</tabstop>
+  <tabstop>btn_ingresar</tabstop>
+  <tabstop>btn_guardar</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

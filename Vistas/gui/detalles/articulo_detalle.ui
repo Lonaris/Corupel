@@ -432,7 +432,7 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string notr="true">ARTICULOS</string>
+   <string notr="true">Detalles de Articulo</string>
   </property>
   <property name="windowOpacity">
    <double>13.000000000000000</double>
@@ -1093,10 +1093,10 @@
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>MS Shell Dlg 2</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="mouseTracking">
@@ -1161,7 +1161,7 @@
       <widget class="QGroupBox" name="groupBox_detalleArticulo">
        <property name="font">
         <font>
-         <family>Microsoft Sans Serif</family>
+         <family>DokChampa</family>
          <pointsize>8</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -1207,7 +1207,7 @@
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
             <weight>50</weight>
             <bold>false</bold>
@@ -1242,7 +1242,7 @@ background-color: #F4F4F4
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
             <weight>50</weight>
             <bold>false</bold>
@@ -1276,10 +1276,10 @@ background-color: #F4F4F4}</string>
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -1309,10 +1309,10 @@ background-color: #ffffff;
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -1341,10 +1341,10 @@ background-color: #ffffff;
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="text">
@@ -1371,7 +1371,7 @@ background-color: #ffffff;
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
             <weight>50</weight>
             <bold>false</bold>
@@ -1406,10 +1406,10 @@ background-color: #F4F4F4
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="text">
@@ -1436,7 +1436,7 @@ background-color: #F4F4F4
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
             <weight>50</weight>
             <bold>false</bold>
@@ -1474,10 +1474,10 @@ background-color: #F4F4F4
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="text">
@@ -1504,7 +1504,7 @@ background-color: #F4F4F4
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
             <weight>50</weight>
             <bold>false</bold>
@@ -1539,10 +1539,10 @@ background-color: #F4F4F4
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -1577,7 +1577,7 @@ background-color: #ffffff;
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
             <weight>50</weight>
             <bold>false</bold>
@@ -1615,10 +1615,10 @@ background-color: #F4F4F4
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -1644,7 +1644,7 @@ background-color: #ffffff;
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
             <weight>50</weight>
             <bold>false</bold>
@@ -1679,10 +1679,10 @@ background-color: #F4F4F4
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
@@ -1714,10 +1714,10 @@ background-color: #ffffff;
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
+            <weight>50</weight>
+            <bold>false</bold>
            </font>
           </property>
           <property name="text">
@@ -1744,7 +1744,7 @@ background-color: #ffffff;
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
             <weight>50</weight>
             <bold>false</bold>
@@ -1779,7 +1779,7 @@ background-color: #F4F4F4
           </property>
           <property name="font">
            <font>
-            <family>Microsoft Sans Serif</family>
+            <family>DokChampa</family>
             <pointsize>10</pointsize>
             <weight>50</weight>
             <bold>false</bold>

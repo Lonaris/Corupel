@@ -10,7 +10,7 @@ class VistaPrincipal(QtWidgets.QMainWindow):
         model = QStringListModel(data)
 
         main = uic.loadUi("Vistas/gui/main.ui", self)
-        main.menu_navegacion.setModel(model)
+        # main.menu_navegacion.setModel(model)
         #
         # contenido = QtWidgets.QStackedWidget()
         # # contenido.addWidget(vistaArticulo)

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>922</width>
-    <height>676</height>
+    <height>572</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -432,7 +432,7 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string notr="true">Proveedor</string>
+   <string notr="true">Detalles de proveedor</string>
   </property>
   <property name="windowOpacity">
    <double>13.000000000000000</double>
@@ -491,10 +491,10 @@
          </property>
          <property name="font">
           <font>
-           <family>Microsoft Sans Serif</family>
+           <family>MS Shell Dlg 2</family>
            <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="mouseTracking">
@@ -563,7 +563,7 @@
         <widget class="QGroupBox" name="groupBox_2">
          <property name="font">
           <font>
-           <family>Arial</family>
+           <family>MS Shell Dlg 2</family>
            <pointsize>10</pointsize>
            <weight>50</weight>
            <bold>false</bold>
@@ -1052,6 +1052,11 @@ background-color: #F4F4F4
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox_3">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="title">
           <string>Articulos asociados al Proveedor</string>
          </property>
