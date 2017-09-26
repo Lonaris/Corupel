@@ -6,41 +6,279 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>353</width>
-    <height>309</height>
+    <width>604</width>
+    <height>537</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="label_titulo">
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <property name="text">
-      <string>Egresos</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="Detalles">
-     <item>
-      <widget class="QGroupBox" name="Operario">
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout_2" rowstretch="2,2,0,0,2,2,0,800,0,0,0,0">
+     <item row="6" column="0" colspan="2">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="5" column="1">
+      <widget class="QGroupBox" name="Detales_egreso">
+       <property name="styleSheet">
+        <string notr="true">#Detales_egreso{
+	background-color: #F2F6FD;
+	}</string>
+       </property>
        <property name="title">
+        <string/>
+       </property>
+       <layout class="QFormLayout" name="formLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_destino">
+          <property name="text">
+           <string>Destino</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="egr_destino"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_sector">
+          <property name="text">
+           <string>Sector</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="egr_sector"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_fecha">
+          <property name="text">
+           <string>Fecha</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QDateEdit" name="egr_fecha">
+          <property name="calendarPopup">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="7" column="0" rowspan="2" colspan="2">
+      <widget class="QGroupBox" name="Articulos">
+       <property name="styleSheet">
+        <string notr="true">#Articulos{
+	background-color: #F2F6FD;
+	}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Articulos a expedir</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QTableWidget" name="tbl_articulos"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Detalles</string>
+       </property>
+      </widget>
+     </item>
+     <item row="11" column="0" colspan="2">
+      <layout class="QHBoxLayout" name="Botones">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_ingresar">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#btn_ingresar{
+	background-color: #196F3D;
+	color: #ffffff;
+	font-family: 'Ariall';
+	font-size: 11px;
+	border-radius: 5px;
+	}
+
+#btn_ingresar:hover{
+	background-color: #04B431;
+	}</string>
+         </property>
+         <property name="text">
+          <string>Agregar Articulos</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../ico/insert_to_shopping_cart.ico</normaloff>../ico/insert_to_shopping_cart.ico</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_guardar">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#btn_guardar{
+	background-color: #D68910  ;
+	color: #ffffff;
+	font-family: 'Ariall';
+	font-size: 11px;
+	border-radius: 5px;
+	}
+
+#btn_guardar:hover{
+	background-color: #F1C40F ;
+	}</string>
+         </property>
+         <property name="text">
+          <string>Guardar Egreso</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../ico/save.ico</normaloff>../ico/save.ico</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="3" column="0" colspan="2">
+      <widget class="Line" name="line">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="0" colspan="2">
+      <layout class="QHBoxLayout" name="Totales">
+       <item>
+        <widget class="QLabel" name="label_total_cant">
+         <property name="text">
+          <string>Total de Articulos</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="egr_total_cant"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_total_cost">
+         <property name="text">
+          <string>Costo Total</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="egr_total_cost"/>
+       </item>
+      </layout>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
         <string>Operario</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" rowspan="3" colspan="2">
+      <widget class="QLabel" name="label_titulo">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <property name="text">
+        <string>EGRESOS</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QGroupBox" name="Operario">
+       <property name="styleSheet">
+        <string notr="true">#Operario{
+	background-color: #F2F6FD;
+	}</string>
+       </property>
+       <property name="title">
+        <string/>
        </property>
        <layout class="QFormLayout" name="formLayout">
         <item row="0" column="0">
@@ -49,6 +287,9 @@
            <string>Legajo</string>
           </property>
          </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="ope_legajo"/>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_nombre">
@@ -60,188 +301,31 @@
         <item row="1" column="1">
          <widget class="QLineEdit" name="ope_nombre"/>
         </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="ope_legajo"/>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="Detales_egreso">
-       <property name="title">
-        <string>Detalles</string>
-       </property>
-       <layout class="QFormLayout" name="formLayout_2">
-        <item row="0" column="0">
+        <item row="2" column="0">
          <widget class="QLabel" name="label_orden">
           <property name="text">
            <string>N° de orden</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_destino">
-          <property name="text">
-           <string>Destino</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="egr_destino"/>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="egr_numero"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_sector">
-          <property name="text">
-           <string>Sector</string>
-          </property>
-         </widget>
-        </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="egr_sector"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_fecha">
-          <property name="text">
-           <string>Fecha</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QDateEdit" name="egr_fecha">
-          <property name="calendarPopup">
-           <bool>true</bool>
-          </property>
-         </widget>
+         <widget class="QLineEdit" name="egr_numero"/>
         </item>
        </layout>
       </widget>
      </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="Articulos">
-     <property name="title">
-      <string>Articulos a Expedir</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QTableWidget" name="tbl_articulos"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="Totales">
-     <item>
-      <widget class="QLabel" name="label_total_cant">
-       <property name="text">
-        <string>Total de Articulos</string>
+     <item row="10" column="0" colspan="2">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="egr_total_cant"/>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_total_cost">
-       <property name="text">
-        <string>Costo Total</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="egr_total_cost"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="Botones">
-     <item>
-      <widget class="QPushButton" name="btn_ingresar">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>40</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#btn_ingresar{
-	background-color: #196F3D;
-	color: #ffffff;
-	font-family: 'Ariall';
-	font-size: 11px;
-	border-radius: 5px;
-	}
-
-#btn_ingresar:hover{
-	background-color: #04B431;
-	}</string>
-       </property>
-       <property name="text">
-        <string>Agregar Articulos</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../ico/insert_to_shopping_cart.ico</normaloff>../ico/insert_to_shopping_cart.ico</iconset>
-       </property>
-       <property name="iconSize">
+       <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
-         <height>40</height>
+         <height>20</height>
         </size>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_guardar">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>40</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#btn_guardar{
-	background-color: #D68910  ;
-	color: #ffffff;
-	font-family: 'Ariall';
-	font-size: 11px;
-	border-radius: 5px;
-	}
-
-#btn_guardar:hover{
-	background-color: #F1C40F ;
-	}</string>
-       </property>
-       <property name="text">
-        <string>Guardar Egreso</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../ico/save.ico</normaloff>../ico/save.ico</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>40</width>
-         <height>40</height>
-        </size>
-       </property>
-      </widget>
+      </spacer>
      </item>
     </layout>
    </item>
