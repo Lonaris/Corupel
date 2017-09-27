@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>604</width>
-    <height>537</height>
+    <width>353</width>
+    <height>362</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -108,6 +108,7 @@
        </property>
       </widget>
      </item>
+<!-- <<<<<<< HEAD -->
      <item row="11" column="0" colspan="2">
       <layout class="QHBoxLayout" name="Botones">
        <item>
@@ -146,7 +147,7 @@
 	border-radius: 5px;
 	}
 
-#btn_ingresar:hover{
+#btn_agregar_art:hover{
 	background-color: #04B431;
 	}</string>
          </property>
