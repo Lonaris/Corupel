@@ -58,3 +58,11 @@ class ArticuloPresenter(object):
     def nuevoArticulo(self):
         self.vistaDetalle.resetArticulo()
         self.vistaDetalle.show()
+
+
+    def confirmarSalir(self):
+        # IMPLEMENTAR
+        pass
+    def confirmarGuardar(self):
+        # IMPLEMENTAR
+        pass

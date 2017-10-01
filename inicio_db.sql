@@ -2,7 +2,7 @@ CREATE TABLE `articulos` (
   `art_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `prov_id` int(16) UNSIGNED NOT NULL,
   `art_cod_barras` varchar(20) NULL UNIQUE KEY,
-  `art_descripcion` varchar(20) NOT NULL,
+  `art_descripcion` varchar(30) NOT NULL,
   `art_marca` varchar(20) NOT NULL,
   `art_agrupacion` varchar(20) NOT NULL,
   `art_stock_minimo` int(8) NOT NULL,

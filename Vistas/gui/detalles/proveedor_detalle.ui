@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CONSULTAS</class>
- <widget class="QWidget" name="CONSULTAS">
+ <class>main_widget</class>
+ <widget class="QWidget" name="main_widget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>922</width>
-    <height>572</height>
+    <width>920</width>
+    <height>575</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -442,7 +442,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="main_layout" stretch="1,1,10,1,1">
      <property name="leftMargin">
       <number>10</number>
      </property>
@@ -558,9 +558,22 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout" stretch="40,60">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="layout_detalles" stretch="40,60">
        <item>
-        <widget class="QGroupBox" name="groupBox_2">
+        <widget class="QGroupBox" name="box_proveedor">
          <property name="font">
           <font>
            <family>MS Shell Dlg 2</family>
@@ -1051,7 +1064,7 @@ background-color: #F4F4F4
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_3">
+        <widget class="QGroupBox" name="box_articulos">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -1126,7 +1139,7 @@ background-color: #F4F4F4
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <layout class="QHBoxLayout" name="box_art_botones">
             <item>
              <widget class="QPushButton" name="btn_deshabilitar_art">
               <property name="sizePolicy">
@@ -1652,7 +1665,7 @@ background-color: #F4F4F4
       </spacer>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox">
+      <widget class="QGroupBox" name="box_prov_botones">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -1662,7 +1675,7 @@ background-color: #F4F4F4
        <property name="title">
         <string/>
        </property>
-       <layout class="QGridLayout" name="gridLayout_4" columnstretch="10,10,10,10">
+       <layout class="QHBoxLayout" name="horizontalLayout">
         <property name="sizeConstraint">
          <enum>QLayout::SetMinimumSize</enum>
         </property>
@@ -1678,60 +1691,7 @@ background-color: #F4F4F4
         <property name="bottomMargin">
          <number>1</number>
         </property>
-        <property name="horizontalSpacing">
-         <number>5</number>
-        </property>
-        <item row="1" column="1">
-         <widget class="QPushButton" name="btn_modificar">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Ariall</family>
-            <pointsize>-1</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">/*Estilos para el botón*/
-#btn_modificar{
-	background-color: #154360;
-	color: #ffffff;
-	font-family: 'Ariall';
-	font-size: 11px;
-	border-radius: 5px;
-	}
-
-#btn_modificar:hover{
-	background-color: #0101DF;
-	}
-</string>
-          </property>
-          <property name="text">
-           <string>Modificar (Ctrl+M)</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>../ico/edit.ico</normaloff>../ico/edit.ico</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>40</width>
-            <height>40</height>
-           </size>
-          </property>
-          <property name="checkable">
-           <bool>false</bool>
-          </property>
-          <property name="autoDefault">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
+        <item>
          <widget class="QPushButton" name="btn_deshabilitar">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -2190,7 +2150,57 @@ background-color: #F4F4F4
           </property>
          </widget>
         </item>
-        <item row="1" column="2">
+        <item>
+         <widget class="QPushButton" name="btn_modificar">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Ariall</family>
+            <pointsize>-1</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">/*Estilos para el botón*/
+#btn_modificar{
+	background-color: #154360;
+	color: #ffffff;
+	font-family: 'Ariall';
+	font-size: 11px;
+	border-radius: 5px;
+	}
+
+#btn_modificar:hover{
+	background-color: #0101DF;
+	}
+</string>
+          </property>
+          <property name="text">
+           <string>Modificar (Ctrl+M)</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../ico/edit.ico</normaloff>../ico/edit.ico</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="autoDefault">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="btn_nuevo">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -2235,7 +2245,7 @@ background-color: #F4F4F4
           </property>
          </widget>
         </item>
-        <item row="1" column="3">
+        <item>
          <widget class="QPushButton" name="btn_imprimir">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
