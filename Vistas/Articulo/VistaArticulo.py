@@ -16,16 +16,9 @@ class ArticuloView(QtWidgets.QWidget):
 	#Inicializamos el objeto
     def __init__(self, presenter, parent=None):
         super(ArticuloView, self).__init__(parent)
-        # Todos los Widgets de PyQT deben ser privados,
-        # esto se logra NO COLOCANDO 'self.' sino la variable localmente.
 
         #Traemos el archivo .UI "Articulos_detalle"
         self.vistaDetalle = uic.loadUi("vistas/gui/detalles/articulo_detalle.ui", self)
-
-		#Utilizamos el evento clicked.connect de los botones del archivo .ui para ejecutar la funciones.
-        # self.vistaDetalle.btn_modificar.clicked.connect(self.modificarArticulo)
-        # self.vistaDetalle.btn_nuevo.clicked.connect(self.crearArticulo)
-        # self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarArticulo)
 
     #Funcion que trae un articulo y modifica la ifnormacion.
     def getArticulo(self):
