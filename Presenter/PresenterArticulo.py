@@ -12,7 +12,6 @@ class ArticuloPresenter(object):
         self.model = AModel.ModeloArticulo()
         self.vistaDetalle = AView.ArticuloView(self)
         self.vistaLista = ALView.ListaArticuloView(self)
-        # self.interactor = interactor
 
         self.vistaLista.tbl_articulos.setModel(self.model)
         self.vistaLista.tbl_articulos.doubleClicked.connect(self.verDetalles)
@@ -21,10 +20,9 @@ class ArticuloPresenter(object):
         self.vistaDetalle.btn_modificar.clicked.connect(self.modificarArticulo)
         self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarArticulo)
 
+        self.vistaLista.btn_nuevo.clicked.connect(self.nuevoArticulo)
         self.vistaLista.ln_buscar.returnPressed.connect(self.verArticulos)
         self.vistaLista.btn_buscar.clicked.connect(self.verArticulos)
-
-        # self.verArticulos(limite = 5)
 
         self.vistaLista.show()
 
@@ -38,7 +36,6 @@ class ArticuloPresenter(object):
     def verDetalles(self, articulo):
 
         articulo = self.model.verDetallesArticulo(articulo)
-        # self.vistaLista.tbl_articulos.setEnabled(False)
         self.vistaDetalle.setArticulo(articulo)
         self.vistaDetalle.show()
         self.vistaDetalle.activateWindow()
@@ -57,3 +54,7 @@ class ArticuloPresenter(object):
         print(articulo)
 
         self.model.deshabilitarArticulo(articulo)
+
+    def nuevoArticulo(self):
+        self.vistaDetalle.resetArticulo()
+        self.vistaDetalle.show()

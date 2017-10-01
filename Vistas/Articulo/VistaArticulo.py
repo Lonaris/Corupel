@@ -52,3 +52,9 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_descripcion.setText(articulo[3])
         # self.vistaDetalle.art_marca.setText(articulo[4])
         # self.vistaDetalle.art_agrupacion.setText(articulo[5])
+
+    def resetArticulo(self):
+        self.vistaDetalle.art_id.setText("")
+        self.vistaDetalle.prov_id.setText("")
+        self.vistaDetalle.art_cod_barras.setText("")
+        self.vistaDetalle.art_descripcion.setText("")
