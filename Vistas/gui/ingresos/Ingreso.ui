@@ -76,7 +76,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_ingresar">
+        <widget class="QPushButton" name="btn_agregar_art">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -90,7 +90,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">#btn_ingresar{
+          <string notr="true">#btn_agregar_art{
 	background-color: #196F3D;
 	color: #ffffff;
 	font-family: 'Ariall';
@@ -98,7 +98,7 @@
 	border-radius: 5px;
 	}
 
-#btn_ingresar:hover{
+#btn_agregar_art:hover{
 	background-color: #04B431;
 	}</string>
          </property>
@@ -469,7 +469,7 @@
   <tabstop>prov_nombre</tabstop>
   <tabstop>tot_cant</tabstop>
   <tabstop>tot_cost</tabstop>
-  <tabstop>btn_ingresar</tabstop>
+  <tabstop>btn_agregar_art</tabstop>
   <tabstop>btn_guardar</tabstop>
  </tabstops>
  <resources/>

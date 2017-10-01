@@ -18,7 +18,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
         pi = PresenterIngreso.IngresoPresenter()
         pe = PresenterEgreso.EgresoPresenter()
 
-        self.presenters = [ pp, pa, pi, pe, po]
+        self.presenters = [ pa, pp, po, pi, pe]
 
         menu = {}
 
@@ -28,7 +28,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
 
         for index, pr in enumerate(self.presenters):
-            if index == 2 or index == 3:
+            if index == 3 or index == 4:
                 self.contenido.insertWidget(index, pr.vistaDetalle)
             else:
                 self.contenido.insertWidget(index, pr.vistaLista)
@@ -49,6 +49,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
         self.vista.btn_main_articulos.clicked.connect(self.mostrarArticulos)
         self.vista.btn_main_proveedores.clicked.connect(self.mostrarProveedores)
+        self.vista.btn_main_operarios.clicked.connect(self.mostrarOperarios)
         self.vista.btn_main_ingresos.clicked.connect(self.mostrarIngresos)
         self.vista.btn_main_egresos.clicked.connect(self.mostrarEgresos)
 
@@ -62,14 +63,17 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
         self.mostrarArticulos()
 
-    def mostrarProveedores(self):
-        self.contenido.setCurrentIndex(2) # Para DEBUG. Eliminar mas tarde
-
     def mostrarArticulos(self):
+        self.contenido.setCurrentIndex(0) # Para DEBUG. Eliminar mas tarde
+
+    def mostrarProveedores(self):
         self.contenido.setCurrentIndex(1) # Para DEBUG. Eliminar mas tarde
 
-    def mostrarIngresos(self):
+    def mostrarOperarios(self):
         self.contenido.setCurrentIndex(2) # Para DEBUG. Eliminar mas tarde
 
-    def mostrarEgresos(self):
+    def mostrarIngresos(self):
         self.contenido.setCurrentIndex(3) # Para DEBUG. Eliminar mas tarde
+
+    def mostrarEgresos(self):
+        self.contenido.setCurrentIndex(4) # Para DEBUG. Eliminar mas tarde

@@ -473,7 +473,104 @@
          <property name="rightMargin">
           <number>15</number>
          </property>
-         <item row="4" column="0" colspan="2">
+         <item row="9" column="0">
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_logo">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>ico/corupel.jpg</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="8" column="0" colspan="2">
+          <widget class="QPushButton" name="btn_main_configuracion">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#btn_main_configuracion{
+								background-color: #BAC1D7;
+								}</string>
+           </property>
+           <property name="text">
+            <string>Configuraciones</string>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" colspan="2">
+          <widget class="QPushButton" name="btn_main_proveedores">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#btn_main_proveedores{
+								background-color: #BAC1D7;
+								}</string>
+           </property>
+           <property name="text">
+            <string>Proveedores</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>ico/user_accept.ico</normaloff>ico/user_accept.ico</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="2">
           <widget class="QPushButton" name="btn_main_ingresos">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -501,7 +598,7 @@
            </property>
           </widget>
          </item>
-         <item row="5" column="0" colspan="2">
+         <item row="6" column="0" colspan="2">
           <widget class="QPushButton" name="btn_main_egresos">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -529,7 +626,7 @@
            </property>
           </widget>
          </item>
-         <item row="6" column="0" colspan="2">
+         <item row="7" column="0" colspan="2">
           <widget class="QPushButton" name="btn_main_informes">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -585,8 +682,8 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="0" colspan="2">
-          <widget class="QPushButton" name="btn_main_proveedores">
+         <item row="4" column="0" colspan="2">
+          <widget class="QPushButton" name="btn_main_operarios">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -594,12 +691,12 @@
             </sizepolicy>
            </property>
            <property name="styleSheet">
-            <string notr="true">#btn_main_proveedores{
+            <string notr="true">#btn_main_operarios{
 								background-color: #BAC1D7;
 								}</string>
            </property>
            <property name="text">
-            <string>Proveedores</string>
+            <string>Operarios</string>
            </property>
            <property name="icon">
             <iconset>
@@ -612,75 +709,6 @@
             </size>
            </property>
           </widget>
-         </item>
-         <item row="1" column="0">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="7" column="0" colspan="2">
-          <widget class="QPushButton" name="btn_main_configuracion">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">#btn_main_configuracion{
-								background-color: #BAC1D7;
-								}</string>
-           </property>
-           <property name="text">
-            <string>Configuraciones</string>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_logo">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap>ico/corupel.jpg</pixmap>
-           </property>
-           <property name="scaledContents">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="0">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>353</width>
-    <height>362</height>
+    <height>406</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -96,7 +96,7 @@
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QTableWidget" name="tbl_articulos"/>
+         <widget class="QTableWidget" name="tbl_egresos"/>
         </item>
        </layout>
       </widget>
@@ -108,7 +108,6 @@
        </property>
       </widget>
      </item>
-<!-- <<<<<<< HEAD -->
      <item row="11" column="0" colspan="2">
       <layout class="QHBoxLayout" name="Botones">
        <item>
@@ -125,7 +124,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_ingresar">
+        <widget class="QPushButton" name="btn_agregar_art">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -139,7 +138,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">#btn_ingresar{
+          <string notr="true">#btn_agregar_art{
 	background-color: #196F3D;
 	color: #ffffff;
 	font-family: 'Ariall';
