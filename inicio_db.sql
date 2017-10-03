@@ -31,6 +31,17 @@ CREATE TABLE `proveedores` (
   `prov_activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `articulos_de_proveedores` (
+  `articulo` int(16) UNSIGNED NOT NULL,
+  `proveedor` int(16) UNSIGNED NOT NULL,
+  PRIMARY KEY (`articulo`, `proveedor`),
+  CONSTRAINT `constr_articulos_de_proveedores_articulo_fk`
+        FOREIGN KEY `articulo_fk` (`articulo`) REFERENCES `articulos` (`art_id`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `constr_articulos_de_proveedores_proveedor_fk`
+        FOREIGN KEY `proveedor_fk` (`proveedor`) REFERENCES `proveedores` (`prov_id`)
+        ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `agrupaciones` (
   `ag_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -48,6 +59,7 @@ CREATE TABLE `movimientos_ingreso` (
   `art_id` int(16) UNSIGNED NOT NULL ,
   `ing_id` int(16) UNSIGNED NOT NULL ,
   `movi_cantidad` int(20) UNSIGNED NOT NULL,
+  `movi_restante` int(20) UNSIGNED NOT NULL,
   `movi_costo` int(20)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
