@@ -1,10 +1,9 @@
 # articulo_presenter.py
 
-
 import Vistas.Articulo.VistaArticulo as AView
 import Vistas.Articulo.VistaListaArticulos as ALView
 import Modelos.ModeloArticulo as AModel
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QModelIndex
 
 
 class ArticuloPresenter(object):
@@ -19,6 +18,7 @@ class ArticuloPresenter(object):
         self.vistaDetalle.btn_nuevo.clicked.connect(self.crearArticulo)
         self.vistaDetalle.btn_modificar.clicked.connect(self.modificarArticulo)
         self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarArticulo)
+        self.vistaDetalle.art_id.returnPressed.connect(self.__refrescar)
 
         self.vistaLista.btn_nuevo.clicked.connect(self.nuevoArticulo)
         self.vistaLista.ln_buscar.returnPressed.connect(self.verArticulos)
@@ -40,13 +40,24 @@ class ArticuloPresenter(object):
         self.vistaDetalle.show()
         self.vistaDetalle.activateWindow()
 
-    def crearArticulo(self, articulo):
+    def crearArticulo(self):
         # print("DEBUG - Tipo de objeto de artículo_ ", type(articulo))
+        print("ESTO ANDA")
+        articulo = self.vistaDetalle.getArticulo()
+        print("DEBUG - Artículo: ", articulo)
         articulo['art_id'] = None
+        # error =
         self.model.crearArticulo(articulo)
+        self.verArticulos()
+        # if error:
+        #     self.vistaDetalle.errorDeCampo(error)
+        # else:
+        #     self.vistaDetalle.articuloGuardado()
 
-    def modificarArticulo(self, articulo):
+    def modificarArticulo(self):
+        articulo = self.vistaDetalle.getArticulo()
         self.model.modificarArticulo(articulo)
+        self.verArticulos()
 
     def deshabilitarArticulo(self, articulo):
 
@@ -59,10 +70,22 @@ class ArticuloPresenter(object):
         self.vistaDetalle.resetArticulo()
         self.vistaDetalle.show()
 
-
-    def confirmarSalir(self):
-        # IMPLEMENTAR
-        pass
-    def confirmarGuardar(self):
-        # IMPLEMENTAR
-        pass
+    def __refrescar(self):
+        artId = self.vistaDetalle.art_id.text()
+        articulo = {}
+        if artId:
+            print("DEBUG - ART_ID = ", artId)
+            articulo = self.model.verDetallesArticulo(articulo = QModelIndex(), condiciones = [('art_id', ' = ', artId)])
+            # self.artModel.verListaProveedores(condiciones = [('art_id', ' = ', artId)])
+            if articulo:
+                self.vistaDetalle.setArticulo(articulo)
+        if not articulo:
+            self.vistaDetalle.resetArticulo()
+    #
+    # def confirmarSalir(self):
+    #     # IMPLEMENTAR
+    #     pass
+    #
+    # def confirmarGuardar(self):
+    #     # IMPLEMENTAR
+    #     pass

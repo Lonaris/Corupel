@@ -59,6 +59,7 @@ class ProveedorPresenter(object):
         proveedor = self.vistaDetalle.getProveedor()
         proveedor['prov_id'] = None
         self.model.crearProveedor(proveedor)
+        self.verProveedores()
 
     def modificarProveedor(self):
         proveedor = self.vistaDetalle.getProveedor()

@@ -2192,6 +2192,9 @@ background-color: #F4F4F4
             <height>40</height>
            </size>
           </property>
+          <property name="shortcut">
+           <string>Ctrl+M</string>
+          </property>
           <property name="checkable">
            <bool>false</bool>
           </property>
@@ -2242,6 +2245,9 @@ background-color: #F4F4F4
             <width>40</width>
             <height>40</height>
            </size>
+          </property>
+          <property name="shortcut">
+           <string>Ctrl+N</string>
           </property>
          </widget>
         </item>

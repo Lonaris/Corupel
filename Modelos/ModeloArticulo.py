@@ -1,4 +1,3 @@
-# articulo.py
 
 from PyQt5 import QtCore
 import mysql.connector
@@ -22,26 +21,26 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         super(ModeloArticulo, self).__init__()
 
         self.__scArticulo = {
-        'art_id' : {'type' : 'integer' },
-        'prov_id' : {'type' : 'integer' },
+        'art_id' : {'type' : 'integer', 'nullable' : True },
+        # 'prov_id' : {'type' : 'integer' },
         'art_cod_barras' : {'type' : 'string' },
         'art_descripcion' : {'type' : 'string' },
         'art_marca' : {'type' : 'string' },
         'art_agrupacion' : {'type' : 'string' },
-        # 'art_stock_min',
+        'art_stock_minimo' : {'type' : 'integer'},
         # 'art_stock_actual',
-        'art_activo' : {'type' : 'integer' }
+        # 'art_activo' : {'type' : 'integer' }
         }
 
         self.__propiedades = [
             'Codigo',
-            'Proveedor',
+            # 'Proveedor',
             'Codigo de Barras',
             'Descripcion',
             'Marca',
             'Agrupacion',
             # 'art_stock_min', 'art_stock_actual',
-            'Estado'
+            # 'Estado'
         ]
 
         if propiedades:
@@ -49,15 +48,15 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
 
         self.relacion = {
             'Codigo' : 'art_id',
-            'Proveedor' : 'prov_id',
+            # 'Proveedor' : 'prov_nombre',
             'Codigo de Barras' : 'art_cod_barras',
             'Descripcion' : 'art_descripcion',
             'Marca' : 'art_marca',
             'Agrupacion' : 'art_agrupacion',
             # 'art_stock_min', 'art_stock_actual',
             # 'Stock' : 'art_stock_actual',
-            # 'Stock mínimo' : 'art_stock_min',
-            'Estado' : 'art_activo',
+            'Stock mínimo' : 'art_stock_minimo',
+            # 'Estado' : 'art_activo',
         }
 
         self.__busqueda = []
@@ -69,9 +68,20 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         self.articulo = {}
 
     def crearArticulo(self, articuloNuevo):
-        print(self.__v.validate(articuloNuevo, self.__scArticulo))
-        print("ERRORES: ",self.__v.errors)
-        self.__querier.insertarElemento(articuloNuevo)
+        # print (self.__v.validate(articuloNuevo, self.__scArticulo))
+        # print (self.__v.errors)
+        # # if errors: return false
+        # self.__querier.insertarElemento(articuloNuevo)
+        # return True
+        print(articuloNuevo)
+        v = self.__v.validate(articuloNuevo, self.__scArticulo)
+        if v:
+            self.__querier.insertarElemento(articuloNuevo)
+        else:
+            print("ERRORES: ",self.__v.errors)
+        return v
+
+        # Implementar ERRORCODE de MySQL y devolver errores
 
     def verListaArticulos(self, campos = None, condiciones = None, limite = None):
         if not campos:
@@ -84,16 +94,35 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         # condiciones = ()
 
         # print (articulo.row())
-        articulo = self.articulos[articulo.row()]
-        condiciones = [('art_id', '=', articulo[0])]
+        # articulo = self.articulos[articulo.row()]
+        # condiciones = [('art_id', '=', articulo[0])]
+        # resultado = self.__querier.traerElementos(campos, condiciones, 1)
+        # self.articulo = resultado[0]
+        # # print(self.articulo)
+        # return self.articulo
+
+        print (articulo)
+        print (articulo.row())
+        if articulo.row() >= 0:
+            articulo = self.articulos[articulo.row()]
+        if not condiciones:
+            condiciones = [('art_id', '=', articulo[0])]
         resultado = self.__querier.traerElementos(campos, condiciones, 1)
-        self.articulo = resultado[0]
+        if resultado:
+            self.articulo = resultado[0]
+        else:
+            return None
         # print(self.articulo)
         return self.articulo
 
 
     def modificarArticulo(self, articulo):
-        self.__querier.actualizarElemento(articulo)
+        v = self.__v.validate(articulo, self.__scArticulo)
+        if v:
+            self.__querier.actualizarElemento(articulo)
+        else:
+            print("ERRORES: ", self.__v.errors)
+        return v
 
     def asociarProveedor(self, proveedor = { 'prov_nombre' : 'Indeterminado' }):
         # El ID de proveedor por defecto no debe ser 0000, sino el que sea creado para el proveedor con nombre "Indeterminado"

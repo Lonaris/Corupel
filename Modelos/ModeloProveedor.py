@@ -23,10 +23,10 @@ class ModeloProveedor(QtCore.QAbstractTableModel):
             'prov_nombre' : {'type' : 'string', 'required' : True },
             'prov_razon_social' : {'type' : 'string', 'maxlength' : 20 },
             'prov_cuit' : {'type' : 'string', 'maxlength' : 20},
-            'prov_direccion' : {'type' : 'string', 'maxlength' : 20},
+            'prov_direccion' : {'type' : 'string', 'maxlength' : 30},
             'prov_telefono' : {'type' : 'string', 'maxlength' : 20 },
             'prov_telefono_dos' : {'type' : 'string', 'maxlength' : 20 },
-            'prov_email' : {'type' : 'string', 'empty' : True , 'required' : False },
+            'prov_email' : {'type' : 'string'},
             'prov_activo' : {'type' : 'integer', 'allowed' : [0, 1]}
         }
 
@@ -94,7 +94,6 @@ class ModeloProveedor(QtCore.QAbstractTableModel):
             return None
         # print(self.proveedor)
         return self.proveedor
-
 
     def modificarProveedor(self, proveedor):
         v = self.__v.validate(proveedor, self.__scProveedor)
