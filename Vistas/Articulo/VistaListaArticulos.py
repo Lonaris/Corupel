@@ -9,3 +9,8 @@ class ListaArticuloView(QtWidgets.QWidget):
         super(ListaArticuloView, self).__init__(parent)
 
         self.vistaLista = uic.loadUi("vistas/gui/listas/articulos_lista.ui", self)
+        tabla = self.vistaLista.tbl_articulos
+
+        tabla.horizontalHeader().setStretchLastSection(True)
+
+        tabla.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
