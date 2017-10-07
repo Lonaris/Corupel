@@ -1,7 +1,7 @@
 # proveedor_view.py
 
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox
+from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox, QTextEdit
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import pyqtSignal, QRegExp
 
@@ -27,13 +27,13 @@ class ProveedorView(QtWidgets.QWidget):
         self.vistaDetalle.prov_telefono.setValidator(QRegExpValidator(rxNumeros))
         self.vistaDetalle.prov_telefono_dos.setValidator(QRegExpValidator(rxNumeros))
         self.vistaDetalle.prov_id.textChanged.connect(self.__activarBotones)
-        self.vistaDetalle.prov_activo.setTristate(False)
+        # self.vistaDetalle.prov_activo.setTristate(False)
 
         self.__activarBotones("")
 
     #Funcion que trae un proveedor y modifica la ifnormacion.
     def getProveedor(self):
-        rawProveedor = self.vistaDetalle.findChildren((QLineEdit, QCheckBox), self.rxProv)
+        rawProveedor = self.vistaDetalle.findChildren((QTextEdit, QLineEdit, QCheckBox), self.rxProv)
         proveedor = {}
         for componente in rawProveedor:
                 proveedor[componente.objectName()] = componente.text()
@@ -44,10 +44,10 @@ class ProveedorView(QtWidgets.QWidget):
         if (proveedor['prov_id']):
             proveedor['prov_id'] = int(proveedor['prov_id'])
 
-        if proveedor['prov_activo']:
-            proveedor['prov_activo'] = 1
-        else:
-            proveedor['prov_activo'] = 0
+        # if proveedor['prov_activo']:
+        #     proveedor['prov_activo'] = 1
+        # else:
+        #     proveedor['prov_activo'] = 0
 
         return proveedor
 
@@ -59,13 +59,15 @@ class ProveedorView(QtWidgets.QWidget):
         self.vistaDetalle.prov_razon_social.setText(proveedor[2])
         self.vistaDetalle.prov_cuit.setText(proveedor[3])
         self.vistaDetalle.prov_direccion.setText(proveedor[4])
-        self.vistaDetalle.prov_telefono.setText(proveedor[5])
-        self.vistaDetalle.prov_telefono_dos.setText(proveedor[6])
-        self.vistaDetalle.prov_email.setText(proveedor[7])
-        if proveedor[8]:
-            self.vistaDetalle.prov_activo.setChecked(True)
-        else:
-            self.vistaDetalle.prov_activo.setChecked(False)
+        self.vistaDetalle.prov_nombre_contacto.setText(proveedor[5])
+        self.vistaDetalle.prov_telefono.setText(proveedor[6])
+        self.vistaDetalle.prov_telefono_dos.setText(proveedor[7])
+        self.vistaDetalle.prov_email.setText(proveedor[8])
+        self.vistaDetalle.prov_notas.setText(proveedor[9])
+        # if proveedor[8]:
+        #     self.vistaDetalle.prov_activo.setChecked(True)
+        # else:
+        #     self.vistaDetalle.prov_activo.setChecked(False)
 
     def resetProveedor(self):
         camposAResetear = self.vistaDetalle.findChildren(QLineEdit, self.rxProv)

@@ -19,13 +19,15 @@ CREATE TABLE `operarios` (
 
 CREATE TABLE `proveedores` (
   `prov_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `prov_nombre` varchar(20) NOT NULL,
-  `prov_razon_social` varchar(20) NOT NULL,
+  `prov_nombre` varchar(60) NOT NULL,
+  `prov_razon_social` varchar(60) NOT NULL,
   `prov_cuit` varchar(20),
-  `prov_direccion` varchar(40),
-  `prov_telefono` varchar(20),
-  `prov_telefono_dos` varchar(20),
-  `prov_email` varchar(30),
+  `prov_direccion` varchar(60),
+  `prov_nombre_contacto` varchar(30) NOT NULL,
+  `prov_telefono` varchar(30),
+  `prov_telefono_dos` varchar(30),
+  `prov_email` varchar(40),
+  `prov_notas` tinytext,
   `prov_activo` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -64,10 +66,11 @@ CREATE TABLE `movimientos_ingreso` (
 CREATE TABLE `movimientos_egreso` (
   `move_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `art_id` int(16) UNSIGNED NOT NULL,
-  `eg_id` int(16) UNSIGNED NOT NULL,
-  `movi_id` int(16) UNSIGNED NOT NULL,
+  `move_destino` varchar(20),
+  `move_sector` varchar(20),
+  `egr_id` int(16) UNSIGNED NOT NULL,
   `move_cantidad` int(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;	
 
 CREATE TABLE `ingresos` (
   `ing_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -76,9 +79,9 @@ CREATE TABLE `ingresos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `egresos` (
-  `eg_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `egr_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `ope_id` int(16) NOT NULL,
-  `eg_fecha` date NOT NULL
+  `egr_fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `comprobantes` (
@@ -94,5 +97,5 @@ CREATE TABLE `remitos` (
   `rem_prefijo` varchar(10) NOT NULL,
   `rem_numero` int(20) NOT NULL,
   `rem_fecha` date NOT NULL,
-  `eg_id` int(16) UNSIGNED NOT NULL
+  `egr_id` int(16) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

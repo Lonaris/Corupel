@@ -3,11 +3,13 @@
 import Vistas.Articulo.VistaArticulo as AView
 import Vistas.Articulo.VistaListaArticulos as ALView
 import Modelos.ModeloArticulo as AModel
+import Modelos.ModeloProveedor as PModel
 from PyQt5.QtCore import Qt, QModelIndex
 
 
 class ArticuloPresenter(object):
     def __init__(self):
+        self.provModel = PModel.ModeloProveedor(propiedades = ["Codigo", "Nombre", "Teléfono"])
         self.model = AModel.ModeloArticulo()
         self.vistaDetalle = AView.ArticuloView(self)
         self.vistaLista = ALView.ListaArticuloView(self)
@@ -19,6 +21,7 @@ class ArticuloPresenter(object):
         self.vistaDetalle.btn_modificar.clicked.connect(self.modificarArticulo)
         self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarArticulo)
         self.vistaDetalle.art_id.returnPressed.connect(self.__refrescar)
+        self.vistaDetalle.tbl_proveedores.setModel(self.provModel)
 
         self.vistaLista.btn_nuevo.clicked.connect(self.nuevoArticulo)
         self.vistaLista.ln_buscar.returnPressed.connect(self.verArticulos)
@@ -32,11 +35,12 @@ class ArticuloPresenter(object):
         condiciones = [('art_descripcion', ' LIKE ', texto)]
         self.model.verListaArticulos(campos, condiciones, limite)
 
-
     def verDetalles(self, articulo):
+        if articulo:
+            articulo = self.model.verDetallesArticulo(articulo)
+            self.vistaDetalle.setArticulo(articulo)
+            self.provModel.verListaProveedores(condiciones = [("articulos_de_proveedores.articulo", " = ", articulo[0])], campos = ["prov_id", "prov_nombre", "prov_telefono"], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'])
 
-        articulo = self.model.verDetallesArticulo(articulo)
-        self.vistaDetalle.setArticulo(articulo)
         self.vistaDetalle.show()
         self.vistaDetalle.activateWindow()
 
@@ -76,7 +80,7 @@ class ArticuloPresenter(object):
         if artId:
             print("DEBUG - ART_ID = ", artId)
             articulo = self.model.verDetallesArticulo(articulo = QModelIndex(), condiciones = [('art_id', ' = ', artId)])
-            # self.artModel.verListaProveedores(condiciones = [('art_id', ' = ', artId)])
+            self.provModel.verListaProveedores(condiciones = [("articulos_de_proveedores.articulo", " = ", artId)], campos = ["prov_id", "prov_nombre", "prov_telefono"], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'])
             if articulo:
                 self.vistaDetalle.setArticulo(articulo)
         if not articulo:

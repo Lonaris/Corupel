@@ -72,17 +72,17 @@ class ModeloProveedor(QtCore.QAbstractTableModel):
             print("ERRORES: ",self.__v.errors)
         return v
 
-    def verListaProveedores(self, campos = None, condiciones = None, limite = None):
+    def verListaProveedores(self, campos = None, condiciones = None, limite = None, union = None):
         if not campos:
             campos = self.__busqueda
 
-        self.proveedores = self.__querier.traerElementos(campos, condiciones, limite)
+        self.proveedores = self.__querier.traerElementos(campos, condiciones, limite, union)
         self.layoutChanged.emit()
 
     def verDetallesProveedor(self, proveedor, condiciones = None, campos = None):
         # condiciones = ()
-        print (proveedor)
-        print (proveedor.row())
+        # print (proveedor)
+        # print (proveedor.row())
         if proveedor.row() >= 0:
             proveedor = self.proveedores[proveedor.row()]
         if not condiciones:

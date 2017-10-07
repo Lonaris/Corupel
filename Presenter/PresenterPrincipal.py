@@ -25,7 +25,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
         for index, pr in enumerate(self.presenters):
             if index == 3 or index == 4:
-                self.contenido.insertWidget(index, pr.vistaDetalle)
+                self.contenido.insertWidget(index, pr.vista)
             else:
                 self.contenido.insertWidget(index, pr.vistaLista)
 

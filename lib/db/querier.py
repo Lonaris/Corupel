@@ -10,7 +10,7 @@ class Querier(object):
 
     conexion = {}
 
-    def __init__(self, tabla, prefijo = ""):
+    def __init__(self, tabla, prefijo = "", usuario = None, password = None, host = None, database = None):
         self.prefijo = self.prefijo
         self.tabla = tabla
 
@@ -65,13 +65,17 @@ class Querier(object):
         print("\nDEBUG - Consulta actualizar elemento a mysql: ", consulta , "\n")
         self.__consultar(consulta, elemento)
 
-    def traerElementos(self, campos = None, condiciones = None, limite = None):
+    def traerElementos(self, campos = None, condiciones = None, limite = None, union = None):
+        # union debe ser una tupla o lista con dos elementos: union[0] es el nombre de la tabla, union[1] es
+        # el conjunto de campos que deben conincidir en la union, ejemplo "`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`"
         donde = ""
         consulta = "SELECT "
 
         consulta += self.__encampar(campos)
 
         consulta += " FROM {} ".format(self.tabla)
+        if union:
+            consulta += self.__unirTabla(union[0], union[1])
 
         if condiciones:
             donde = self.__agregarFiltros(condiciones)
@@ -94,6 +98,10 @@ class Querier(object):
         db.close()
 
         return respuesta
+
+    def __unirTabla(self, tabla, on):
+        union = "JOIN {} ON {}".format(tabla, on)
+        return union
 
     def __agregarFiltros(self, filtros):
         donde = "\nWHERE "

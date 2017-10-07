@@ -96,7 +96,11 @@
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QTableWidget" name="tbl_egresos"/>
+         <widget class="QTableView" name="tbl_egresos">
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -226,17 +230,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="egr_total_cant"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_total_cost">
-         <property name="text">
-          <string>Costo Total</string>
+        <widget class="QLineEdit" name="egr_total_cant">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="egr_total_cost"/>
        </item>
       </layout>
      </item>
