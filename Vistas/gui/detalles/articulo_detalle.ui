@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>920</width>
-    <height>575</height>
+    <width>700</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -439,7 +439,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
    <item row="0" column="0">
-    <layout class="QVBoxLayout" name="main_layout" stretch="1,1,10,1,1">
+    <layout class="QVBoxLayout" name="main_layout" stretch="10,1,1">
      <property name="leftMargin">
       <number>10</number>
      </property>
@@ -453,101 +453,7 @@
       <number>10</number>
      </property>
      <item>
-      <widget class="QGroupBox" name="box_busqueda">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">#groupBox_2{
-	background-color: #F2F6FD;
-	}</string>
-       </property>
-       <property name="title">
-        <string/>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="9,1">
-        <item>
-         <widget class="QLineEdit" name="buscador">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>MS Shell Dlg 2</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="mouseTracking">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="frame">
-           <bool>true</bool>
-          </property>
-          <property name="placeholderText">
-           <string>Código/Descripción</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btn_buscar">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Ariall</family>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="text">
-           <string>Buscar</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>../ico/search.png</normaloff>../ico/search.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>10</width>
-            <height>10</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="layout_detalles">
+      <layout class="QHBoxLayout" name="layout_detalles" stretch="60,40">
        <item>
         <widget class="QGroupBox" name="box_articulo">
          <property name="font">
@@ -562,7 +468,7 @@
           <enum>Qt::NoFocus</enum>
          </property>
          <property name="styleSheet">
-          <string notr="true">#groupBox_detalleArticulo{
+          <string notr="true">#box_articulo{
 	background-color: #F2F6FD;
 	}</string>
          </property>
@@ -724,7 +630,7 @@ background-color: #F4F4F4
              <string notr="true"/>
             </property>
             <property name="text">
-             <string>Detalle del Articulo</string>
+             <string>Detalle del Artículo</string>
             </property>
            </widget>
           </item>
@@ -1146,10 +1052,28 @@ background-color: #ffffff;
        </item>
        <item>
         <widget class="QGroupBox" name="box_proveedores">
-         <property name="title">
-          <string>Proveedores asociados al Artículo</string>
+         <property name="styleSheet">
+          <string notr="true">#box_proveedores{
+	background-color: #F2F6FD;
+	}</string>
          </property>
-         <layout class="QVBoxLayout" name="layout_proveedores" stretch="2,0">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QVBoxLayout" name="layout_proveedores" stretch="10,80,10">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Proveedores Asociados al Artículo</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QTableView" name="tbl_proveedores"/>
           </item>
@@ -2297,8 +2221,6 @@ background-color: #ffffff;
   </action>
  </widget>
  <tabstops>
-  <tabstop>buscador</tabstop>
-  <tabstop>btn_buscar</tabstop>
   <tabstop>art_id</tabstop>
   <tabstop>art_cod_barras</tabstop>
   <tabstop>art_descripcion</tabstop>
