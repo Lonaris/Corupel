@@ -2,7 +2,7 @@
 
 import sys, os
 from PyQt5 import QtGui, QtCore, uic, QtWidgets
-from Presenter import PresenterArticulo, PresenterProveedor, PresenterPrincipal
+from Presenter import PresenterArticulo, PresenterProveedor, PresenterPrincipalOperario, PresenterPrincipal
 
 root = os.path.dirname(os.path.abspath(__file__))
 
@@ -10,11 +10,8 @@ def main():
 	#Instancia para iniciar una aplicación
     app = QtWidgets.QApplication(sys.argv)
 
-	#Instancia para iniciar una aplicación
     mainPresenter = PresenterPrincipal.PrincipalPresenter()
-    # mainPresenter = Presenter.ArticuloPresenter()
-    # mainPresenter = PresenterProveedor.ProveedorPresenter()
-
+    # mainPresenter = PresenterPrincipalOperario.PrincipalPresenter()
 
 
 	#Ejecutar la aplicación

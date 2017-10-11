@@ -432,7 +432,7 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string notr="true">Operario</string>
+   <string notr="true">Detalles de operario</string>
   </property>
   <property name="windowOpacity">
    <double>13.000000000000000</double>
@@ -1425,9 +1425,16 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>buscador_2</tabstop>
+  <tabstop>btn_buscar_2</tabstop>
+  <tabstop>ope_legajo</tabstop>
   <tabstop>ope_apellido</tabstop>
   <tabstop>ope_nombre</tabstop>
   <tabstop>ope_puesto</tabstop>
+  <tabstop>btn_deshabilitar</tabstop>
+  <tabstop>btn_nuevo</tabstop>
+  <tabstop>btn_modificar</tabstop>
+  <tabstop>btn_imprimir</tabstop>
  </tabstops>
  <resources/>
  <connections/>

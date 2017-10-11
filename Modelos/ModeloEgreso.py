@@ -3,7 +3,7 @@
 from PyQt5 import QtCore
 import mysql.connector
 from mysql.connector import errorcode
-from datetime import date, datetime
+from datetime import date
 from lib.db import querier
 import cerberus
 # from lib import Validator
@@ -15,7 +15,7 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
 
     # db = mysql.connector.connect(user = 'admin', password = 'admin1234', host = '127.0.0.1', database = 'corupel')
     __querier = querier.Querier( tabla = "egresos", prefijo = "egr_")
-    __querierMovi = querier.Querier( tabla = "movimientos_egreso", prefijo = "movi_")
+    __querierMove = querier.Querier( tabla = "movimientos_egreso", prefijo = "movi_")
     __querierArt = querier.Querier( tabla = "articulos", prefijo = "art_")
     __querierOpe = querier.Querier( tabla = "operarios", prefijo = "ope_")
 
@@ -45,10 +45,31 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
         self.__movimientos = [["", "", ""]]
         self.egreso = {}
 
-    def crearEgreso(self, egresoNuevo):
-        print(self.__v.validate(egresoNuevo, self.__scEgreso))
-        print("ERRORES: ",self.__v.errors)
-        self.__querier.insertarEgreso(egresoNuevo)
+    def crearEgreso(self, operario, detalles):
+        if len(self.__movimientos) == 1:
+            return False
+
+        hoy = date.today()
+
+        egreso = { 'egr_fecha' : hoy, 'ope_id' : operario }
+
+        self.__querier.insertarElemento(egreso)
+        egrId = self.__querier.traerElementos(campos = ["egr_id"], orden = ("egr_id", "DESC"), limite = 1)
+        egrId = egrId[0][0]
+
+        for movimiento in self.__movimientos:
+            if movimiento[2] == 0:
+                continue
+            movimiento = { 'art_id' : movimiento[0],
+            'egr_id' : egrId,
+            'move_cantidad' : movimiento[2],
+            'move_destino' : detalles[0],
+            'move_sector' : detalles[1]
+            }
+
+            if not movimiento['art_id']:
+                continue
+            self.__querierMove.insertarElemento(movimiento)
 
     def verListaEgresos(self, campos = None, condiciones = None, limite = None):
         if not campos:
@@ -103,7 +124,7 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
             return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEditable | QtCore.Qt.ItemIsEnabled
         if columna == 0:
             return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEditable | QtCore.Qt.ItemIsEnabled
-        return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled
+        return QtCore.Qt.ItemIsEnabled
 
     def data(self, index, role):
 
@@ -119,16 +140,20 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
             row = index.row()
             column = index.column()
 
+            if column == 0:
+                for articulo in self.__movimientos:
+                    if value == str(articulo[0]):
+                        return False
+
             self.__articulo = {}
-            # if not provId:
-            #     return False
+
             if column == 0:
                 try:
                     value = int(value)
                     # resultado = self.__querierArt.traerElementos(campos = ("art_id", "art_descripcion"), condiciones = [("art_id", " = ", value), ("prov_id", " = ", provId)], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'])
-                    resultado = self.__querierArt.traerElementos(campos = ("art_id", "art_descripcion"), condiciones = [("art_id", " = ", value)])
+                    resultado = self.__querierArt.traerElementos(campos = ("art_id", "art_descripcion"),
+                        condiciones = [("art_id", " = ", value)])
                     self.__articulo = list(resultado[0])
-                    self.__articulo.append(0)
                     self.__articulo.append(0)
                 except:
                     return False
@@ -141,11 +166,14 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
             else:
                 try:
                     value = int(value)
+                    if value < 0:
+                        return False
                 except:
                     return False
                 self.__movimientos[row][column] = value
                 self.dataChanged.emit(index, index)
                 return True
+            return False
 
     def headerData(self, section, orientation, role):
 
@@ -155,20 +183,6 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
                 return self.__headers[section]
 
     def insertRows(self, row, count = 1, parent = QtCore.QModelIndex()):
-
         self.beginInsertRows(parent, 1, 1)
         self.__movimientos.insert(1, self.__articulo)
         self.endInsertRows()
-
-    def insertColumns(self, position, columns, parent = QtCore.QModelIndex()):
-        self.beginInsertColumns()
-        self.endInsertColumns()
-
-    def removeRows():
-        self.beginRemoveRows()
-        self.endRemoveRows()
-
-    def removeColumns():
-
-        self.beginRemoveColumns()
-        self.endRemoveColumns()

@@ -48,7 +48,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="egr_destino"/>
+         <widget class="QLineEdit" name="move_destino"/>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_sector">
@@ -56,9 +56,6 @@
            <string>Sector</string>
           </property>
          </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="egr_sector"/>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_fecha">
@@ -72,6 +69,28 @@
           <property name="calendarPopup">
            <bool>true</bool>
           </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="move_sector">
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>INSUMOS</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>INVERSION</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>REPARACION</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>

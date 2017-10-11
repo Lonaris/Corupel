@@ -27,7 +27,6 @@ class ModeloOperario(QtCore.QAbstractTableModel):
         'ope_nombre' : {'type' : 'string' },
         'ope_apellido' : {'type' : 'string' },
         'ope_puesto' : {'type' : 'string' },
-        'ope_dni' : {'type' : 'integer' },
         }
 
         self.__propiedades = [
@@ -35,8 +34,7 @@ class ModeloOperario(QtCore.QAbstractTableModel):
             'Legajo',
             'Nombre',
             'Apellido',
-            'Puesto',
-            'DNI',
+            'Puesto'
         ]
 
         if propiedades:
@@ -47,8 +45,7 @@ class ModeloOperario(QtCore.QAbstractTableModel):
             'Legajo' : 'ope_legajo',
             'Nombre' : 'ope_nombre',
             'Apellido' : 'ope_apellido',
-            'Puesto' : 'ope_puesto',
-            'DNI' : 'ope_dni',
+            'Puesto' : 'ope_puesto'
         }
 
         self.__busqueda = []

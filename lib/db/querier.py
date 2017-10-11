@@ -65,7 +65,7 @@ class Querier(object):
         print("\nDEBUG - Consulta actualizar elemento a mysql: ", consulta , "\n")
         self.__consultar(consulta, elemento)
 
-    def traerElementos(self, campos = None, condiciones = None, limite = None, union = None):
+    def traerElementos(self, campos = None, condiciones = None, limite = None, union = None, orden = None):
         # union debe ser una tupla o lista con dos elementos: union[0] es el nombre de la tabla, union[1] es
         # el conjunto de campos que deben conincidir en la union, ejemplo "`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`"
         donde = ""
@@ -80,6 +80,9 @@ class Querier(object):
         if condiciones:
             donde = self.__agregarFiltros(condiciones)
         consulta += donde
+
+        if orden:
+            consulta += " ORDER BY {} {}".format(orden[0], orden[1])
 
         if limite:
             consulta += " LIMIT {}".format(limite)
@@ -113,7 +116,7 @@ class Querier(object):
             donde += "{} {} {}".format(campo, condicion, valor)
             # campo + condicion + valor
             if index < totalFiltros-1:
-                donde += ", "
+                donde += "\nAND "
         # donde += campo + condicion + "%({})s".campo
 
         return donde

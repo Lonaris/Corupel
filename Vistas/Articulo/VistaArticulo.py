@@ -100,6 +100,11 @@ class ArticuloView(QtWidgets.QWidget):
         layout = self.vistaDetalle.box_articulo.findChild(QGridLayout)
         layout.addWidget(label)
 
+    def setTotales(self, totales):
+        if totales:
+            self.vistaDetalle.comp_stock_actual.setText(str(totales.pop(0)))
+            # self.vistaDetalle.comp_costo.addItems(totales)
+
     def __activarBotones(self, snl):
         if snl:
             self.vistaDetalle.btn_nuevo.setEnabled(False)

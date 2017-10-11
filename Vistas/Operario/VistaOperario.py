@@ -31,12 +31,10 @@ class OperarioView(QtWidgets.QWidget):
 	#Funcion que carga un operario en particular dentro de "Detalle del Producto"
     def setOperario(self, operario):
         print (operario)
-        self.vistaDetalle.ope_id.setText(str(operario[0]))
         self.vistaDetalle.ope_legajo.setText(str(operario[1]))
         self.vistaDetalle.ope_nombre.setText(operario[2])
         self.vistaDetalle.ope_apellido.setText(operario[3])
         self.vistaDetalle.ope_puesto.setText(operario[4])
-        self.vistaDetalle.ope_dni.setText(str(operario[5]))
 
     def resetOperario(self):
         camposAResetear = self.vistaDetalle.findChildren(QLineEdit, self.rxOpe)

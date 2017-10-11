@@ -27,6 +27,8 @@ class ArticuloPresenter(object):
         self.vistaLista.ln_buscar.returnPressed.connect(self.verArticulos)
         self.vistaLista.btn_buscar.clicked.connect(self.verArticulos)
 
+        self.model.verListaArticulos()
+
         self.vistaLista.show()
 
     def verArticulos(self, campos = None, condiciones = None, limite = None):
@@ -38,7 +40,13 @@ class ArticuloPresenter(object):
     def verDetalles(self, articulo):
         if articulo:
             articulo = self.model.verDetallesArticulo(articulo)
+            cantidades = self.model.verCantidadesArticulo(condiciones = [('movimientos_ingreso.art_id', ' = ', articulo[0])])
+            totales = []
+            if cantidades:
+                totales = self.__calcularTotales(cantidades)
+
             self.vistaDetalle.setArticulo(articulo)
+            self.vistaDetalle.setTotales(totales)
             self.provModel.verListaProveedores(condiciones = [("articulos_de_proveedores.articulo", " = ", articulo[0])], campos = ["prov_id", "prov_nombre", "prov_telefono"], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'])
 
         self.vistaDetalle.show()
@@ -79,12 +87,33 @@ class ArticuloPresenter(object):
         articulo = {}
         if artId:
             print("DEBUG - ART_ID = ", artId)
-            articulo = self.model.verDetallesArticulo(articulo = QModelIndex(), condiciones = [('art_id', ' = ', artId)])
+            articulo = self.model.verDetallesArticulo(condiciones = [('art_id', ' = ', artId)])
+            cantidades = self.model.verCantidadesArticulo(condiciones = [('movimientos_ingreso.art_id', ' = ', artId)])
+            if cantidades:
+                totales = self.__calcularTotales(cantidades)
+
             self.provModel.verListaProveedores(condiciones = [("articulos_de_proveedores.articulo", " = ", artId)], campos = ["prov_id", "prov_nombre", "prov_telefono"], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'])
             if articulo:
                 self.vistaDetalle.setArticulo(articulo)
+                self.vistaDetalle.setTotales(totales)
         if not articulo:
             self.vistaDetalle.resetArticulo()
+
+    def __calcularTotales(self, cantidades):
+        totalCantidad = 0
+        promedioCosto = 0
+        ultimo = len(cantidades) - 1
+
+        for cantidad in cantidades:
+            totalCantidad += cantidad[0]
+            promedioCosto += cantidad[1]
+
+        promedioCosto /= len(cantidades)
+        primerCosto = cantidades[0][1]
+        ultimoCosto = cantidades[ultimo][1]
+
+        return [totalCantidad, primerCosto, promedioCosto, ultimoCosto]
+
     #
     # def confirmarSalir(self):
     #     # IMPLEMENTAR

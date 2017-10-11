@@ -20,7 +20,7 @@ class EgresoPresenter(object):
         # self.vistaLista.tbl_egresos.setModel(self.model)
         # self.vistaLista.tbl_egresos.doubleClicked.connect(self.verDetalles)
 
-        # self.vista.btn_nuevo.clicked.connect(self.crearEgreso)
+        self.vista.btn_guardar.clicked.connect(self.crearEgreso)
         # self.vista.btn_modificar.clicked.connect(self.modificarEgreso)
         # self.vista.btn_deshabilitar.clicked.connect(self.deshabilitarEgreso)
 
@@ -59,9 +59,18 @@ class EgresoPresenter(object):
         self.vista.activateWindow()
 
     def crearEgreso(self):
-        egreso = self.vista.getEgreso()
-        egreso['elem_id'] = None
-        # self.model.crearEgreso(egreso)
+        operario = self.vista.getOperario()
+        detalles = self.vista.getDetalles()
+
+        if not operario:
+            print("ERROR, falta operario")
+            return False
+        if not detalles[0]:
+            return False
+
+        print("CREO EL EGRESO")
+
+        self.model.crearEgreso(operario, detalles)
 
     def modificarEgreso(self):
         egreso = self.vista.getEgreso()

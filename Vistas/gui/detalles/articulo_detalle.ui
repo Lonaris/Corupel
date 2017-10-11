@@ -2302,8 +2302,8 @@ background-color: #ffffff;
   <tabstop>art_id</tabstop>
   <tabstop>art_cod_barras</tabstop>
   <tabstop>art_descripcion</tabstop>
-  <tabstop>art_agrupacion</tabstop>
   <tabstop>art_marca</tabstop>
+  <tabstop>art_agrupacion</tabstop>
   <tabstop>art_stock_minimo</tabstop>
   <tabstop>opcion_costo</tabstop>
   <tabstop>tbl_proveedores</tabstop>
@@ -2311,6 +2311,7 @@ background-color: #ffffff;
   <tabstop>btn_nuevo_prov</tabstop>
   <tabstop>btn_deshabilitar</tabstop>
   <tabstop>btn_modificar</tabstop>
+  <tabstop>btn_nuevo</tabstop>
   <tabstop>btn_imprimir</tabstop>
  </tabstops>
  <resources/>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Operarios</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
@@ -70,6 +70,9 @@
          <property name="text">
           <string>Nuevo</string>
          </property>
+         <property name="shortcut">
+          <string>Ctrl+N</string>
+         </property>
         </widget>
        </item>
        <item row="0" column="2">
@@ -108,6 +111,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>ln_buscar</tabstop>
+  <tabstop>btn_buscar</tabstop>
+  <tabstop>tbl_operarios</tabstop>
+  <tabstop>btn_nuevo</tabstop>
+  <tabstop>btn_modificar</tabstop>
+  <tabstop>btn_deshabilitar</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

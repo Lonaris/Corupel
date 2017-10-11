@@ -23,3 +23,9 @@ class EgresoView(QtWidgets.QWidget):
 
     def setTotal(self, totalArticulos):
         self.egr_total_cant.setText(str(totalArticulos))
+
+    def getDetalles(self):
+        destino = self.vista.move_destino.text()
+        sector = self.vista.move_sector.currentText()
+
+        return (destino, sector)

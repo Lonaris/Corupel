@@ -14,8 +14,9 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
 
     # db = mysql.connector.connect(user = 'admin', password = 'admin1234', host = '127.0.0.1', database = 'corupel')
     __querier = querier.Querier( tabla = "articulos", prefijo = "art_")
-    __v = cerberus.Validator()
+    __querierMovi = querier.Querier( tabla = "movimientos_ingreso", prefijo = "movi_")
 
+    __v = cerberus.Validator()
 
     def __init__(self, propiedades = None, parent = None):
         super(ModeloArticulo, self).__init__()
@@ -64,7 +65,8 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         for propiedad in self.__propiedades:
             self.__busqueda.append(self.relacion[propiedad])
 
-        self.articulos = self.__querier.traerElementos(self.__busqueda)
+        # self.articulos = self.__querier.traerElementos(self.__busqueda)
+        self.articulos = []
         self.articulo = {}
 
     def crearArticulo(self, articuloNuevo):
@@ -90,7 +92,7 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         self.articulos = self.__querier.traerElementos(campos, condiciones, limite, union)
         self.layoutChanged.emit()
 
-    def verDetallesArticulo(self, articulo, campos = None, condiciones = None):
+    def verDetallesArticulo(self, articulo = QtCore.QModelIndex(), campos = None, condiciones = None):
         # condiciones = ()
 
         # print (articulo.row())
@@ -103,10 +105,13 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
 
         print (articulo)
         print (articulo.row())
+
         if articulo.row() >= 0:
             articulo = self.articulos[articulo.row()]
+            artId = articulo[0]
         if not condiciones:
-            condiciones = [('art_id', '=', articulo[0])]
+            print("DEBUG MSG: El contenido de articulo[0] es: ", artId)
+            condiciones = [('art_id', '=', artId)]
         resultado = self.__querier.traerElementos(campos, condiciones, 1)
         if resultado:
             self.articulo = resultado[0]
@@ -145,6 +150,11 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         articulo['art_activo'] = 1
         self.__querier.actualizarElemento(articulo)
 
+    def verCantidadesArticulo(self, condiciones = None):
+        cantidades = self.__querierMovi.traerElementos(campos = ["movi_restante", "movi_costo "],
+            condiciones = condiciones)
+        # self.articulo.append(cantidades)
+        return cantidades
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
 # ===============================================================

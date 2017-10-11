@@ -5,6 +5,7 @@ import Vistas.Ingreso.VistaIngreso as IView
 import Modelos.ModeloArticulo as AModel
 import Modelos.ModeloIngreso as IModel
 from PyQt5.QtCore import Qt, QModelIndex, QDate
+from PyQt5 import QtWidgets
 import datetime
 
 class IngresoPresenter(object):
@@ -12,14 +13,15 @@ class IngresoPresenter(object):
         # self.model = PModel.ModeloIngreso()
         self.vista = IView.IngresoView(self)
         self.model = IModel.ModeloIngreso()
+        self.artModel = AModel.ModeloArticulo(propiedades = ["Codigo", "Descripcion"])
         # self.vistaLista = PLView.ListaIngresosView(self)
 
         self.vista.tbl_ingresos.setModel(self.model)
-        self.vista.tbl_ingresos.horizontalHeader().resizeSection(1, 300)
         self.model.dataChanged.connect(self.__sumador)
         # self.vistaLista.tbl_ingresos.doubleClicked.connect(self.verDetalles)
 
-        # self.vista.btn_nuevo.clicked.connect(self.crearIngreso)
+        self.vista.tbl_articulos.setModel(self.artModel)
+        self.vista.btn_guardar.clicked.connect(self.crearIngreso)
         # self.vista.btn_modificar.clicked.connect(self.modificarIngreso)
         # self.vista.btn_deshabilitar.clicked.connect(self.deshabilitarIngreso)
 
@@ -60,9 +62,49 @@ class IngresoPresenter(object):
         self.vista.activateWindow()
 
     def crearIngreso(self):
-        ingreso = self.vista.getIngreso()
-        ingreso['elem_id'] = None
-        # self.model.crearIngreso(ingreso)
+        proveedor = self.vista.getProveedor()
+        comprobantes = self.vista.getComprobantes()
+
+        resultados = []
+
+        for comprobante in comprobantes:
+            resultado = {}
+            for componente in comprobante:
+                if type(componente) == QtWidgets.QLineEdit:
+                    resultado[componente.objectName()] = componente.text()
+                if type(componente) == QtWidgets.QComboBox:
+                    resultado[componente.objectName()] = componente.currentText()
+                if type(componente) == QtWidgets.QDateEdit:
+                    resultado[componente.objectName()] = componente.date().toString("yyyy-MM-dd")
+            resultados.append(resultado)
+        comprobantes = []
+
+        if not proveedor:
+            print("ERROR, falta proveedor")
+            return (False)
+
+        if not self.model.hayMovimientos():
+            print("NO HAY MOVIMIENTOS")
+            return False
+
+        if not (resultados[1]['fact_numero'] and resultados[1]['fact_prefijo']):
+            resultados.pop(1)
+        else:
+            comprobantes.append( { 'comp_numero' : resultados[1]['fact_numero'],
+                'comp_prefijo' : resultados[1]['fact_tipo'] + resultados[1]['fact_prefijo'],
+                'comp_fecha' : resultados[1]['fact_fecha'] })
+
+        if not (resultados[0]['rem_numero'] and resultados[0]['rem_prefijo']):
+            resultados.pop(0)
+        else:
+            comprobantes.append( { 'comp_numero' : resultados[0]['rem_numero'],
+                'comp_prefijo' : resultados[0]['rem_tipo'] + resultados[0]['rem_prefijo'],
+                'comp_fecha' : resultados[0]['rem_fecha'] })
+
+        if not comprobantes:
+            return False
+
+        self.model.crearIngreso(proveedor, comprobantes)
 
     def modificarIngreso(self):
         ingreso = self.vista.getIngreso()
@@ -76,6 +118,10 @@ class IngresoPresenter(object):
             proveedor = self.model.buscarProveedor(campos = ("prov_id", "prov_nombre"), condiciones = [("prov_id", " = ", provId)])
         if proveedor:
             self.vista.setProveedor(proveedor)
+            self.artModel.verListaArticulos(condiciones = [("articulos_de_proveedores.proveedor", " = ", provId)],
+                campos = ["art_id", "art_descripcion"],
+                union = ['articulos_de_proveedores', '`articulos`.`art_id` = `articulos_de_proveedores`.`articulo`'])
+            # self.artModel.verListaArticulos(campos = ["art_id", "art_descripcion"], condiciones = [('articulos_de_proveedores.proveedor', ' = ', provId)], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'] )
         else:
             self.vista.resetProveedor()
 

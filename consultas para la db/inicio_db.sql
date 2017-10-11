@@ -60,7 +60,7 @@ CREATE TABLE `movimientos_ingreso` (
   `ing_id` int(16) UNSIGNED NOT NULL ,
   `movi_cantidad` int(20) UNSIGNED NOT NULL,
   `movi_restante` int(20) UNSIGNED NOT NULL,
-  `movi_costo` int(20)
+  `movi_costo` decimal(20, 2)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `movimientos_egreso` (
@@ -85,11 +85,11 @@ CREATE TABLE `egresos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `comprobantes` (
-  `comp_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `comp_prefijo` varchar(10) NOT NULL,
   `comp_numero` int(20) NOT NULL,
   `comp_fecha` date NOT NULL,
-  `ing_id` int(16) UNSIGNED NOT NULL 
+  `ing_id` int(16) UNSIGNED NOT NULL,
+  PRIMARY KEY (`comp_prefijo`, `comp_numero`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `remitos` (
