@@ -1,12 +1,12 @@
 CREATE TABLE `articulos` (
   `art_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `art_cod_barras` varchar(20) NULL UNIQUE KEY,
-  `art_descripcion` varchar(30) NOT NULL,
+  `art_descripcion` varchar(100) NOT NULL,
   `art_marca` varchar(20) NOT NULL,
   `art_agrupacion` varchar(20) NOT NULL,
   `art_stock_minimo` int(8) NOT NULL,
   `art_activo` tinyint (1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `operarios` (
   `ope_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -23,7 +23,7 @@ CREATE TABLE `proveedores` (
   `prov_razon_social` varchar(60) NOT NULL,
   `prov_cuit` varchar(20),
   `prov_direccion` varchar(60),
-  `prov_nombre_contacto` varchar(30) NOT NULL,
+  `prov_nombre_contacto` varchar(30),
   `prov_telefono` varchar(30),
   `prov_telefono_dos` varchar(30),
   `prov_email` varchar(40),
@@ -90,12 +90,4 @@ CREATE TABLE `comprobantes` (
   `comp_fecha` date NOT NULL,
   `ing_id` int(16) UNSIGNED NOT NULL,
   PRIMARY KEY (`comp_prefijo`, `comp_numero`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-CREATE TABLE `remitos` (
-  `rem_id` int(16) UNSIGNED NOT NULL AUTO_iNCREMENT PRIMARY KEY,
-  `rem_prefijo` varchar(10) NOT NULL,
-  `rem_numero` int(20) NOT NULL,
-  `rem_fecha` date NOT NULL,
-  `egr_id` int(16) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
