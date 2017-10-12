@@ -29,7 +29,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
             else:
                 self.contenido.insertWidget(index, pr.vistaLista)
 
-        self.vista.show()
+        self.vista.showMaximized()
 
         rx = QRegExp("btn_main_*")
         botones = self.vista.findChildren(QtWidgets.QPushButton, rx)

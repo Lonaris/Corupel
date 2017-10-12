@@ -990,7 +990,20 @@
        </item>
       </layout>
      </item>
-     <item row="0" column="0">
+     <item row="3" column="0">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="0" colspan="2">
       <widget class="QGroupBox" name="groupBox">
        <property name="palette">
         <palette>
@@ -1166,19 +1179,6 @@
        </layout>
       </widget>
      </item>
-     <item row="3" column="0">
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
     </layout>
    </item>
   </layout>
@@ -1188,7 +1188,6 @@
   <tabstop>btn_buscar</tabstop>
   <tabstop>tbl_proveedores</tabstop>
   <tabstop>btn_nuevo</tabstop>
-  <tabstop>btn_modificar</tabstop>
   <tabstop>btn_deshabilitar</tabstop>
  </tabstops>
  <resources/>
