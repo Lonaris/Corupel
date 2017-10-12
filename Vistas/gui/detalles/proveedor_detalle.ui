@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>920</width>
-    <height>575</height>
+    <width>700</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -442,7 +442,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
-    <layout class="QVBoxLayout" name="main_layout" stretch="1,1,10,1,1">
+    <layout class="QVBoxLayout" name="main_layout" stretch="10,1,1">
      <property name="leftMargin">
       <number>10</number>
      </property>
@@ -456,122 +456,7 @@
       <number>10</number>
      </property>
      <item>
-      <layout class="QHBoxLayout" name="layout_busqueda" stretch="90,10">
-       <property name="spacing">
-        <number>4</number>
-       </property>
-       <property name="sizeConstraint">
-        <enum>QLayout::SetMinimumSize</enum>
-       </property>
-       <property name="leftMargin">
-        <number>10</number>
-       </property>
-       <property name="topMargin">
-        <number>10</number>
-       </property>
-       <property name="rightMargin">
-        <number>10</number>
-       </property>
-       <property name="bottomMargin">
-        <number>10</number>
-       </property>
-       <item>
-        <widget class="QLineEdit" name="buscador">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>MS Shell Dlg 2</family>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="mouseTracking">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="frame">
-          <bool>true</bool>
-         </property>
-         <property name="placeholderText">
-          <string>Nombre</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_buscar">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Ariall</family>
-           <pointsize>-1</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">#btn_buscar{
-	background-color:#FFFFFF ;
-	color: #ffffff;
-	font-family: 'Ariall';
-	font-size: 14px;
-	}
-</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../ico/search.png</normaloff>../ico/search.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>25</width>
-           <height>25</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="layout_detalles" stretch="40,60">
+      <layout class="QHBoxLayout" name="layout_detalles" stretch="60,40">
        <item>
         <widget class="QGroupBox" name="box_proveedor">
          <property name="font">
@@ -582,15 +467,23 @@
            <bold>false</bold>
           </font>
          </property>
-         <property name="title">
-          <string>Detalle del Proveedor</string>
+         <property name="styleSheet">
+          <string notr="true">#box_proveedor{
+	background-color: #F2F6FD;
+	}</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5" rowstretch="0,0,0,0,0,0,0,0,0,3,0,0" columnstretch="0,0" rowminimumheight="0,0,0,0,0,0,0,0,0,3,0,0">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5" rowstretch="10,0,0,0,0,0,0,0,0,3,0,0,0" columnstretch="0,0" rowminimumheight="0,0,0,0,0,0,0,0,0,3,0,0,0">
           <property name="horizontalSpacing">
            <number>1</number>
           </property>
-          <item row="7" column="1">
-           <widget class="QLineEdit" name="prov_telefono">
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="prov_cuit">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
               <horstretch>0</horstretch>
@@ -604,45 +497,13 @@
               <weight>50</weight>
               <bold>false</bold>
              </font>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="1">
-           <widget class="QTextEdit" name="prov_notas"/>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_nombre_2">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <family>DokChampa</family>
-              <pointsize>10</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#label_nombre{
-background-color: #F4F4F4
-}</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::Box</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Sunken</enum>
             </property>
             <property name="text">
-             <string>Codigo</string>
+             <string/>
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="label_tel1">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -675,27 +536,6 @@ background-color: #F4F4F4
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="prov_razon_social">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <family>DokChampa</family>
-              <pointsize>10</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
            <widget class="QLineEdit" name="prov_nombre">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -716,8 +556,8 @@ background-color: #F4F4F4
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="prov_direccion">
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="prov_id">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
               <horstretch>0</horstretch>
@@ -732,9 +572,12 @@ background-color: #F4F4F4
               <bold>false</bold>
              </font>
             </property>
+            <property name="text">
+             <string/>
+            </property>
            </widget>
           </item>
-          <item row="11" column="0">
+          <item row="12" column="0">
            <widget class="QLabel" name="label_notas">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -757,7 +600,7 @@ background-color: #F4F4F4
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">#label_correo_electronico{
+             <string notr="true">#label_notas{
 background-color: #F4F4F4
 }</string>
             </property>
@@ -772,28 +615,7 @@ background-color: #F4F4F4
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="prov_id">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <family>DokChampa</family>
-              <pointsize>10</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1">
+          <item row="9" column="1">
            <widget class="QLineEdit" name="prov_telefono_dos">
             <property name="enabled">
              <bool>true</bool>
@@ -817,7 +639,7 @@ background-color: #F4F4F4
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="9" column="0">
            <widget class="QLabel" name="label_tel2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -849,7 +671,10 @@ background-color: #F4F4F4
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="12" column="1">
+           <widget class="QTextEdit" name="prov_notas"/>
+          </item>
+          <item row="3" column="0">
            <widget class="QLabel" name="label_razon_social">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -881,7 +706,46 @@ background-color: #F4F4F4
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="prov_razon_social">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>DokChampa</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="prov_direccion">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>DokChampa</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
            <widget class="QLabel" name="label_nombre">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -913,7 +777,39 @@ background-color: #F4F4F4
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_nombre_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>DokChampa</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#label_nombre_2{
+background-color: #F4F4F4
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Box</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Sunken</enum>
+            </property>
+            <property name="text">
+             <string>Codigo</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
            <widget class="QLabel" name="label_direccion">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -945,11 +841,8 @@ background-color: #F4F4F4
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="QLineEdit" name="prov_cuit">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
+          <item row="8" column="1">
+           <widget class="QLineEdit" name="prov_telefono">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
               <horstretch>0</horstretch>
@@ -964,44 +857,9 @@ background-color: #F4F4F4
               <bold>false</bold>
              </font>
             </property>
-            <property name="text">
-             <string/>
-            </property>
            </widget>
           </item>
-          <item row="9" column="0">
-           <widget class="QLabel" name="label_correo_electronico">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <family>DokChampa</family>
-              <pointsize>10</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#label_correo_electronico{
-background-color: #F4F4F4
-}</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::Box</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Sunken</enum>
-            </property>
-            <property name="text">
-             <string>Correo Electronico</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="1">
+          <item row="10" column="1">
            <widget class="QLineEdit" name="prov_email">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -1022,7 +880,28 @@ background-color: #F4F4F4
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="prov_nombre_contacto">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>DokChampa</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
            <widget class="QLabel" name="label_cuit">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -1054,8 +933,40 @@ background-color: #F4F4F4
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="6" column="0">
            <widget class="QLabel" name="label_contacto">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>DokChampa</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#label_contacto{
+background-color: #F4F4F4
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Box</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Sunken</enum>
+            </property>
+            <property name="text">
+             <string>Nombre de contacto</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="label_correo_electronico">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
               <horstretch>0</horstretch>
@@ -1082,28 +993,14 @@ background-color: #F4F4F4
              <enum>QFrame::Sunken</enum>
             </property>
             <property name="text">
-             <string>Nombre de contacto</string>
+             <string>Correo Electronico</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
-           <widget class="QLineEdit" name="prov_nombre_contacto">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <family>DokChampa</family>
-              <pointsize>10</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
             <property name="text">
-             <string/>
+             <string>Detalle del Proveedor</string>
             </property>
            </widget>
           </item>
@@ -1117,10 +1014,22 @@ background-color: #F4F4F4
            <pointsize>10</pointsize>
           </font>
          </property>
-         <property name="title">
-          <string>Articulos asociados al Proveedor</string>
+         <property name="styleSheet">
+          <string notr="true">#box_articulos{
+	background-color: #F2F6FD;
+	}</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2,0">
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2" stretch="10,80,10">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Arículos asociados al Proveedor</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QTableView" name="tbl_articulos">
             <property name="sizePolicy">
@@ -2348,8 +2257,6 @@ background-color: #F4F4F4
   </layout>
  </widget>
  <tabstops>
-  <tabstop>buscador</tabstop>
-  <tabstop>btn_buscar</tabstop>
   <tabstop>prov_id</tabstop>
   <tabstop>prov_nombre</tabstop>
   <tabstop>prov_razon_social</tabstop>
