@@ -60,6 +60,10 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
             # 'Estado' : 'art_activo',
         }
 
+        self.__costos = { 'primer_costo' : '0',
+            'ultimo_costo' : '1',
+            'costo_promedio' : '2'}
+
         self.__busqueda = []
 
         for propiedad in self.__propiedades:
@@ -152,7 +156,15 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
 
     def verCantidadesArticulo(self, condiciones = None):
         cantidades = self.__querierMovi.traerElementos(campos = ["movi_restante", "movi_costo "],
-            condiciones = condiciones)
+            condiciones = condiciones, orden=("movi_id","ASC"))
+        if cantidades:
+
+            self.__costos['primer_costo'] = str(cantidades[0][1])
+            self.__costos['ultimo_costo'] = str(cantidades[len(cantidades)-1][1])
+            costoTotal = 0
+            for cantidad in cantidades:
+                costoTotal += cantidad[1]
+            self.__costos['costo_promedio'] = str(costoTotal/len(cantidades))
         # self.articulo.append(cantidades)
         return cantidades
 # ===============================================================
@@ -205,13 +217,11 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         self.beginInsertColumns()
         self.endInsertColumns()
 
-    def removeRows():
+    def primerCosto(self):
+        return self.__costos['primer_costo']
 
-        self.beginRemoveRows()
-        self.endRemoveRows()
+    def ultimoCosto(self):
+        return self.__costos['ultimo_costo']
 
-
-    def removeColumns():
-
-        self.beginRemoveColumns()
-        self.endRemoveColumns()
+    def CostoPromedio(self):
+        return self.__costos['costo_promedio']

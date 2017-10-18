@@ -44,7 +44,7 @@ class Querier(object):
 
         donde = ""
 
-        total = len(elemento)
+        total = len(elemento)-1
 
         for index, columna in enumerate(elemento.keys()):
             if (self.prefijo + "id") in columna.lower():
@@ -52,7 +52,7 @@ class Querier(object):
                 total -= 1
                 donde = self.__agregarFiltros([(columna, " = ", elemento[columna])])
                 continue
-            consulta += "{}{} = %({}{})s".format(self.prefijo,columna,self.prefijo,columna)
+            consulta += "{}{} = %({}{})s".format(self.prefijo, columna, self.prefijo, columna)
             if index < total:
                 consulta += ", "
 

@@ -45,3 +45,9 @@ class IngresoView(QtWidgets.QWidget):
         factura = self.vista.findChildren(QtWidgets.QWidget, rxFact)
 
         return (remito, factura)
+
+    def resetComprobantes(self):
+        self.vista.fact_prefijo.setText("")
+        self.vista.rem_prefijo.setText("")
+        self.vista.rem_numero.setText("")
+        self.vista.fact_numero.setText("")

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>700</width>
-    <height>500</height>
+    <height>559</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -1058,6 +1058,9 @@ background-color: #F4F4F4
             </property>
             <property name="autoScrollMargin">
              <number>16</number>
+            </property>
+            <property name="tabKeyNavigation">
+             <bool>false</bool>
             </property>
             <property name="dragEnabled">
              <bool>true</bool>

@@ -1075,7 +1075,11 @@ background-color: #ffffff;
            </widget>
           </item>
           <item>
-           <widget class="QTableView" name="tbl_proveedores"/>
+           <widget class="QTableView" name="tbl_proveedores">
+            <property name="tabKeyNavigation">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" name="layout_prov_botones">

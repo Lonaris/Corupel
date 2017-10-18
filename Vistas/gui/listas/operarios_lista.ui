@@ -609,7 +609,7 @@
           </size>
          </property>
          <property name="shortcut">
-          <string>Ctrl+N</string>
+          <string>Ctrl+X</string>
          </property>
         </widget>
        </item>
@@ -655,6 +655,9 @@
            <width>20</width>
            <height>20</height>
           </size>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+N</string>
          </property>
         </widget>
        </item>

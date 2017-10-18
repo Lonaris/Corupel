@@ -94,6 +94,8 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
             if not movimiento['art_id']:
                 continue
             self.__querierMovi.insertarElemento(movimiento)
+        return True
+
 
     def verListaIngresos(self, campos = None, condiciones = None, limite = None):
         if not campos:
@@ -123,7 +125,7 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
         self.__proveedor = {}
         resultado = self.__querierProv.traerElementos(campos, condiciones)
         if resultado:
-            self.__reiniciarTablaIngreso()
+            self.reiniciarTablaIngreso()
             self.__proveedor = resultado[0]
         return self.__proveedor
 
@@ -139,7 +141,7 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
                 return True
         return False
 
-    def __reiniciarTablaIngreso(self):
+    def reiniciarTablaIngreso(self):
         self.removeRows()
 
 # ===============================================================
@@ -197,7 +199,7 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
                 except:
                     return False
                 if not self.__movimientos[row][0]:
-                    self.insertRows(1, 1)
+                    self.insertRows(self.rowCount(self), 1)
                 else:
                     self.__movimientos[row] = self.__articulo
                 self.dataChanged.emit(index, index)
@@ -226,9 +228,9 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
             if orientation == QtCore.Qt.Horizontal:
                 return self.__headers[section]
 
-    def insertRows(self, row, count = 1, parent = QtCore.QModelIndex()):
-        self.beginInsertRows(parent, 1, 1)
-        self.__movimientos.insert(1, self.__articulo)
+    def insertRows(self, row, count, parent = QtCore.QModelIndex()):
+        self.beginInsertRows(parent, row, row)
+        self.__movimientos.insert(row, self.__articulo)
         self.endInsertRows()
 
     def removeRows(self, row = 1, parent = QtCore.QModelIndex()):

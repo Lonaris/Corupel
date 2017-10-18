@@ -66,6 +66,9 @@
         </item>
         <item row="2" column="1">
          <widget class="QDateEdit" name="egr_fecha">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="calendarPopup">
            <bool>true</bool>
           </property>
@@ -116,6 +119,12 @@
         </item>
         <item row="2" column="0">
          <widget class="QTableView" name="tbl_egresos">
+          <property name="focusPolicy">
+           <enum>Qt::TabFocus</enum>
+          </property>
+          <property name="tabKeyNavigation">
+           <bool>false</bool>
+          </property>
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -253,6 +262,9 @@
          <property name="enabled">
           <bool>false</bool>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
@@ -319,7 +331,14 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="ope_nombre"/>
+         <widget class="QLineEdit" name="ope_nombre">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_orden">
@@ -351,6 +370,16 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>ope_legajo</tabstop>
+  <tabstop>ope_nombre</tabstop>
+  <tabstop>egr_numero</tabstop>
+  <tabstop>move_destino</tabstop>
+  <tabstop>move_sector</tabstop>
+  <tabstop>tbl_egresos</tabstop>
+  <tabstop>btn_agregar_art</tabstop>
+  <tabstop>btn_guardar</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

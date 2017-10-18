@@ -13,4 +13,4 @@ class ListaArticuloView(QtWidgets.QWidget):
 
         tabla.horizontalHeader().setStretchLastSection(True)
 
-        tabla.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        # tabla.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)

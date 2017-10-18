@@ -15,7 +15,8 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
 
     # db = mysql.connector.connect(user = 'admin', password = 'admin1234', host = '127.0.0.1', database = 'corupel')
     __querier = querier.Querier( tabla = "egresos", prefijo = "egr_")
-    __querierMove = querier.Querier( tabla = "movimientos_egreso", prefijo = "movi_")
+    __querierMove = querier.Querier( tabla = "movimientos_egreso", prefijo = "move_")
+    __querierMovi = querier.Querier( tabla = "movimientos_ingreso", prefijo = "movi_")
     __querierArt = querier.Querier( tabla = "articulos", prefijo = "art_")
     __querierOpe = querier.Querier( tabla = "operarios", prefijo = "ope_")
 
@@ -43,6 +44,7 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
 
         # self.__movimientos = self.__querier.traerElementos(self.__busqueda)
         self.__movimientos = [["", "", ""]]
+        self.__maximos = [0]
         self.egreso = {}
 
     def crearEgreso(self, operario, detalles):
@@ -58,7 +60,7 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
         egrId = egrId[0][0]
 
         for movimiento in self.__movimientos:
-            if movimiento[2] == 0:
+            if movimiento[2] == 0 or movimiento[2] == '':
                 continue
             movimiento = { 'art_id' : movimiento[0],
             'egr_id' : egrId,
@@ -67,9 +69,28 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
             'move_sector' : detalles[1]
             }
 
+            stock = int(movimiento['move_cantidad'])
+            restantesIn = self.__querierMovi.traerElementos(campos = ["movi_id, movi_restante"],
+                orden = ("movi_id", "ASC"),
+                condiciones = [("art_id", " = ", movimiento['art_id'])])
+            restantesOut = []
+            for restante in restantesIn:
+                restante = list(restante)
+                if restante[1] > stock:
+                    restante[1] -= stock
+                else:
+                    stock -= restante[1]
+                    restante[1] = 0
+                restantesOut.append({ 'movi_id' : restante[0], 'movi_restante' : restante[1]})
+            print ("DEBUG - Los restantes a actualizar en la base de datos son: ", restantesOut)
+
             if not movimiento['art_id']:
                 continue
             self.__querierMove.insertarElemento(movimiento)
+            for elemento in restantesOut:
+                self.__querierMovi.actualizarElemento(elemento)
+        # self.reiniciarTablaEgreso()
+        return True
 
     def verListaEgresos(self, campos = None, condiciones = None, limite = None):
         if not campos:
@@ -104,6 +125,12 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
 
     def getMovimientos(self):
         return self.__movimientos
+
+    def reiniciarTablaEgreso(self):
+        self.__maximos = [0]
+        self.egreso = {}
+        self.removeRows()
+
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
 # ===============================================================
@@ -147,26 +174,39 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
 
             self.__articulo = {}
 
+            stockTotal = 0
             if column == 0:
                 try:
                     value = int(value)
                     # resultado = self.__querierArt.traerElementos(campos = ("art_id", "art_descripcion"), condiciones = [("art_id", " = ", value), ("prov_id", " = ", provId)], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'])
                     resultado = self.__querierArt.traerElementos(campos = ("art_id", "art_descripcion"),
                         condiciones = [("art_id", " = ", value)])
+                    cantidadesRestantes = self.__querierMovi.traerElementos(campos = ["movi_restante"], condiciones = [("art_id", " = ", value), ("movi_restante", " > ", 0)])
+                    print("DEBUG - Cantidades restantes del articulo: ", cantidadesRestantes)
+                    for cantidad in cantidadesRestantes:
+                        stockTotal += cantidad[0]
+                    print ("DEBUG - Stock total del articulo. ", stockTotal)
                     self.__articulo = list(resultado[0])
-                    self.__articulo.append(0)
+                    self.__articulo.append(stockTotal)
+                    print(self.__articulo)
                 except:
                     return False
                 if not self.__movimientos[row][0]:
-                    self.insertRows(1, 1)
+                    self.insertRows(self.rowCount(self), 1)
+                    self.__maximos.insert(self.rowCount(self), stockTotal)
                 else:
                     self.__movimientos[row] = self.__articulo
+                    self.__maximos[row] = stockTotal
                 self.dataChanged.emit(index, index)
                 return True
             else:
+
                 try:
                     value = int(value)
+                    print(value, self.__movimientos[row][2])
                     if value < 0:
+                        return False
+                    elif value > self.__maximos[row]:
                         return False
                 except:
                     return False
@@ -182,7 +222,14 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
             if orientation == QtCore.Qt.Horizontal:
                 return self.__headers[section]
 
-    def insertRows(self, row, count = 1, parent = QtCore.QModelIndex()):
-        self.beginInsertRows(parent, 1, 1)
-        self.__movimientos.insert(1, self.__articulo)
+    def insertRows(self, row, count, parent = QtCore.QModelIndex()):
+        self.beginInsertRows(parent, row, row)
+        self.__movimientos.insert(row, self.__articulo)
         self.endInsertRows()
+
+    def removeRows(self, row = 1, parent = QtCore.QModelIndex()):
+        last = self.rowCount(parent) - 1
+        self.beginRemoveRows(parent, row, last)
+        self.__movimientos = [["", "", "", ""]]
+        # self.dataChanged.emit()
+        self.endRemoveRows()

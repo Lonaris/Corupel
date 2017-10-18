@@ -2,7 +2,7 @@
 
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel
-from PyQt5.QtCore import pyqtSignal, QRegExp
+from PyQt5.QtCore import pyqtSignal, QRegExp, Qt
 
 #Creamos la clase OperarioView
 class OperarioView(QtWidgets.QWidget):
@@ -40,3 +40,7 @@ class OperarioView(QtWidgets.QWidget):
         camposAResetear = self.vistaDetalle.findChildren(QLineEdit, self.rxOpe)
         for campo in camposAResetear:
             campo.setText("")
+                
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Escape:
+            self.close()

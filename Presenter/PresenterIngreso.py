@@ -22,23 +22,13 @@ class IngresoPresenter(object):
 
         self.vista.tbl_articulos.setModel(self.artModel)
         self.vista.btn_guardar.clicked.connect(self.crearIngreso)
-        # self.vista.btn_modificar.clicked.connect(self.modificarIngreso)
-        # self.vista.btn_deshabilitar.clicked.connect(self.deshabilitarIngreso)
-
-        # self.vistaLista.btn_buscar.clicked.connect(self.verIngresos)
-        # self.vistaLista.btn_nuevo.clicked.connect(self.verNuevo)
-        # self.verIngresos(limite = 5)
-
-        # self.vista.elem_id.returnPressed.connect(self.__refrescar)
 
         self.vista.prov_id.returnPressed.connect(self.__buscarProveedor)
 
-        hoy = datetime.date.today()
 
-        self.vista.rem_fecha.setDate(QDate(hoy))
-        self.vista.fact_fecha.setDate(QDate(hoy))
+        self.__reiniciarFecha()
+
         # print(self.vista.rem_fecha.date())
-        # self.activarBotones()
 
         self.vista.show()
 
@@ -104,7 +94,9 @@ class IngresoPresenter(object):
         if not comprobantes:
             return False
 
-        self.model.crearIngreso(proveedor, comprobantes)
+        if self.model.crearIngreso(proveedor, comprobantes):
+            self.reiniciarMenu()
+
 
     def modificarIngreso(self):
         ingreso = self.vista.getIngreso()
@@ -125,17 +117,6 @@ class IngresoPresenter(object):
         else:
             self.vista.resetProveedor()
 
-    def __refrescar(self):
-        elemId = self.vista.elem_id.text()
-        ingreso = {}
-        if elemId:
-            # ingreso = self.model.verDetallesIngreso(ingreso = QModelIndex(), condiciones = [('elem_id', ' = ', elemId)])
-            # self.artModel.verListaArticulos(condiciones = [('elem_id', ' = ', elemId)])
-            if ingreso:
-                self.vista.setIngreso(ingreso)
-        if not ingreso:
-            self.vista.resetIngreso()
-
     def __sumador(self):
         self.__totalArticulos = 0
         self.__totalCosto = 0
@@ -148,3 +129,14 @@ class IngresoPresenter(object):
             self.__totalArticulos += movimiento[2]
             self.__totalCosto += movimiento[2] * movimiento[3]
         self.vista.setTotales(self.__totalArticulos, self.__totalCosto)
+
+    def reiniciarMenu(self):
+        self.vista.resetComprobantes()
+        self.vista.resetProveedor()
+        self.model.reiniciarTablaIngreso()
+
+    def __reiniciarFecha(self):
+        hoy = datetime.date.today()
+
+        self.vista.rem_fecha.setDate(QDate(hoy))
+        self.vista.fact_fecha.setDate(QDate(hoy))

@@ -33,9 +33,10 @@ class EgresoPresenter(object):
 
         self.vista.ope_legajo.returnPressed.connect(self.__buscarOperario)
 
-        hoy = datetime.date.today()
-
-        self.vista.egr_fecha.setDate(QDate(hoy))
+        # hoy = datetime.date.today()
+        #
+        # self.vista.egr_fecha.setDate(QDate(hoy))
+        self.__reiniciarFecha()
         self.vista.show()
         # self.activarBotones()
 
@@ -70,7 +71,8 @@ class EgresoPresenter(object):
 
         print("CREO EL EGRESO")
 
-        self.model.crearEgreso(operario, detalles)
+        if self.model.crearEgreso(operario, detalles):
+            self.reiniciarMenu()
 
     def modificarEgreso(self):
         egreso = self.vista.getEgreso()
@@ -113,3 +115,13 @@ class EgresoPresenter(object):
                 continue
             self.__totalArticulos += movimiento[2]
         self.vista.setTotal(self.__totalArticulos)
+
+    def reiniciarMenu(self):
+        self.vista.resetEgreso()
+        self.model.reiniciarTablaEgreso()
+        self.__reiniciarFecha()
+
+    def __reiniciarFecha(self):
+        hoy = datetime.date.today()
+
+        self.vista.egr_fecha.setDate(QDate(hoy))

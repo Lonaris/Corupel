@@ -1,9 +1,9 @@
 # articulo_view.py
 
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox, QGridLayout
+from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox, QGridLayout, QMessageBox
 from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtCore import pyqtSignal, QRegExp
+from PyQt5.QtCore import pyqtSignal, QRegExp, Qt
 
 #Creamos la clase ArticuloView
 class ArticuloView(QtWidgets.QWidget):
@@ -112,3 +112,14 @@ class ArticuloView(QtWidgets.QWidget):
         else:
             self.vistaDetalle.btn_nuevo.setEnabled(True)
             self.vistaDetalle.btn_modificar.setEnabled(False)
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Escape:
+            self.close()
+
+    def closeEvent(self, event):
+        # if not cambios:
+        #     event.igonre()
+        resultado = QMessageBox.question(self, "Salir..", "¿Desea cancelar el ingreso del nuevo articulo? No se guardaran los registros", QMessageBox.Yes | QMessageBox.No)
+        if resultado == QMessageBox.Yes: event.accept()
+        else: event.ignore()

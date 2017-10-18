@@ -3,7 +3,7 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox, QTextEdit
 from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtCore import pyqtSignal, QRegExp
+from PyQt5.QtCore import pyqtSignal, QRegExp, Qt
 
 #Creamos la clase ProveedorView
 class ProveedorView(QtWidgets.QWidget):
@@ -27,7 +27,6 @@ class ProveedorView(QtWidgets.QWidget):
         self.vistaDetalle.prov_telefono.setValidator(QRegExpValidator(rxNumeros))
         self.vistaDetalle.prov_telefono_dos.setValidator(QRegExpValidator(rxNumeros))
         self.vistaDetalle.prov_id.textChanged.connect(self.__activarBotones)
-        # self.vistaDetalle.prov_activo.setTristate(False)
 
         self.__activarBotones("")
 
@@ -81,3 +80,7 @@ class ProveedorView(QtWidgets.QWidget):
         else:
             self.vistaDetalle.btn_nuevo.setEnabled(True)
             self.vistaDetalle.btn_modificar.setEnabled(False)
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Escape:
+            self.close()
