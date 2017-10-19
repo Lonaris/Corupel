@@ -89,11 +89,11 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
 
         # Implementar ERRORCODE de MySQL y devolver errores
 
-    def verListaArticulos(self, campos = None, condiciones = None, limite = None, union = None):
+    def verListaArticulos(self, campos = None, condiciones = None, limite = None, uniones = None):
         if not campos:
             campos = self.__busqueda
 
-        self.articulos = self.__querier.traerElementos(campos, condiciones, limite, union)
+        self.articulos = self.__querier.traerElementos(campos, condiciones, limite, uniones)
         self.layoutChanged.emit()
 
     def verDetallesArticulo(self, articulo = QtCore.QModelIndex(), campos = None, condiciones = None):

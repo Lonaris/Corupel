@@ -49,7 +49,7 @@ class ArticuloPresenter(object):
             self.vistaDetalle.setArticulo(articulo)
             self.vistaDetalle.setTotales(totales)
             self.__actualizarCostos()
-            self.provModel.verListaProveedores(condiciones = [("articulos_de_proveedores.articulo", " = ", articulo[0])], campos = ["prov_id", "prov_nombre", "prov_telefono"], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'])
+            self.provModel.verListaProveedores(condiciones = [("articulos_de_proveedores.articulo", " = ", articulo[0])], campos = ["prov_id", "prov_nombre", "prov_telefono"], uniones = [['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`']])
 
         self.vistaDetalle.show()
         self.vistaDetalle.activateWindow()
@@ -98,7 +98,7 @@ class ArticuloPresenter(object):
 
             self.provModel.verListaProveedores(condiciones = [("articulos_de_proveedores.articulo", " = ", artId)],
                 campos = ["prov_id", "prov_nombre", "prov_telefono"],
-                union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'])
+                uniones = [['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`']])
             if articulo:
                 self.vistaDetalle.setArticulo(articulo)
                 if totales:

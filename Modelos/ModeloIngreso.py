@@ -192,7 +192,7 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
                     value = int(value)
                     resultado = self.__querierArt.traerElementos(campos = ("art_id", "art_descripcion"),
                         condiciones = [("art_id", " = ", value), ("articulos_de_proveedores.proveedor", " = ", provId)],
-                        union = ['articulos_de_proveedores', '`articulos`.`art_id` = `articulos_de_proveedores`.`articulo`'])
+                        uniones = [['articulos_de_proveedores', '`articulos`.`art_id` = `articulos_de_proveedores`.`articulo`']])
                     self.__articulo = list(resultado[0])
                     self.__articulo.append(0)
                     self.__articulo.append(0)

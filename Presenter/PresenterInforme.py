@@ -10,6 +10,7 @@ class InformePresenter(object):
         self.vista = InView.InformeView(self)
         self.vista.tbl_informe.setModel(self.model)
 
+        self.vista.buscador.returnPressed.connect(self.ejecutarInforme)
         self.vista.btn_ejecutar.clicked.connect(self.ejecutarInforme)
 
         self.iniciarFecha()
@@ -20,7 +21,8 @@ class InformePresenter(object):
             'tipo' : '',
             'busqueda' : '',
             'desde' : '',
-            'hasta' : ''
+            'hasta' : '',
+            'tercero' : ''
         }
 
     def iniciarFecha(self):
@@ -47,3 +49,4 @@ class InformePresenter(object):
         self.__filtros['busqueda'] = filtros[1]
         self.__filtros['desde'] = desde
         self.__filtros['hasta'] = hasta
+        self.__filtros['tercero'] = filtros[4]

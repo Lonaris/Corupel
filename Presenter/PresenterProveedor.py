@@ -50,7 +50,7 @@ class ProveedorPresenter(object):
         if proveedor:
             proveedor = self.model.verDetallesProveedor(proveedor)
             self.vistaDetalle.setProveedor(proveedor)
-            self.artModel.verListaArticulos(condiciones = [("articulos_de_proveedores.proveedor", " = ", proveedor[0])], campos = ["art_id", "art_descripcion", "art_cod_barras"], union = ['articulos_de_proveedores', '`articulos`.`art_id` = `articulos_de_proveedores`.`articulo`'])
+            self.artModel.verListaArticulos(condiciones = [("articulos_de_proveedores.proveedor", " = ", proveedor[0])], campos = ["art_id", "art_descripcion", "art_cod_barras"], uniones = [['articulos_de_proveedores', '`articulos`.`art_id` = `articulos_de_proveedores`.`articulo`']])
 
         self.vistaDetalle.show()
         self.vistaDetalle.activateWindow()
@@ -75,7 +75,7 @@ class ProveedorPresenter(object):
         proveedor = {}
         if provId:
             proveedor = self.model.verDetallesProveedor(proveedor = QModelIndex(), condiciones = [('prov_id', ' = ', provId)])
-            self.artModel.verListaArticulos(condiciones = [("articulos_de_proveedores.proveedor", " = ", provId)], campos = ["art_id", "art_descripcion", "art_cod_barras"], union = ['articulos_de_proveedores', '`articulos`.`art_id` = `articulos_de_proveedores`.`articulo`'])
+            self.artModel.verListaArticulos(condiciones = [("articulos_de_proveedores.proveedor", " = ", provId)], campos = ["art_id", "art_descripcion", "art_cod_barras"], uniones = [['articulos_de_proveedores', '`articulos`.`art_id` = `articulos_de_proveedores`.`articulo`']])
             if proveedor:
                 self.vistaDetalle.setProveedor(proveedor)
         if not proveedor:

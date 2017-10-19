@@ -22,7 +22,6 @@ class ModeloOperario(QtCore.QAbstractTableModel):
         super(ModeloOperario, self).__init__()
 
         self.__scOperario = {
-        'ope_id' : {'type' : 'integer' },
         'ope_legajo' : {'type' : 'integer' },
         'ope_nombre' : {'type' : 'string' },
         'ope_apellido' : {'type' : 'string' },
@@ -30,7 +29,6 @@ class ModeloOperario(QtCore.QAbstractTableModel):
         }
 
         self.__propiedades = [
-            'Codigo',
             'Legajo',
             'Nombre',
             'Apellido',
@@ -41,7 +39,6 @@ class ModeloOperario(QtCore.QAbstractTableModel):
             self.__propiedades = propiedades
 
         self.relacion = {
-            'Codigo' : 'ope_id',
             'Legajo' : 'ope_legajo',
             'Nombre' : 'ope_nombre',
             'Apellido' : 'ope_apellido',
@@ -70,7 +67,7 @@ class ModeloOperario(QtCore.QAbstractTableModel):
 
     def verDetallesOperario(self, operario, campos = None, condiciones = None):
         operario = self.operarios[operario.row()]
-        condiciones = [('ope_id', '=', operario[0])]
+        condiciones = [('ope_legajo', '=', operario[0])]
         resultado = self.__querier.traerElementos(campos, condiciones, 1)
         self.operario = resultado[0]
         return self.operario

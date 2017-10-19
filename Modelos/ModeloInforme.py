@@ -16,65 +16,115 @@ class ModeloInforme(QtCore.QAbstractTableModel):
 
         self.__busqueda = []
 
-        self.__propiedadesArticulos = ["Fecha", "Descripcion", "Cantidad", "Costo", "Costo total"]
-        self.__propiedadesProveedores = []
-        self.__propiedadesOperarios = []
+        self.__header = ["","","","",""]
 
         self.informe = [["", "", "", "", ""]]
 
     def traerInforme(self, filtros):
         # querier = {}
 
+        tablas = ''
+        campos = []
+        condiciones = []
+        union = ''
+        on = ''
+
         if filtros['tipo'] == 0:
             campos = ["ingresos.ing_fecha", "articulos.art_descripcion", "movimientos_ingreso.movi_cantidad", "movimientos_ingreso.movi_costo"]
             tablas = 'articulos, movimientos_ingreso'
             union = 'ingresos'
             on = "ingresos.ing_id = movimientos_ingreso.ing_id"
+            uniones =[
+                ['ingresos',
+                "ingresos.ing_id = movimientos_ingreso.ing_id"]
+            ]
             condiciones = [
                 ("articulos.art_id", "=", "movimientos_ingreso.art_id"),
                 ("ingresos.ing_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta'])),
                 ("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['busqueda']))
                 ]
-            limite = 20
-
-            qr = querier.Querier(tabla = tablas)
-            self.informe = qr.traerElementos(campos = campos,
-                condiciones = condiciones,
-                union = (union, on),
-                limite = limite)
-            self.__acomodarInforme(tipo = 0)
 
         elif filtros['tipo'] == 1:
-            campos = []
+            campos = ["egr_fecha", "art_descripcion", "move_cantidad"]
             tablas = 'articulos, movimientos_egreso'
-            union = 'egresos'
+            uniones =[
+                ['egresos',
+                "egresos.egr_id = movimientos_egreso.egr_id"]
+            ]
+            condiciones = [
+                ("articulos.art_id", "=", "movimientos_egreso.art_id"),
+                ("egr_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta'])),
+                ("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['busqueda']))
+            ]
 
         elif filtros['tipo'] == 2:
-            campos = []
-            tablas = 'movimientos_ingreso, proveedores'
-            union = 'ingresos'
+            campos = ["ingresos.ing_fecha", "articulos.art_descripcion", "movimientos_ingreso.movi_cantidad", "movimientos_ingreso.movi_costo"]
+            tablas = 'articulos, movimientos_ingreso'
+            uniones = [
+                ['ingresos',
+                "ingresos.ing_id = movimientos_ingreso.ing_id"],
+                ['proveedores',
+                "proveedores.prov_id = ingresos.prov_id"]
+            ]
+            condiciones = [
+                ("articulos.art_id", "=", "movimientos_ingreso.art_id"),
+                ("ingresos.ing_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta'])),
+                ("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['busqueda'])),
+                ("proveedores.prov_id", "=", filtros['tercero'])
+                ]
 
         elif filtros['tipo'] == 3:
             campos = []
             tablas = 'movimientos_egreso, operarios'
             union = 'egresos'
+
+            campos = ["egr_fecha", "art_descripcion", "move_cantidad"]
+            tablas = 'articulos, movimientos_egreso'
+            uniones =[
+                ['egresos',
+                "egresos.egr_id = movimientos_egreso.egr_id"],
+                ['operarios',
+                "operarios.ope_legajo = egresos.ope_legajo"]
+            ]
+            condiciones = [
+                ("articulos.art_id", "=", "movimientos_egreso.art_id"),
+                ("egr_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta'])),
+                ("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['busqueda']),
+                ("operarios.ope_legajo", "=", filtros['tercero']))
+            ]
         else:
+            return False
+        try:
+            qr = querier.Querier(tabla = tablas)
+            self.informe = qr.traerElementos(campos = campos,
+                condiciones = condiciones,
+                uniones = uniones)
+            print(self.informe)
+            self.__acomodarInforme(tipo = filtros['tipo'])
+        except:
+            # print("ERROR - ", qr.errorcode())
             return False
         self.layoutChanged.emit()
 
     def __acomodarInforme(self, tipo):
-        if tipo == 0:
-            reinforme = []
+        reinforme = []
+        if tipo == 0 or tipo == 2:
+
             for item in self.informe:
                 item = list(item)
                 item.append(str(item[2] * item[3]))
                 item[0] = str(item[0])
                 item[3] = str(item[3])
                 reinforme.append(item)
-            self.informe = reinforme
+            self.__header = ["Fecha", "Descripcion", "Cantidad", "Costo", "Costo total"]
+        elif tipo == 1 or tipo == 3:
+            for item in self.informe:
+                item = list(item)
+                item[0] = str(item[0])
+                reinforme.append(item)
 
-
-
+            self.__header = ["Fecha", "Descripcion", "Cantidad"]
+        self.informe = reinforme
 
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
@@ -114,7 +164,7 @@ class ModeloInforme(QtCore.QAbstractTableModel):
         if role == QtCore.Qt.DisplayRole:
 
             if orientation == QtCore.Qt.Horizontal:
-                return self.__propiedadesArticulos[section]
+                return self.__header[section]
 
     def insertRows(self, position, rows, parent = QtCore.QModelIndex()):
         self.beginInsertRows()

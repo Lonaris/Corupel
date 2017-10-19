@@ -50,7 +50,6 @@ class OperarioPresenter(object):
 
     def crearOperario(self):
         operario = self.vistaDetalle.getOperario()
-        operario['ope_id'] = None
         self.model.crearOperario(operario)
 
     def modificarOperario(self):

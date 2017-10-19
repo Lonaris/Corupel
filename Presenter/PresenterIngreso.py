@@ -112,7 +112,7 @@ class IngresoPresenter(object):
             self.vista.setProveedor(proveedor)
             self.artModel.verListaArticulos(condiciones = [("articulos_de_proveedores.proveedor", " = ", provId)],
                 campos = ["art_id", "art_descripcion"],
-                union = ['articulos_de_proveedores', '`articulos`.`art_id` = `articulos_de_proveedores`.`articulo`'])
+                uniones = [['articulos_de_proveedores', '`articulos`.`art_id` = `articulos_de_proveedores`.`articulo`']])
             # self.artModel.verListaArticulos(campos = ["art_id", "art_descripcion"], condiciones = [('articulos_de_proveedores.proveedor', ' = ', provId)], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'] )
         else:
             self.vista.resetProveedor()
