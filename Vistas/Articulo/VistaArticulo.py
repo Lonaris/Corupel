@@ -32,6 +32,15 @@ class ArticuloView(QtWidgets.QWidget):
 
         self.__activarBotones("")
 
+        self.__haCambiado = False
+
+        self.vistaDetalle.art_id.textChanged.connect(self.__articuloHaCambiado)
+        self.vistaDetalle.art_cod_barras.textChanged.connect(self.__articuloHaCambiado)
+        self.vistaDetalle.art_descripcion.textChanged.connect(self.__articuloHaCambiado)
+        self.vistaDetalle.art_marca.currentIndexChanged.connect(self.__articuloHaCambiado)
+        self.vistaDetalle.art_agrupacion.currentIndexChanged.connect(self.__articuloHaCambiado)
+        self.vistaDetalle.art_stock_minimo.textChanged.connect(self.__articuloHaCambiado)
+
     #Funcion que trae un articulo y modifica la ifnormacion.
     # def getArticulo(self):
     #     rawArticulo = self.vistaDetalle.findChildren((QComboBox, QLineEdit, QLabel), self.rxArt)
@@ -83,6 +92,7 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_agrupacion.setCurrentText(articulo[4])
         self.vistaDetalle.art_stock_minimo.setText(str(articulo[5]))
         # self.vistaDetalle.art_activo.setEnabled()
+        self.__haCambiado = False
 
     def resetArticulo(self):
         self.vistaDetalle.art_id.setText("")
@@ -94,6 +104,7 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_stock_minimo.setText("")
         self.vistaDetalle.comp_costo.setText("")
         self.vistaDetalle.comp_stock_actual.setText("")
+        self.__haCambiado = False
 
     def errorDeCampo(self, descripcion):
         label = QLabel(descripcion)
@@ -113,13 +124,19 @@ class ArticuloView(QtWidgets.QWidget):
             self.vistaDetalle.btn_nuevo.setEnabled(True)
             self.vistaDetalle.btn_modificar.setEnabled(False)
 
+    def __articuloHaCambiado(self):
+        self.__haCambiado = True
+
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             self.close()
 
     def closeEvent(self, event):
-        # if not cambios:
-        #     event.igonre()
+        print(self.__haCambiado)
+        if not self.__haCambiado:
+            print("Estoy aca adentro")
+            event.accept()
+            return
         resultado = QMessageBox.question(self, "Salir..", "¿Desea cancelar el ingreso del nuevo articulo? No se guardaran los registros", QMessageBox.Yes | QMessageBox.No)
         if resultado == QMessageBox.Yes: event.accept()
         else: event.ignore()
