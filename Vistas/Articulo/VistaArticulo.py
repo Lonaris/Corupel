@@ -34,6 +34,10 @@ class ArticuloView(QtWidgets.QWidget):
 
         self.__haCambiado = False
 
+# Las siguientes líneas son para conectar los eventos en los
+# que los campos son modificados, en caso de modificarse alguno
+# levanto una bandera que me indica que se modificó un campo
+
         self.vistaDetalle.art_id.textChanged.connect(self.__articuloHaCambiado)
         self.vistaDetalle.art_cod_barras.textChanged.connect(self.__articuloHaCambiado)
         self.vistaDetalle.art_descripcion.textChanged.connect(self.__articuloHaCambiado)
@@ -92,6 +96,8 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_agrupacion.setCurrentText(articulo[4])
         self.vistaDetalle.art_stock_minimo.setText(str(articulo[5]))
         # self.vistaDetalle.art_activo.setEnabled()
+
+# Cuando seteo un artículo, la bandera debe ponerse en FALSO
         self.__haCambiado = False
 
     def resetArticulo(self):
@@ -104,6 +110,9 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_stock_minimo.setText("")
         self.vistaDetalle.comp_costo.setText("")
         self.vistaDetalle.comp_stock_actual.setText("")
+
+# Cuando pongo todos los campos en blanco (no es una modificacion
+#de usuario), debo poner la bandera en FALSO
         self.__haCambiado = False
 
     def errorDeCampo(self, descripcion):
@@ -131,10 +140,11 @@ class ArticuloView(QtWidgets.QWidget):
         if event.key() == Qt.Key_Escape:
             self.close()
 
+# El evento de cerrar ventana se dispara y verifica
+# que no haya sido modificado ningún campo
+
     def closeEvent(self, event):
-        print(self.__haCambiado)
         if not self.__haCambiado:
-            print("Estoy aca adentro")
             event.accept()
             return
         resultado = QMessageBox.question(self, "Salir..", "¿Desea cancelar el ingreso del nuevo articulo? No se guardaran los registros", QMessageBox.Yes | QMessageBox.No)
