@@ -9,7 +9,7 @@ class VistaPrincipal(QtWidgets.QMainWindow):
         data = ["Proveedores", "Articulos", "Ingreso de Factura", "Salida de articulos",  "Informes", "Operarios", "Configuracion"]
         model = QStringListModel(data)
 
-        main = uic.loadUi("Vistas/gui/main.ui", self)
+        main = uic.loadUi("gui/main.ui", self)
         # main.menu_navegacion.setModel(model)
         #
         # contenido = QtWidgets.QStackedWidget()

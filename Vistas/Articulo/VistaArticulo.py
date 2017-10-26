@@ -16,7 +16,7 @@ class ArticuloView(QtWidgets.QWidget):
         super(ArticuloView, self).__init__(parent)
 
         #Traemos el archivo .UI "Articulos_detalle"
-        self.vistaDetalle = uic.loadUi("vistas/gui/detalles/articulo_detalle.ui", self)
+        self.vistaDetalle = uic.loadUi("gui/detalles/articulo_detalle.ui", self)
 
         rxId = QRegExp("[0-9]{0,16}")
         rxBarras = QRegExp(".{0,20}")

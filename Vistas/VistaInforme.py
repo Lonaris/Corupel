@@ -8,7 +8,7 @@ class InformeView(QtWidgets.QWidget):
     def __init__(self, presenter, parent=None):
         super(InformeView, self).__init__(parent)
 
-        self.vista = uic.loadUi("vistas/gui/informes/informes.ui", self)
+        self.vista = uic.loadUi("gui/informes/informes.ui", self)
 
         self.vista.filtro.currentIndexChanged.connect(self.setTercero)
         self.setTercero()

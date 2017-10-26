@@ -431,10 +431,6 @@
   <property name="windowTitle">
    <string>Menu Principal</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>ico/icon.ico</normaloff>ico/icon.ico</iconset>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
@@ -480,19 +476,6 @@
          <property name="rightMargin">
           <number>15</number>
          </property>
-         <item row="9" column="0">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label_logo">
            <property name="sizePolicy">
@@ -543,6 +526,10 @@
            </property>
            <property name="text">
             <string>Configuraciones</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>ico/support.ico</normaloff>ico/support.ico</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -657,6 +644,40 @@
            </property>
           </widget>
          </item>
+         <item row="4" column="0" colspan="2">
+          <widget class="QPushButton" name="btn_main_operarios">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#btn_main_operarios{
+								background-color: #BAC1D7;
+								}</string>
+           </property>
+           <property name="text">
+            <string>Operarios (Alt+3)</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>ico/user_accept.ico</normaloff>ico/user_accept.ico</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="shortcut">
+            <string>Alt+3</string>
+           </property>
+          </widget>
+         </item>
          <item row="7" column="0" colspan="2">
           <widget class="QPushButton" name="btn_main_informes">
            <property name="sizePolicy">
@@ -725,40 +746,6 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="0" colspan="2">
-          <widget class="QPushButton" name="btn_main_operarios">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::ClickFocus</enum>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">#btn_main_operarios{
-								background-color: #BAC1D7;
-								}</string>
-           </property>
-           <property name="text">
-            <string>Operarios (Alt+3)</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>ico/user_accept.ico</normaloff>ico/user_accept.ico</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="shortcut">
-            <string>Alt+3</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
@@ -782,6 +769,54 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuArchivo">
+    <property name="title">
+     <string>Archivo</string>
+    </property>
+    <addaction name="actionABM_Operarios"/>
+    <addaction name="actionResolucion"/>
+    <addaction name="actionConfig_Impresoras"/>
+   </widget>
+   <widget class="QMenu" name="menuArticulos">
+    <property name="title">
+     <string>Articulos</string>
+    </property>
+    <addaction name="actionBuscar"/>
+    <addaction name="actionListado_de_Articulos"/>
+    <addaction name="actionIngreso_Nuevo"/>
+   </widget>
+   <widget class="QMenu" name="menuProveedores">
+    <property name="title">
+     <string>Proveedores</string>
+    </property>
+    <addaction name="actionBuscar_2"/>
+    <addaction name="actionIngreso_Nuevo_2"/>
+    <addaction name="actionIngreso_Nuevo_3"/>
+   </widget>
+   <widget class="QMenu" name="menuIngresos">
+    <property name="title">
+     <string>Ingresos</string>
+    </property>
+    <addaction name="actionIngreso_de_Articulos"/>
+   </widget>
+   <widget class="QMenu" name="menuEgresos">
+    <property name="title">
+     <string>Egresos</string>
+    </property>
+    <addaction name="actionEgreso_de_Articulos"/>
+   </widget>
+   <widget class="QMenu" name="menuConfiguraciones">
+    <property name="title">
+     <string>Configuraciones</string>
+    </property>
+    <addaction name="actionAtajos_del_Teclado"/>
+   </widget>
+   <addaction name="menuArchivo"/>
+   <addaction name="menuArticulos"/>
+   <addaction name="menuProveedores"/>
+   <addaction name="menuIngresos"/>
+   <addaction name="menuEgresos"/>
+   <addaction name="menuConfiguraciones"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionBuscar">

@@ -9,7 +9,7 @@ class IngresoView(QtWidgets.QWidget):
     def __init__(self, presenter, parent=None):
         super(IngresoView, self).__init__(parent)
 
-        self.vista = uic.loadUi("vistas/gui/ingresos/Ingreso.ui", self)
+        self.vista = uic.loadUi("gui/ingresos/Ingreso.ui", self)
 
         self.vista.tbl_articulos.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
 

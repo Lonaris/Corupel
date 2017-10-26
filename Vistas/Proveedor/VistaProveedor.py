@@ -17,7 +17,7 @@ class ProveedorView(QtWidgets.QWidget):
         # esto se logra NO COLOCANDO 'self.' sino la variable localmente.
 
         #Traemos el archivo .UI "Proveedores_detalle"
-        self.vistaDetalle = uic.loadUi("vistas/gui/detalles/proveedor_detalle.ui", self)
+        self.vistaDetalle = uic.loadUi("gui/detalles/proveedor_detalle.ui", self)
 
         rxId = QRegExp("[0-9]{0,16}")
         rxNumeros = QRegExp("[0-9]{0,20}")

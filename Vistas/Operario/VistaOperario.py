@@ -12,7 +12,7 @@ class OperarioView(QtWidgets.QWidget):
     def __init__(self, presenter, parent=None):
         super(OperarioView, self).__init__(parent)
 
-        self.vistaDetalle = uic.loadUi("vistas/gui/detalles/operario_detalle.ui", self)
+        self.vistaDetalle = uic.loadUi("gui/detalles/operario_detalle.ui", self)
 
 
     #Funcion que trae un operario y modifica la ifnormacion.

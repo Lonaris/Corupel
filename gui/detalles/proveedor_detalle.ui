@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>559</height>
+    <width>841</width>
+    <height>497</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -440,7 +440,7 @@
   <property name="toolTipDuration">
    <number>-1</number>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
+  <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="main_layout" stretch="10,1,1">
      <property name="leftMargin">
@@ -456,7 +456,7 @@
       <number>10</number>
      </property>
      <item>
-      <layout class="QHBoxLayout" name="layout_detalles" stretch="60,40">
+      <layout class="QHBoxLayout" name="layout_detalles" stretch="50,50">
        <item>
         <widget class="QGroupBox" name="box_proveedor">
          <property name="font">
@@ -475,7 +475,7 @@
          <property name="title">
           <string/>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5" rowstretch="10,0,0,0,0,0,0,0,0,3,0,0,0" columnstretch="0,0" rowminimumheight="0,0,0,0,0,0,0,0,0,3,0,0,0">
+         <layout class="QGridLayout" name="gridLayout_5" rowstretch="10,0,0,0,0,0,0,0,0,3,0,0,0" columnstretch="30,70" rowminimumheight="0,0,0,0,0,0,0,0,0,3,0,0,0">
           <property name="horizontalSpacing">
            <number>1</number>
           </property>
@@ -1525,11 +1525,10 @@ background-color: #F4F4F4
               <property name="font">
                <font>
                 <family>Ariall</family>
-                <pointsize>-1</pointsize>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">#btn_deshabilitar_art{
+               <string notr="true">#btn_deshabilitar{
 	background-color: #C0392B ;
 	color: #ffffff;
 	font-family: 'Ariall';
@@ -1537,8 +1536,8 @@ background-color: #F4F4F4
 	border-radius: 5px;
 	}
 
-#btn_deshabilitar_art:hover{
-	background-color: #D0493B;
+#btn_deshabilitar:hover{
+	background-color: #DF013A;
 	}
 
 </string>
@@ -1589,7 +1588,7 @@ background-color: #F4F4F4
 </string>
               </property>
               <property name="text">
-               <string>Nuevo (Ctrl+N)</string>
+               <string>Ingresar nuevo (Ctrl+N)</string>
               </property>
               <property name="icon">
                <iconset>
@@ -2089,7 +2088,7 @@ background-color: #F4F4F4
 	}
 
 #btn_deshabilitar:hover{
-	background-color: #D0493B;
+	background-color: #DF013A;
 	}
 
 </string>
@@ -2180,7 +2179,7 @@ background-color: #F4F4F4
            <string notr="true">/*Estilos para el botón*/
 
 #btn_nuevo{
-	background-color: #196F3D;
+	background-color: #D68910  ;
 	color: #ffffff;
 	font-family: 'Ariall';
 	font-size: 11px;
@@ -2188,16 +2187,17 @@ background-color: #F4F4F4
 	}
 
 #btn_nuevo:hover{
-	background-color: #04B431;
+	background-color: #F1C40F ;
 	}
+
 </string>
           </property>
           <property name="text">
-           <string>Nuevo (Ctrl+N)</string>
+           <string>Guardar (Ctrl+N)</string>
           </property>
           <property name="icon">
            <iconset>
-            <normaloff>../ico/add_to_database.ico</normaloff>../ico/add_to_database.ico</iconset>
+            <normaloff>../ico/save.ico</normaloff>../ico/save.ico</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -2275,7 +2275,6 @@ background-color: #F4F4F4
   <tabstop>btn_nuevo</tabstop>
   <tabstop>btn_imprimir</tabstop>
   <tabstop>tbl_articulos</tabstop>
-  <tabstop>btn_deshabilitar_art</tabstop>
   <tabstop>btn_nuevo_art</tabstop>
  </tabstops>
  <resources/>

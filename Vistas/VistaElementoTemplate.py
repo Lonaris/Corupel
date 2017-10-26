@@ -12,7 +12,7 @@ class ElementoView(QtWidgets.QWidget):
     def __init__(self, presenter, parent=None):
         super(ElementoView, self).__init__(parent)
 
-        self.vistaDetalle = uic.loadUi("vistas/gui/detalles/elementos_detalle.ui", self)
+        self.vistaDetalle = uic.loadUi("gui/detalles/elementos_detalle.ui", self)
 
 
     #Funcion que trae un elemento y modifica la ifnormacion.
