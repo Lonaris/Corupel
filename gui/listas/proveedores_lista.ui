@@ -704,7 +704,14 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">#btn_buscar{
+background-color:#B7BEDF;
+color: #FFFFFF;
+}
+
+#btn_buscar:hover{
+background-color: #BAC1D7 
+	}</string>
           </property>
           <property name="text">
            <string>Buscar (Enter)</string>
