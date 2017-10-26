@@ -44,7 +44,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
         self.contenido.currentChanged.connect(self.limpiarInterfaz)
 
-        statusBar = self.vista.statusBar().showMessage("HOla!")
+        statusBar = self.vista.statusBar().showMessage("Barra de mensajes")
 
         self.mostrarArticulos()
 

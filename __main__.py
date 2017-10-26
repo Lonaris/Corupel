@@ -17,7 +17,7 @@ def main():
         'database' : 'corupel'
     }
 
-    mainPresenter = PresenterPrincipal.PrincipalPresenter(config)
+    mainPresenter = PresenterPrincipal.PrincipalPresenter()
     # mainPresenter = PresenterPrincipalOperario.PrincipalPresenter()
 
 
