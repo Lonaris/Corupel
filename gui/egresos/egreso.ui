@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>353</width>
+    <width>735</width>
     <height>406</height>
    </rect>
   </property>
@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
-    <layout class="QGridLayout" name="gridLayout_2" rowstretch="2,2,0,0,2,2,0,800,0,0,0,0">
+    <layout class="QGridLayout" name="gridLayout_2" rowstretch="2,2,0,0,2,2,0,800,0,0,0,0" columnstretch="1,1">
      <item row="6" column="0" colspan="2">
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
@@ -30,7 +30,7 @@
       </spacer>
      </item>
      <item row="5" column="1">
-      <widget class="QGroupBox" name="Detales_egreso">
+      <widget class="QGroupBox" name="Detalles_egreso">
        <property name="styleSheet">
         <string notr="true">#Detales_egreso{
 	background-color: #F2F6FD;
@@ -47,13 +47,10 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="move_destino"/>
-        </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_sector">
           <property name="text">
-           <string>Sector</string>
+           <string>Agrupacion</string>
           </property>
          </widget>
         </item>
@@ -96,6 +93,18 @@
           </item>
          </widget>
         </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="move_destino">
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>Ninguno</string>
+           </property>
+          </item>
+         </widget>
+        </item>
        </layout>
       </widget>
      </item>
@@ -109,7 +118,7 @@
        <property name="title">
         <string/>
        </property>
-       <layout class="QGridLayout" name="gridLayout">
+       <layout class="QGridLayout" name="gridLayout" columnstretch="4,2,1">
         <item row="1" column="0">
          <widget class="QLabel" name="label_3">
           <property name="text">
@@ -117,7 +126,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="3" column="0">
          <widget class="QTableView" name="tbl_egresos">
           <property name="focusPolicy">
            <enum>Qt::TabFocus</enum>
@@ -129,6 +138,28 @@
            <bool>false</bool>
           </attribute>
          </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="buscador">
+          <property name="placeholderText">
+           <string>Buscar</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QComboBox" name="destino">
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>Ninguno</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="3" column="1" colspan="2">
+         <widget class="QTableView" name="tableView"/>
         </item>
        </layout>
       </widget>
@@ -374,7 +405,6 @@
   <tabstop>ope_legajo</tabstop>
   <tabstop>ope_nombre</tabstop>
   <tabstop>egr_numero</tabstop>
-  <tabstop>move_destino</tabstop>
   <tabstop>move_sector</tabstop>
   <tabstop>tbl_egresos</tabstop>
   <tabstop>btn_agregar_art</tabstop>
