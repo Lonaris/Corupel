@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>780</width>
+    <height>459</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="1" column="0">
+    <layout class="QGridLayout" name="gridLayout" columnstretch="2,0,0,0,0,0,0,0">
+     <item row="1" column="0" colspan="8">
+      <widget class="QTableView" name="tbl_informe"/>
+     </item>
+     <item row="0" column="7">
+      <widget class="QPushButton" name="btn_ejecutar">
+       <property name="text">
+        <string>Ejecutar Informe</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="tercero"/>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLineEdit" name="buscador">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>Codigo/Descripcion</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="6">
+      <widget class="QDateEdit" name="fecha_hasta">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QDateEdit" name="fecha_desde">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Hasta</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Desde</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QComboBox" name="filtro">
+       <item>
+        <property name="text">
+         <string>Ingresos de Articulos</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Egresos de Articulos</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ingresos de Articulos por Proveedor</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Egresos de Articulos por Operario</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Egresos de Articulos por Destino</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Egresos de Articulos por Agrupacion</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="2" column="6" colspan="2">
+      <widget class="QPushButton" name="btn_guardar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#btn_guardar{
+	background-color: #D68910  ;
+	color: #ffffff;
+	font-family: 'Ariall';
+	font-size: 11px;
+	border-radius: 5px;
+	}
+
+#btn_guardar:hover{
+	background-color: #F1C40F ;
+	}</string>
+       </property>
+       <property name="text">
+        <string>Guardar</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../ico/save.ico</normaloff>../ico/save.ico</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Generar Movimientos de:</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>filtro</tabstop>
+  <tabstop>tercero</tabstop>
+  <tabstop>buscador</tabstop>
+  <tabstop>btn_ejecutar</tabstop>
+  <tabstop>tbl_informe</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -5,5 +5,5 @@ select
     from articulos, movimientos_ingreso
 	join ingresos on ingresos.ing_id = movimientos_ingreso.ing_id
 	where articulos.art_id = movimientos_ingreso.art_id
-    AND ing_fecha BETWEEN '2017-10-9' AND '2017-10-20';
-    AND movimientos_ingreso.art_id = 1214;
+    AND ing_fecha BETWEEN '2017-9-17' AND '2017-10-17'
+    AND articulos.art_descripcion LIKE '%%';

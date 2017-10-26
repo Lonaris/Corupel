@@ -10,15 +10,8 @@ def main():
 	#Instancia para iniciar una aplicación
     app = QtWidgets.QApplication(sys.argv)
 
-    config = {
-        'user' : 'root',
-        'password' : 'admin1234',
-        'host' : '127.0.0.1',
-        'database' : 'corupel'
-    }
-
-    mainPresenter = PresenterPrincipal.PrincipalPresenter(config)
-    # mainPresenter = PresenterPrincipalOperario.PrincipalPresenter()
+    # mainPresenter = PresenterPrincipal.PrincipalPresenter()
+    mainPresenter = PresenterPrincipalOperario.PrincipalPresenter()
 
 
 	#Ejecutar la aplicación

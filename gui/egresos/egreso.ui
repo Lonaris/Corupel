@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Egresos</class>
+ <widget class="QWidget" name="Egresos">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>539</width>
+    <height>432</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout_2" rowstretch="2,2,0,0,2,2,0,800,0,0,0,0">
+     <item row="6" column="0" colspan="2">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="5" column="1">
+      <widget class="QGroupBox" name="Detales_egreso">
+       <property name="styleSheet">
+        <string notr="true">#Detales_egreso{
+	background-color: #F2F6FD;
+	}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <layout class="QFormLayout" name="formLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_destino">
+          <property name="text">
+           <string>Destino</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="move_destino"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_sector">
+          <property name="text">
+           <string>Sector</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_fecha">
+          <property name="text">
+           <string>Fecha</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QDateEdit" name="egr_fecha">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="calendarPopup">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="move_sector">
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>INSUMOS</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>INVERSION</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>REPARACION</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="7" column="0" rowspan="2" colspan="2">
+      <widget class="QGroupBox" name="Articulos">
+       <property name="styleSheet">
+        <string notr="true">#Articulos{
+	background-color: #F2F6FD;
+	}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <layout class="QGridLayout" name="gridLayout" columnstretch="4,1,1">
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="art_busqueda">
+          <property name="placeholderText">
+           <string>Buscar por descripcion</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QComboBox" name="art_destino">
+          <item>
+           <property name="text">
+            <string>Destino</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="3" column="1" colspan="2">
+         <widget class="QTableView" name="tbl_busqueda">
+          <property name="focusPolicy">
+           <enum>Qt::TabFocus</enum>
+          </property>
+          <property name="tabKeyNavigation">
+           <bool>false</bool>
+          </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_articulos_2">
+          <property name="text">
+           <string>Articulos a expedir</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_articulos">
+          <property name="text">
+           <string>Articulos a expedir</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" rowspan="3">
+         <widget class="QTableView" name="tbl_egresos">
+          <property name="focusPolicy">
+           <enum>Qt::TabFocus</enum>
+          </property>
+          <property name="tabKeyNavigation">
+           <bool>false</bool>
+          </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Detalles</string>
+       </property>
+      </widget>
+     </item>
+     <item row="11" column="0" colspan="2">
+      <layout class="QHBoxLayout" name="Botones">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_agregar_art">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#btn_agregar_art{
+	background-color: #196F3D;
+	color: #ffffff;
+	font-family: 'Ariall';
+	font-size: 11px;
+	border-radius: 5px;
+	}
+
+#btn_agregar_art:hover{
+	background-color: #04B431;
+	}</string>
+         </property>
+         <property name="text">
+          <string>Agregar Articulos</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../ico/insert_to_shopping_cart.ico</normaloff>../ico/insert_to_shopping_cart.ico</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_guardar">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#btn_guardar{
+	background-color: #D68910  ;
+	color: #ffffff;
+	font-family: 'Ariall';
+	font-size: 11px;
+	border-radius: 5px;
+	}
+
+#btn_guardar:hover{
+	background-color: #F1C40F ;
+	}</string>
+         </property>
+         <property name="text">
+          <string>Guardar Egreso</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../ico/save.ico</normaloff>../ico/save.ico</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="3" column="0" colspan="2">
+      <widget class="Line" name="line">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="0" colspan="2">
+      <layout class="QHBoxLayout" name="Totales">
+       <item>
+        <widget class="QLabel" name="label_total_cant">
+         <property name="text">
+          <string>Total de Articulos</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="egr_total_cant">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Operario</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" rowspan="3" colspan="2">
+      <widget class="QLabel" name="label_titulo">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <property name="text">
+        <string>EGRESOS</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QGroupBox" name="Operario">
+       <property name="styleSheet">
+        <string notr="true">#Operario{
+	background-color: #F2F6FD;
+	}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_legajo">
+          <property name="text">
+           <string>Legajo</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="ope_legajo"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_nombre">
+          <property name="text">
+           <string>Nombre y Apellido</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="ope_nombre">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_orden">
+          <property name="text">
+           <string>N° de orden</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="egr_numero"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="10" column="0" colspan="2">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>ope_legajo</tabstop>
+  <tabstop>ope_nombre</tabstop>
+  <tabstop>egr_numero</tabstop>
+  <tabstop>move_destino</tabstop>
+  <tabstop>move_sector</tabstop>
+  <tabstop>tbl_egresos</tabstop>
+  <tabstop>btn_agregar_art</tabstop>
+  <tabstop>btn_guardar</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
