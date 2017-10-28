@@ -167,6 +167,9 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
             self.__costos['costo_promedio'] = str(costoTotal/len(cantidades))
         # self.articulo.append(cantidades)
         return cantidades
+
+    def getId(self):
+        return self.articulo[0]
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
 # ===============================================================

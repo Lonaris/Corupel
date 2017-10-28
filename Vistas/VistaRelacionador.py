@@ -16,3 +16,6 @@ class RelacionadorView(QtWidgets.QWidget):
     def setTitulo(self, titulo):
         self.vista.grupo.setTitle(titulo.capitalize() + " disponibles")
         self.vista.setWindowTitle("Relacionador de articulo y proveedor")
+
+    def getBusqueda(self):
+        return self.vista.buscador.text()

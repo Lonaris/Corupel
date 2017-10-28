@@ -103,6 +103,8 @@ class ModeloProveedor(QtCore.QAbstractTableModel):
             print("ERRORES: ",self.__v.errors)
         return v
 
+    def getId(self):
+        return self.proveedor[0]
 
     # def asociarProveedor(self, proveedor = { 'prov_nombre' : 'Indeterminado' }):
     #     # El ID de proveedor por defecto no debe ser 0000, sino el que sea creado para el proveedor con nombre "Indeterminado"

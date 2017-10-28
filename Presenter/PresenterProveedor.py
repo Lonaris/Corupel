@@ -4,6 +4,7 @@ import Vistas.Proveedor.VistaProveedor as PView
 import Vistas.Proveedor.VistaListaProveedores as PLView
 import Modelos.ModeloProveedor as PModel
 import Modelos.ModeloArticulo as AModel
+import Presenter.PresenterRelacionador as RPresenter
 from PyQt5.QtCore import Qt, QModelIndex
 
 
@@ -13,12 +14,14 @@ class ProveedorPresenter(object):
         self.model = PModel.ModeloProveedor()
         self.vistaDetalle = PView.ProveedorView(self)
         self.vistaLista = PLView.ListaProveedoresView(self)
+        self.relacionador = RPresenter.RelacionadorPresenter("articulos", self)
 
         self.vistaLista.tbl_proveedores.setModel(self.model)
         self.vistaLista.tbl_proveedores.doubleClicked.connect(self.verDetalles)
 
         self.vistaDetalle.btn_nuevo.clicked.connect(self.crearProveedor)
         self.vistaDetalle.btn_modificar.clicked.connect(self.modificarProveedor)
+        self.vistaDetalle.btn_nuevo_art.clicked.connect(self.__asociar)
         # self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarProveedor)
 
         self.vistaLista.ln_buscar.returnPressed.connect(self.verProveedores)
@@ -26,15 +29,15 @@ class ProveedorPresenter(object):
         self.vistaLista.btn_nuevo.clicked.connect(self.verNuevo)
         # self.verProveedores(limite = 5)
 
-        self.vistaDetalle.prov_id.returnPressed.connect(self.__refrescar)
+        self.vistaDetalle.prov_id.returnPressed.connect(self.refrescar)
 
         self.vistaDetalle.tbl_articulos.setModel(self.artModel)
         self.selMod = self.vistaDetalle.tbl_articulos.selectionModel()
-        self.selMod.selectionChanged.connect(self.activarBotonesArticulos)
+        # self.selMod.selectionChanged.connect(self.activarBotonesArticulos)
 
         self.vistaLista.show()
 
-        self.activarBotonesArticulos()
+        # self.activarBotonesArticulos()
 
     def verProveedores(self, campos = None, condiciones = None, limite = None):
         texto = self.vistaLista.ln_buscar.text()
@@ -70,7 +73,7 @@ class ProveedorPresenter(object):
         proveedor = self.vistaDetalle.getProveedor()
         self.model.toggleProveedorActivo(proveedor)
 
-    def __refrescar(self):
+    def refrescar(self):
         provId = self.vistaDetalle.prov_id.text()
         proveedor = {}
         if provId:
@@ -81,8 +84,13 @@ class ProveedorPresenter(object):
         if not proveedor:
             self.vistaDetalle.resetProveedor()
 
-    def activarBotonesArticulos(self):
-        if self.selMod.hasSelection():
-            self.vistaDetalle.btn_deshabilitar_art.setEnabled(True)
-        else:
-            self.vistaDetalle.btn_deshabilitar_art.setEnabled(False)
+    # def activarBotonesArticulos(self):
+    #     if self.selMod.hasSelection():
+    #         self.vistaDetalle.btn_deshabilitar_art.setEnabled(True)
+    #     else:
+    #         self.vistaDetalle.btn_deshabilitar_art.setEnabled(False)
+
+    def __asociar(self):
+        idProveedor = self.model.getId()
+        print("idProveedor contiene lo siguiente: ", idProveedor)
+        self.relacionador.activar(idProveedor)
