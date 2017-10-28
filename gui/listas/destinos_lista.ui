@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Operarios</string>
+   <string>Administrar Destinos</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,80,0,8,0">
      <item row="2" column="0" colspan="2">
-      <widget class="QTableView" name="tbl_operarios">
+      <widget class="QTableView" name="tbl_destinos">
        <property name="selectionBehavior">
         <enum>QAbstractItemView::SelectRows</enum>
        </property>
@@ -76,7 +76,7 @@
            <bool>true</bool>
           </property>
           <property name="placeholderText">
-           <string>Legajo/ Nombre</string>
+           <string>Nombre</string>
           </property>
          </widget>
         </item>
@@ -242,7 +242,7 @@ background-color: #BAC1D7
  <tabstops>
   <tabstop>ln_buscar</tabstop>
   <tabstop>btn_buscar</tabstop>
-  <tabstop>tbl_operarios</tabstop>
+  <tabstop>tbl_destinos</tabstop>
   <tabstop>btn_nuevo</tabstop>
  </tabstops>
  <resources/>
