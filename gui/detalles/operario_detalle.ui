@@ -434,6 +434,10 @@
   <property name="windowTitle">
    <string notr="true">Detalles de operario</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../ico/icon.ico</normaloff>../ico/icon.ico</iconset>
+  </property>
   <property name="windowOpacity">
    <double>13.000000000000000</double>
   </property>

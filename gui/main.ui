@@ -431,6 +431,10 @@
   <property name="windowTitle">
    <string>Menu Principal</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>ico/icon.ico</normaloff>ico/icon.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
