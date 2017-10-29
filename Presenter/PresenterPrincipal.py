@@ -42,6 +42,9 @@ class PrincipalPresenter(QtWidgets.QWidget):
         self.vista.btn_main_egresos.clicked.connect(self.mostrarEgresos)
         self.vista.btn_main_informes.clicked.connect(self.mostrarInformes)
 
+        self.vista.btn_main_configuracion.hide()
+        self.vista.btn_main_destinos.hide()
+
         self.contenido.currentChanged.connect(self.limpiarInterfaz)
 
         statusBar = self.vista.statusBar().showMessage("Barra de mensajes")
