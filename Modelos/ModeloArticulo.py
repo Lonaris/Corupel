@@ -29,6 +29,7 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         'art_marca' : {'type' : 'string' },
         'art_agrupacion' : {'type' : 'string' },
         'art_stock_minimo' : {'type' : 'integer'},
+        'art_destino' : {'type' : 'integer'}
         # 'art_stock_actual',
         # 'art_activo' : {'type' : 'integer' }
         }

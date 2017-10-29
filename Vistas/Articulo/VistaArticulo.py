@@ -44,7 +44,7 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_marca.currentIndexChanged.connect(self.__articuloHaCambiado)
         self.vistaDetalle.art_agrupacion.currentIndexChanged.connect(self.__articuloHaCambiado)
         self.vistaDetalle.art_stock_minimo.textChanged.connect(self.__articuloHaCambiado)
-
+        self.vistaDetalle.art_destino.currentIndexChanged.connect(self.__articuloHaCambiado)
     #Funcion que trae un articulo y modifica la ifnormacion.
     # def getArticulo(self):
     #     rawArticulo = self.vistaDetalle.findChildren((QComboBox, QLineEdit, QLabel), self.rxArt)
@@ -65,11 +65,13 @@ class ArticuloView(QtWidgets.QWidget):
         rawArticulo = self.vistaDetalle.findChildren((QLineEdit, QCheckBox, QComboBox), self.rxArt)
         articulo = {}
         for componente in rawArticulo:
-                if type(componente) == QLineEdit:
+                if componente.objectName() == "art_destino":
+                    articulo[componente.objectName()] = componente.currentIndex()
+                elif type(componente) == QLineEdit:
                     articulo[componente.objectName()] = componente.text()
-                if type(componente) == QComboBox:
+                elif type(componente) == QComboBox:
                     articulo[componente.objectName()] = componente.currentText()
-                if type(componente) == QCheckBox:
+                elif type(componente) == QCheckBox:
                     articulo[componente.objectName()] = componente.isChecked()
                 # print(componente.objectName(), componente.text())
         if (articulo['art_id']):
@@ -93,8 +95,9 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_cod_barras.setText(articulo[1])
         self.vistaDetalle.art_descripcion.setText(articulo[2])
         self.vistaDetalle.art_marca.setCurrentText(articulo[3])
-        self.vistaDetalle.art_agrupacion.setCurrentText(articulo[4])
-        self.vistaDetalle.art_stock_minimo.setText(str(articulo[5]))
+        self.vistaDetalle.art_destino.setCurrentIndex(articulo[4])
+        self.vistaDetalle.art_agrupacion.setCurrentText(articulo[5])
+        self.vistaDetalle.art_stock_minimo.setText(str(articulo[6]))
         # self.vistaDetalle.art_activo.setEnabled()
 
 # Cuando seteo un artículo, la bandera debe ponerse en FALSO
@@ -139,6 +142,10 @@ class ArticuloView(QtWidgets.QWidget):
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             self.close()
+
+    #Esta es la funcion resetCambios que interactua con el archivo PresenterArticulo
+    def resetCambios(self):
+        self.__haCambiado = False
 
 # El evento de cerrar ventana se dispara y verifica
 # que no haya sido modificado ningún campo

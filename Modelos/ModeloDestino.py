@@ -12,9 +12,9 @@ class ModeloDestino(QtCore.QAbstractListModel):
 
     def __init__(self, parent = None):
         super(ModeloDestino, self).__init__()
-        __querier = querier.Querier(tabla = "destinos", prefijo = "des_")
+        self.__querier = querier.Querier(tabla = "destinos", prefijo = "des_")
 
-        self.__destinos = []
+        self.__destinos = ["Destino"]
 
         try:
             resultados = self.__querier.traerElementos(campos = ["des_maquina"] )
