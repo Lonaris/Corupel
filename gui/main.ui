@@ -863,54 +863,6 @@ background-color: #BAC1D7
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuArchivo">
-    <property name="title">
-     <string>Archivo</string>
-    </property>
-    <addaction name="actionABM_Operarios"/>
-    <addaction name="actionResolucion"/>
-    <addaction name="actionConfig_Impresoras"/>
-   </widget>
-   <widget class="QMenu" name="menuArticulos">
-    <property name="title">
-     <string>Articulos</string>
-    </property>
-    <addaction name="actionBuscar"/>
-    <addaction name="actionListado_de_Articulos"/>
-    <addaction name="actionIngreso_Nuevo"/>
-   </widget>
-   <widget class="QMenu" name="menuProveedores">
-    <property name="title">
-     <string>Proveedores</string>
-    </property>
-    <addaction name="actionBuscar_2"/>
-    <addaction name="actionIngreso_Nuevo_2"/>
-    <addaction name="actionIngreso_Nuevo_3"/>
-   </widget>
-   <widget class="QMenu" name="menuIngresos">
-    <property name="title">
-     <string>Ingresos</string>
-    </property>
-    <addaction name="actionIngreso_de_Articulos"/>
-   </widget>
-   <widget class="QMenu" name="menuEgresos">
-    <property name="title">
-     <string>Egresos</string>
-    </property>
-    <addaction name="actionEgreso_de_Articulos"/>
-   </widget>
-   <widget class="QMenu" name="menuConfiguraciones">
-    <property name="title">
-     <string>Configuraciones</string>
-    </property>
-    <addaction name="actionAtajos_del_Teclado"/>
-   </widget>
-   <addaction name="menuArchivo"/>
-   <addaction name="menuArticulos"/>
-   <addaction name="menuProveedores"/>
-   <addaction name="menuIngresos"/>
-   <addaction name="menuEgresos"/>
-   <addaction name="menuConfiguraciones"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionBuscar">
