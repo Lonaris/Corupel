@@ -3,6 +3,7 @@ CREATE TABLE `articulos` (
   `art_cod_barras` varchar(20) NULL UNIQUE KEY,
   `art_descripcion` varchar(100) NOT NULL,
   `art_marca` varchar(20) NOT NULL,
+  `art_destino` int(16) UNSIGNED,
   `art_agrupacion` varchar(20) NOT NULL,
   `art_stock_minimo` int(8) NOT NULL,
   `art_activo` tinyint (1) NOT NULL DEFAULT 1
