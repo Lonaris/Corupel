@@ -3,6 +3,7 @@
 import Vistas.Egreso.VistaEgreso as EView
 import Modelos.ModeloArticulo as AModel
 import Modelos.ModeloEgreso as EModel
+import Modelos.ModeloDestino as DModel
 from PyQt5.QtCore import Qt, QModelIndex, QDate
 import datetime
 
@@ -12,11 +13,13 @@ class EgresoPresenter(object):
         # self.model = PModel.ModeloEgreso()
         self.vista = EView.EgresoView(self)
         self.model = EModel.ModeloEgreso()
+        self.desModel = DModel.ModeloDestino()
         # self.vistaLista = PLView.ListaEgresosView(self)
 
         self.vista.tbl_egresos.setModel(self.model)
         self.vista.tbl_egresos.horizontalHeader().resizeSection(1, 300)
         self.model.dataChanged.connect(self.__sumador)
+        self.vista.move_destino.setModel(self.desModel)
         # self.vistaLista.tbl_egresos.setModel(self.model)
         # self.vistaLista.tbl_egresos.doubleClicked.connect(self.verDetalles)
 

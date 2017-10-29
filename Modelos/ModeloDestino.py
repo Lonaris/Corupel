@@ -15,10 +15,10 @@ class ModeloDestino(QtCore.QAbstractListModel):
         self.__querier = querier.Querier(tabla = "destinos", prefijo = "des_")
 
         self.__destinos = ["Destino"]
-
+        print("REINICIO EL MODELO")
         try:
             resultados = self.__querier.traerElementos(campos = ["des_maquina"] )
-            print("Resultados: ", resultados)
+            # print("Resultados: ", resultados)
             for resultado in resultados:
                 self.__destinos.append(resultado[0])
             self.layoutChanged.emit()
@@ -26,8 +26,6 @@ class ModeloDestino(QtCore.QAbstractListModel):
         except:
             # mensaje el observer que hay un error, guardarlo en el log de errores y cerrar
             print('ERROR - No se pudieron levantar los destinos')
-
-        print (self.__destinos)
 
     def rowCount(self, parent):
         return len(self.__destinos)

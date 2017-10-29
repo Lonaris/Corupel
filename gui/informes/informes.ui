@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>688</width>
-    <height>367</height>
+    <width>883</width>
+    <height>513</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,19 +22,108 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <layout class="QGridLayout" name="gridLayout" columnstretch="2,1,2,0,1,0,1,1">
-     <item row="0" column="0">
-      <widget class="QComboBox" name="filtro">
+    <layout class="QGridLayout" name="gridLayout" columnstretch="2,1,1,1,0,0,0,0,0,0,0">
+     <item row="0" column="6">
+      <widget class="QLabel" name="label_desde">
+       <property name="text">
+        <string>Desde</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QLineEdit" name="buscador">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>Codigo/Descripcion</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="8">
+      <widget class="QLabel" name="label_hasta">
+       <property name="text">
+        <string>Hasta</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="7">
+      <widget class="QDateEdit" name="fecha_desde">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="9">
+      <widget class="QDateEdit" name="fecha_hasta">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="10">
+      <widget class="QPushButton" name="btn_guardar">
+       <property name="text">
+        <string>Guardar (Ctrl+S)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="11">
+      <widget class="QTableView" name="tbl_informe">
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+      </widget>
+     </item>
+     <item row="0" column="10">
+      <widget class="QPushButton" name="btn_ejecutar">
+       <property name="text">
+        <string>Ejecutar Informe</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLineEdit" name="tercero">
+       <property name="placeholderText">
+        <string>Codigo de proveedor</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QComboBox" name="filtro_destino">
        <item>
         <property name="text">
-         <string>Ingresos de Articulos</string>
+         <string>Destino</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QComboBox" name="filtro_agrupacion">
+       <item>
+        <property name="text">
+         <string>Agrupacion</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Egresos de Articulos</string>
+         <string>Insumos</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Reparacion</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Inversion</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="0" colspan="2">
+      <widget class="QComboBox" name="filtro_principal">
        <item>
         <property name="text">
          <string>Ingresos de Articulos por Proveedor</string>
@@ -47,68 +136,20 @@
        </item>
       </widget>
      </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Desde</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="5">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Hasta</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="4">
-      <widget class="QDateEdit" name="fecha_desde">
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="6">
-      <widget class="QDateEdit" name="fecha_hasta">
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLineEdit" name="buscador">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="placeholderText">
-        <string>Codigo/Descripcion</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0" colspan="8">
-      <widget class="QTableView" name="tbl_informe"/>
-     </item>
-     <item row="0" column="7">
-      <widget class="QPushButton" name="btn_ejecutar">
-       <property name="text">
-        <string>Ejecutar Informe</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="7">
-      <widget class="QPushButton" name="btn_guardar">
-       <property name="text">
-        <string>Guardar (Ctrl+S)</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="tercero"/>
-     </item>
     </layout>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>filtro_principal</tabstop>
+  <tabstop>filtro_destino</tabstop>
+  <tabstop>filtro_agrupacion</tabstop>
+  <tabstop>tercero</tabstop>
+  <tabstop>buscador</tabstop>
+  <tabstop>btn_ejecutar</tabstop>
+  <tabstop>tbl_informe</tabstop>
+  <tabstop>btn_guardar</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

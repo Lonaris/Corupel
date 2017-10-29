@@ -2,14 +2,17 @@
 
 import Vistas.VistaInforme as InView
 import Modelos.ModeloInforme as InModel
+import Modelos.ModeloDestino as DModel
 from datetime import date
 
 class InformePresenter(object):
     def __init__(self):
         self.model = InModel.ModeloInforme()
+        self.desModel = DModel.ModeloDestino()
         self.vista = InView.InformeView(self)
         self.vista.tbl_informe.setModel(self.model)
 
+        self.vista.filtro_destino.setModel(self.desModel)
         self.vista.buscador.returnPressed.connect(self.ejecutarInforme)
         self.vista.btn_ejecutar.clicked.connect(self.ejecutarInforme)
 
