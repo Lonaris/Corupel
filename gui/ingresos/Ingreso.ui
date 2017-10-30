@@ -572,12 +572,12 @@
  </widget>
  <tabstops>
   <tabstop>prov_id</tabstop>
-  <tabstop>tbl_ingresos</tabstop>
   <tabstop>rem_prefijo</tabstop>
   <tabstop>rem_numero</tabstop>
   <tabstop>fact_tipo</tabstop>
   <tabstop>fact_prefijo</tabstop>
   <tabstop>fact_numero</tabstop>
+  <tabstop>tbl_ingresos</tabstop>
   <tabstop>btn_agregar_art</tabstop>
   <tabstop>btn_guardar</tabstop>
  </tabstops>

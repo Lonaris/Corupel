@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>864</width>
-    <height>501</height>
+    <height>498</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -1232,12 +1232,25 @@ background-color: #ffffff;
       </spacer>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="layout_botones" stretch="20,20,20,20">
+      <layout class="QHBoxLayout" name="layout_botones" stretch="0,20,20,20,20">
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item>
         <widget class="QPushButton" name="btn_deshabilitar">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>10</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -1694,8 +1707,8 @@ background-color: #ffffff;
        <item>
         <widget class="QPushButton" name="btn_modificar">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>10</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -1748,8 +1761,8 @@ background-color: #ffffff;
        <item>
         <widget class="QPushButton" name="btn_nuevo">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>10</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -1802,8 +1815,8 @@ background-color: #ffffff;
        <item>
         <widget class="QPushButton" name="btn_imprimir">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>10</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
@@ -1850,18 +1863,19 @@ background-color: #ffffff;
   </action>
  </widget>
  <tabstops>
-  <tabstop>art_id</tabstop>
   <tabstop>art_cod_barras</tabstop>
   <tabstop>art_descripcion</tabstop>
   <tabstop>art_marca</tabstop>
   <tabstop>art_agrupacion</tabstop>
+  <tabstop>art_destino</tabstop>
   <tabstop>art_stock_minimo</tabstop>
   <tabstop>opcion_costo</tabstop>
-  <tabstop>tbl_proveedores</tabstop>
-  <tabstop>btn_nuevo_prov</tabstop>
   <tabstop>btn_deshabilitar</tabstop>
   <tabstop>btn_modificar</tabstop>
   <tabstop>btn_nuevo</tabstop>
+  <tabstop>tbl_proveedores</tabstop>
+  <tabstop>art_id</tabstop>
+  <tabstop>btn_nuevo_prov</tabstop>
   <tabstop>btn_imprimir</tabstop>
  </tabstops>
  <resources/>

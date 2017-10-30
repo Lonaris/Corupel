@@ -21,7 +21,10 @@ class ArticuloView(QtWidgets.QWidget):
         rxId = QRegExp("[0-9]{0,16}")
         rxBarras = QRegExp(".{0,20}")
         rxDesc = QRegExp(".{0,30}")
-
+        #ocultamos los botones que no vamos a usar por el momento.
+        self.vistaDetalle.btn_deshabilitar.hide()
+        self.vistaDetalle.btn_imprimir.hide()
+        
         self.agrupacion = ('Insumos', 'Reparacion', 'Inversion')
 
         self.vistaDetalle.art_id.setValidator(QRegExpValidator(rxId))
