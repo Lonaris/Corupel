@@ -430,7 +430,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,80,0,8">
+    <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,80,0,7">
      <item row="1" column="0" colspan="2">
       <spacer name="horizontalSpacer">
        <property name="orientation">
@@ -498,10 +498,16 @@
        <item>
         <widget class="QPushButton" name="btn_nuevo">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
          </property>
          <property name="font">
           <font>

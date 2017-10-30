@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>635</width>
-    <height>531</height>
+    <width>719</width>
+    <height>468</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
    <item row="0" column="0">
-    <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0,0,80" columnstretch="50,30,20">
+    <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0,0,80" columnstretch="50,30,25">
      <item row="1" column="0" colspan="2">
       <widget class="QGroupBox" name="groupBox">
        <property name="styleSheet">
@@ -220,7 +220,7 @@
          <number>6</number>
         </property>
         <property name="spacing">
-         <number>1</number>
+         <number>9</number>
         </property>
         <item row="0" column="0">
          <widget class="QPushButton" name="btn_ejecutar">
@@ -229,6 +229,12 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>200</height>
+           </size>
           </property>
           <property name="styleSheet">
            <string notr="true">#btn_ejecutar{
@@ -265,6 +271,12 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>200</height>
+           </size>
           </property>
           <property name="styleSheet">
            <string notr="true">#btn_guardar{
