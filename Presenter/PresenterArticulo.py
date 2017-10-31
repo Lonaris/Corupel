@@ -83,8 +83,10 @@ class ArticuloPresenter(object):
 
     def modificarArticulo(self):
         articulo = self.vistaDetalle.getArticulo()
-        self.model.modificarArticulo(articulo)
-        self.verArticulos()
+        if self.model.modificarArticulo(articulo):
+            self.verArticulos()
+            self.vistaDetalle.resetCambios()
+            self.vistaDetalle.close()
 
     def deshabilitarArticulo(self, articulo):
 

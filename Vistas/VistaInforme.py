@@ -13,11 +13,21 @@ class InformeView(QtWidgets.QWidget):
         self.vista.filtro_principal.currentIndexChanged.connect(self.setFiltros)
         self.setFiltros()
 
+        self.vista.filtro_principal.currentIndexChanged.connect(self.__informeHaCambiado)
+        self.vista.filtro_destino.currentIndexChanged.connect(self.__informeHaCambiado)
+        self.vista.filtro_agrupacion.currentTextChanged.connect(self.__informeHaCambiado)
+        self.vista.filtro_tercero.textChanged.connect(self.__informeHaCambiado)
+        self.vista.buscador.textChanged.connect(self.__informeHaCambiado)
+        self.vista.fecha_desde.dateChanged.connect(self.__informeHaCambiado)
+        self.vista.fecha_hasta.dateChanged.connect(self.__informeHaCambiado)
+
         # self.vista.tbl_informe.setColumnWidth(1, 600)
+        self.__haCambiado = False
 
     def setFechas(self, desde, hasta):
         self.vista.fecha_desde.setDate(QDate(desde))
         self.vista.fecha_hasta.setDate(QDate(hasta))
+        self.__haCambiado = False
 
     def getFiltros(self):
         return (self.vista.filtro_principal.currentIndex(),
@@ -46,3 +56,15 @@ class InformeView(QtWidgets.QWidget):
         agrupacion.setCurrentIndex(0)
         buscador.setText("")
         tercero.setText("")
+        self.__haCambiado = False
+
+    def __informeHaCambiado(self):
+        self.__haCambiado = True
+
+    # def closeEvent(self, event):
+    #     if not self.__haCambiado:
+    #         event.accept()
+    #         return
+    #     resultado = QMessageBox.question(self, "Salir..", "¿Desea cancelar el ingreso del nuevo articulo? No se guardaran los registros", QMessageBox.Yes | QMessageBox.No)
+    #     if resultado == QMessageBox.Yes: event.accept()
+    #     else: event.ignore()

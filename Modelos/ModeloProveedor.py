@@ -20,14 +20,16 @@ class ModeloProveedor(QtCore.QAbstractTableModel):
 
         self.__scProveedor = {
             'prov_id' : {'type' : 'integer', 'nullable' : True },
-            'prov_nombre' : {'type' : 'string', 'required' : True },
-            'prov_razon_social' : {'type' : 'string', 'maxlength' : 20 },
+            'prov_nombre' : {'type' : 'string', 'required' : True, 'maxlength' : 60 },
+            'prov_razon_social' : {'type' : 'string', 'maxlength' : 60 },
             'prov_cuit' : {'type' : 'string', 'maxlength' : 20},
             'prov_direccion' : {'type' : 'string', 'maxlength' : 30},
-            'prov_telefono' : {'type' : 'string', 'maxlength' : 20 },
-            'prov_telefono_dos' : {'type' : 'string', 'maxlength' : 20 },
-            'prov_email' : {'type' : 'string'},
-            'prov_activo' : {'type' : 'integer', 'allowed' : [0, 1]}
+            'prov_telefono' : {'type' : 'string', 'maxlength' : 30 },
+            'prov_telefono_dos' : {'type' : 'string', 'maxlength' : 30 },
+            'prov_email' : {'type' : 'string', 'maxlength' : 40},
+            'prov_activo' : {'type' : 'integer', 'allowed' : [0, 1]},
+            'prov_notas' : {'type' : 'string'},
+            'prov_nombre_contacto' : {'type' : 'string', 'maxlength' : 30}
         }
 
         self.__propiedades = [

@@ -38,6 +38,10 @@ class IngresoView(QtWidgets.QWidget):
         self.tot_cant.setText(str(totalArticulos))
         self.tot_cost.setText(str(totalCosto))
 
+    def resetTotales(self):
+        self.tot_cant.setText(str(""))
+        self.tot_cost.setText(str(""))
+
     def getComprobantes(self):
         rxFact = QRegExp("fact_*")
         rxRem = QRegExp("rem_*")
@@ -51,3 +55,4 @@ class IngresoView(QtWidgets.QWidget):
         self.vista.rem_prefijo.setText("")
         self.vista.rem_numero.setText("")
         self.vista.fact_numero.setText("")
+        self.vista.fact_tipo.setCurrentIndex(0)

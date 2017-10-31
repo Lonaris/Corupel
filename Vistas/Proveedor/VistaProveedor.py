@@ -1,7 +1,7 @@
 # proveedor_view.py
 
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox, QTextEdit
+from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox, QTextEdit, QMessageBox
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import pyqtSignal, QRegExp, Qt
 
@@ -20,25 +20,39 @@ class ProveedorView(QtWidgets.QWidget):
         self.vistaDetalle = uic.loadUi("gui/detalles/proveedor_detalle.ui", self)
         self.vistaDetalle.btn_deshabilitar.hide()
         self.vistaDetalle.btn_imprimir.hide()
-        
+
         rxId = QRegExp("[0-9]{0,16}")
         rxNumeros = QRegExp("[0-9]{0,20}")
 
         self.vistaDetalle.prov_id.setValidator(QRegExpValidator(rxId))
         self.vistaDetalle.prov_cuit.setValidator(QRegExpValidator(rxNumeros))
-        self.vistaDetalle.prov_telefono.setValidator(QRegExpValidator(rxNumeros))
-        self.vistaDetalle.prov_telefono_dos.setValidator(QRegExpValidator(rxNumeros))
+        # self.vistaDetalle.prov_telefono.setValidator(QRegExpValidator(rxNumeros))
+        # self.vistaDetalle.prov_telefono_dos.setValidator(QRegExpValidator(rxNumeros))
         self.vistaDetalle.prov_id.textChanged.connect(self.__activarBotones)
 
+        self.vistaDetalle.prov_id.textChanged.connect(self.__proveedorHaCmabiado)
+        self.vistaDetalle.prov_nombre.textChanged.connect(self.__proveedorHaCmabiado)
+        self.vistaDetalle.prov_razon_social.textChanged.connect(self.__proveedorHaCmabiado)
+        self.vistaDetalle.prov_cuit.textChanged.connect(self.__proveedorHaCmabiado)
+        self.vistaDetalle.prov_direccion.textChanged.connect(self.__proveedorHaCmabiado)
+        self.vistaDetalle.prov_nombre_contacto.textChanged.connect(self.__proveedorHaCmabiado)
+        self.vistaDetalle.prov_telefono.textChanged.connect(self.__proveedorHaCmabiado)
+        self.vistaDetalle.prov_telefono_dos.textChanged.connect(self.__proveedorHaCmabiado)
+        self.vistaDetalle.prov_email.textChanged.connect(self.__proveedorHaCmabiado)
+        self.vistaDetalle.prov_notas.textChanged.connect(self.__proveedorHaCmabiado)
+
         self.__activarBotones("")
+        self.__haCambiado = False
 
     #Funcion que trae un proveedor y modifica la ifnormacion.
     def getProveedor(self):
         rawProveedor = self.vistaDetalle.findChildren((QTextEdit, QLineEdit, QCheckBox), self.rxProv)
         proveedor = {}
         for componente in rawProveedor:
-                proveedor[componente.objectName()] = componente.text()
-
+                if type(componente) == QLineEdit:
+                    proveedor[componente.objectName()] = componente.text()
+                if type(componente) == QTextEdit:
+                    proveedor[componente.objectName()] = componente.toPlainText()
                 if type(componente) == QCheckBox:
                     proveedor[componente.objectName()] = componente.isChecked()
                 # print(componente.objectName(), componente.text())
@@ -69,11 +83,17 @@ class ProveedorView(QtWidgets.QWidget):
         #     self.vistaDetalle.prov_activo.setChecked(True)
         # else:
         #     self.vistaDetalle.prov_activo.setChecked(False)
+        self.__haCambiado = False
+
 
     def resetProveedor(self):
         camposAResetear = self.vistaDetalle.findChildren(QLineEdit, self.rxProv)
         for campo in camposAResetear:
             campo.setText("")
+        self.__haCambiado = False
+
+    def resetCambios(self):
+        self.__haCambiado = False
 
     def __activarBotones(self, snl):
         if snl:
@@ -83,6 +103,17 @@ class ProveedorView(QtWidgets.QWidget):
             self.vistaDetalle.btn_nuevo.setEnabled(True)
             self.vistaDetalle.btn_modificar.setEnabled(False)
 
+    def __proveedorHaCmabiado(self):
+        self.__haCambiado = True
+
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             self.close()
+
+    def closeEvent(self, event):
+        if not self.__haCambiado:
+            event.accept()
+            return
+        resultado = QMessageBox.question(self, "Salir..", "¿Desea cancelar el ingreso del nuevo articulo? No se guardaran los registros", QMessageBox.Yes | QMessageBox.No)
+        if resultado == QMessageBox.Yes: event.accept()
+        else: event.ignore()

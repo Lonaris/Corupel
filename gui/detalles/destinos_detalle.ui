@@ -432,7 +432,7 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string notr="true">Detalles de operario</string>
+   <string notr="true">Detalles de destino</string>
   </property>
   <property name="windowOpacity">
    <double>13.000000000000000</double>
@@ -487,6 +487,9 @@
        <width>40</width>
        <height>40</height>
       </size>
+     </property>
+     <property name="shortcut">
+      <string>Ctrl+N</string>
      </property>
     </widget>
    </item>
@@ -1002,6 +1005,9 @@
        <width>40</width>
        <height>40</height>
       </size>
+     </property>
+     <property name="shortcut">
+      <string>Ctrl+M</string>
      </property>
      <property name="checkable">
       <bool>false</bool>

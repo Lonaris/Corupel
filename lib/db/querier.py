@@ -22,9 +22,7 @@ class Querier(object):
 
 # Esta funcion recibe un diccionario donde key = columna y value = valor
     def insertarElemento(self, elemento):
-        # if type(elemento) != type({}) or type(elemento) != type([]):
-        #     raise TypeError("El elemento a insertar debe ser un diccionario o lista")
-        #     return
+
         consulta = "INSERT INTO {} (".format(self.tabla)
         valores = "VALUES ("
         for index, columna in enumerate(elemento.keys()):
@@ -49,17 +47,14 @@ class Querier(object):
         for index, columna in enumerate(elemento.keys()):
             if (self.prefijo + "id") in columna.lower():
                 # print("La columna: " + columna + " fue ignorada")
-                total -= 1
                 donde = self.__agregarFiltros([(columna, " = ", elemento[columna])])
-                continue
             consulta += "{}{} = %({}{})s".format(self.prefijo, columna, self.prefijo, columna)
             if index < total:
                 consulta += ", "
 
-        # if condiciones:
-        #     donde = self.__agregarFiltros(condiciones)
-        # else:
-        #     donde = self.__agregarFiltros()
+        if condiciones:
+            donde = self.__agregarFiltros(condiciones)
+
         consulta += donde
 
         print("\nDEBUG - Consulta actualizar elemento a mysql: ", consulta , "\n")

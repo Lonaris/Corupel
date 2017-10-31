@@ -54,9 +54,12 @@ class ModeloOperario(QtCore.QAbstractTableModel):
         self.operario = {}
 
     def crearOperario(self, operarioNuevo):
-        print(self.__v.validate(operarioNuevo, self.__scOperario))
-        print("ERRORES: ",self.__v.errors)
-        self.__querier.insertarElemento(operarioNuevo)
+        v = self.__v.validate(operarioNuevo, self.__scOperario)
+        if v:
+            self.__querier.insertarElemento(operarioNuevo)
+        else:
+            print("ERRORES: ", self.__v.errors)
+        return v
 
     def verListaOperarios(self, campos = None, condiciones = None, limite = None):
         if not campos:
@@ -72,9 +75,13 @@ class ModeloOperario(QtCore.QAbstractTableModel):
         self.operario = resultado[0]
         return self.operario
 
-
     def modificarOperario(self, operario):
-        self.__querier.actualizarElemento(operario)
+        v = self.__v.validate(operario, self.__scOperario)
+        if v:
+            self.__querier.actualizarElemento(operario, condiciones = [("ope_legajo", "=", operario['ope_legajo'])])
+        else:
+            print("ERRORES: ", self.__v.errors)
+        return v
 
     def toggleOperarioActivo(self, operario):
         if operario['ope_activo']:

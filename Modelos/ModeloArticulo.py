@@ -75,11 +75,6 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         self.articulo = {}
 
     def crearArticulo(self, articuloNuevo):
-        # print (self.__v.validate(articuloNuevo, self.__scArticulo))
-        # print (self.__v.errors)
-        # # if errors: return false
-        # self.__querier.insertarElemento(articuloNuevo)
-        # return True
         print(articuloNuevo)
         v = self.__v.validate(articuloNuevo, self.__scArticulo)
         if v:
@@ -98,15 +93,6 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         self.layoutChanged.emit()
 
     def verDetallesArticulo(self, articulo = QtCore.QModelIndex(), campos = None, condiciones = None):
-        # condiciones = ()
-
-        # print (articulo.row())
-        # articulo = self.articulos[articulo.row()]
-        # condiciones = [('art_id', '=', articulo[0])]
-        # resultado = self.__querier.traerElementos(campos, condiciones, 1)
-        # self.articulo = resultado[0]
-        # # print(self.articulo)
-        # return self.articulo
 
         print (articulo)
         print (articulo.row())
@@ -171,6 +157,10 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
 
     def getId(self):
         return self.articulo[0]
+
+    def reiniciarTabla(self):
+        self.articulos = []
+        self.layoutChanged.emit()
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
 # ===============================================================

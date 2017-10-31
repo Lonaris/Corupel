@@ -133,7 +133,9 @@ class IngresoPresenter(object):
     def reiniciarMenu(self):
         self.vista.resetComprobantes()
         self.vista.resetProveedor()
+        self.vista.resetTotales()
         self.model.reiniciarTablaIngreso()
+        self.artModel.reiniciarTabla()
 
     def __reiniciarFecha(self):
         hoy = datetime.date.today()
