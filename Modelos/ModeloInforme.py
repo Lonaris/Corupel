@@ -44,6 +44,13 @@ class ModeloInforme(QtCore.QAbstractTableModel):
                 ("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['busqueda']))
                 ]
 
+            if filtros['agrupacion']:
+                condiciones.append(("articulos.art_agrupacion", "LIKE", "'{}'".format(filtros['agrupacion'])))
+            if filtros['tercero']:
+                uniones.append(['proveedores',
+                    "proveedores.prov_id = ingresos.prov_id"])
+                condiciones.append(("proveedores.prov_id", "=", filtros['tercero']))
+
         elif filtros['tipo'] == 1:
             campos = ["egr_fecha", "art_descripcion", "move_cantidad"]
             tablas = 'articulos, movimientos_egreso'
@@ -56,42 +63,15 @@ class ModeloInforme(QtCore.QAbstractTableModel):
                 ("egr_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta'])),
                 ("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['busqueda']))
             ]
+            if filtros['agrupacion']:
+                condiciones.append(("articulos.art_agrupacion", "LIKE", "'{}'".format(filtros['agrupacion'])))
+            if filtros['destino']:
+                condiciones.append(("movimientos_egreso.move_destino", "=", filtros['destino']))
+            if filtros['tercero']:
+                uniones.append(['operarios',
+                    "operarios.ope_legajo = egresos.ope_legajo"])
+                condiciones.append(("operarios.ope_legajo", "=", filtros['tercero']))
 
-        elif filtros['tipo'] == 2:
-            campos = ["ingresos.ing_fecha", "articulos.art_descripcion", "movimientos_ingreso.movi_cantidad", "movimientos_ingreso.movi_costo"]
-            tablas = 'articulos, movimientos_ingreso'
-            uniones = [
-                ['ingresos',
-                "ingresos.ing_id = movimientos_ingreso.ing_id"],
-                ['proveedores',
-                "proveedores.prov_id = ingresos.prov_id"]
-            ]
-            condiciones = [
-                ("articulos.art_id", "=", "movimientos_ingreso.art_id"),
-                ("ingresos.ing_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta'])),
-                ("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['busqueda'])),
-                ("proveedores.prov_id", "=", filtros['tercero'])
-                ]
-
-        elif filtros['tipo'] == 3:
-            campos = []
-            tablas = 'movimientos_egreso, operarios'
-            union = 'egresos'
-
-            campos = ["egr_fecha", "art_descripcion", "move_cantidad"]
-            tablas = 'articulos, movimientos_egreso'
-            uniones =[
-                ['egresos',
-                "egresos.egr_id = movimientos_egreso.egr_id"],
-                ['operarios',
-                "operarios.ope_legajo = egresos.ope_legajo"]
-            ]
-            condiciones = [
-                ("articulos.art_id", "=", "movimientos_egreso.art_id"),
-                ("egr_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta'])),
-                ("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['busqueda']),
-                ("operarios.ope_legajo", "=", filtros['tercero']))
-            ]
         else:
             return False
         try:

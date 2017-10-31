@@ -66,16 +66,16 @@ CREATE TABLE `movimientos_ingreso` (
 CREATE TABLE `movimientos_egreso` (
   `move_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `art_id` int(16) UNSIGNED NOT NULL,
-  `move_destino` varchar(20),
+  `move_destino` int(16) UNSIGNED,
   `move_sector` varchar(20),
   `egr_id` int(16) UNSIGNED NOT NULL,
   `move_cantidad` int(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;	
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ingresos` (
   `ing_id` int(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `prov_id` int(16) UNSIGNED NOT NULL,
-  `ing_fecha` date NOT NULL  
+  `ing_fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `egresos` (

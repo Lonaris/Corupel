@@ -13,7 +13,6 @@ class InformePresenter(object):
         self.vista.tbl_informe.setModel(self.model)
 
         self.vista.filtro_destino.setModel(self.desModel)
-        self.vista.buscador.returnPressed.connect(self.ejecutarInforme)
         self.vista.btn_ejecutar.clicked.connect(self.ejecutarInforme)
 
         self.iniciarFecha()
@@ -25,12 +24,21 @@ class InformePresenter(object):
             'busqueda' : '',
             'desde' : '',
             'hasta' : '',
-            'tercero' : ''
+            'tercero' : '',
+            'destino' : '',
+            'agrupacion' : ''
         }
 
     def iniciarFecha(self):
         hoy = date.today()
-        desde = date(hoy.year, hoy.month-1, hoy.day)
+        desde = {}
+        dia = hoy.day
+        for a in range(5):
+            try:
+                desde = date(hoy.year, hoy.month-1, dia)
+                break
+            except:
+                dia -= 1
         self.vista.setFechas(desde, hoy)
 
     def ejecutarInforme(self):
@@ -46,10 +54,19 @@ class InformePresenter(object):
 # 2 - Ingreso de Artículos por Proveedor
 # 3 - Egreso de Artículos por Operario
 
-        desde = date(filtros[2].year(), filtros[2].month(), filtros[2].day())
-        hasta = date(filtros[3].year(), filtros[3].month(), filtros[3].day())
+        desde = date(filtros[5].year(), filtros[5].month(), filtros[5].day())
+        hasta = date(filtros[6].year(), filtros[6].month(), filtros[6].day())
         self.__filtros['tipo'] = filtros[0]
-        self.__filtros['busqueda'] = filtros[1]
+        self.__filtros['destino'] = filtros[1]
+        if not filtros[2] == 'Agrupacion':
+            self.__filtros['agrupacion'] = filtros[2]
+        else: self.__filtros['agrupacion'] = None
+        self.__filtros['busqueda'] = filtros[4]
+        try:
+            self.__filtros['tercero'] = int(filtros[3])
+        except:
+            self.__filtros['tercero'] = None
         self.__filtros['desde'] = desde
         self.__filtros['hasta'] = hasta
-        self.__filtros['tercero'] = filtros[4]
+
+        print(self.__filtros)

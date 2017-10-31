@@ -21,24 +21,28 @@ class InformeView(QtWidgets.QWidget):
 
     def getFiltros(self):
         return (self.vista.filtro_principal.currentIndex(),
+            self.vista.filtro_destino.currentIndex(),
+            self.vista.filtro_agrupacion.currentText(),
+            self.vista.filtro_tercero.text(),
             self.vista.buscador.text(),
             self.vista.fecha_desde.date(),
-            self.vista.fecha_hasta.date(),
-            self.vista.tercero.text())
+            self.vista.fecha_hasta.date())
 
     def setFiltros(self):
-        tercero = self.vista.tercero
+        tercero = self.vista.filtro_tercero
         destino = self.vista.filtro_destino
+        agrupacion = self.vista.filtro_agrupacion
+        buscador = self.vista.buscador
+
         if self.vista.filtro_principal.currentIndex() == 0:
-            tercero.show()
             tercero.setPlaceholderText('Código de Proveedor')
             destino.hide()
 
         elif self.vista.filtro_principal.currentIndex() == 1:
-            tercero.show()
             tercero.setPlaceholderText('Legajo de Operario')
             destino.show()
 
-        else:
-            tercero.hide()
-            tercero.setText("")
+        destino.setCurrentIndex(0)
+        agrupacion.setCurrentIndex(0)
+        buscador.setText("")
+        tercero.setText("")

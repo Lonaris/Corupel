@@ -24,6 +24,9 @@ class ArticuloView(QtWidgets.QWidget):
 
         self.agrupacion = ('Insumos', 'Reparacion', 'Inversion')
 
+        self.vistaDetalle.art_marca.hide()
+        self.vistaDetalle.art_agrupacion.hide()
+
         self.vistaDetalle.art_id.setValidator(QRegExpValidator(rxId))
         self.vistaDetalle.art_cod_barras.setValidator(QRegExpValidator(rxBarras))
         self.vistaDetalle.art_descripcion.setValidator(QRegExpValidator(rxDesc))
@@ -45,21 +48,6 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_agrupacion.currentIndexChanged.connect(self.__articuloHaCambiado)
         self.vistaDetalle.art_stock_minimo.textChanged.connect(self.__articuloHaCambiado)
         self.vistaDetalle.art_destino.currentIndexChanged.connect(self.__articuloHaCambiado)
-    #Funcion que trae un articulo y modifica la ifnormacion.
-    # def getArticulo(self):
-    #     rawArticulo = self.vistaDetalle.findChildren((QComboBox, QLineEdit, QLabel), self.rxArt)
-    #     articulo = {}
-    #     for componente in rawArticulo:
-    #         if "art_" not in componente.objectName():
-    #             continue
-    #         if (type(componente) == QtWidgets.QComboBox):
-    #             articulo[componente.objectName()] = componente.currentText()
-    #             # print(componente.objectName(), componente.currentText())
-    #         else:
-    #             articulo[componente.objectName()] = componente.text()
-    #             # print(componente.objectName(), componente.text())
-    #     print ("\nDEBUG - ARTICULO: ", articulo)
-    #     return articulo
 
     def getArticulo(self):
         rawArticulo = self.vistaDetalle.findChildren((QLineEdit, QCheckBox, QComboBox), self.rxArt)
@@ -78,11 +66,6 @@ class ArticuloView(QtWidgets.QWidget):
             articulo['art_id'] = int(articulo['art_id'])
         if articulo['art_stock_minimo']:
             articulo['art_stock_minimo'] = int(articulo['art_stock_minimo'])
-
-        # if (articulo['art_activo']):
-        #     articulo['art_activo'] = 1
-        # else:
-        #     articulo['art_activo'] = 0
 
         return articulo
 
