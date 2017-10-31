@@ -1,4 +1,4 @@
-# proveedor_view.py
+    # proveedor_view.py
 
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox, QTextEdit, QMessageBox
@@ -44,7 +44,8 @@ class ProveedorView(QtWidgets.QWidget):
         self.__activarBotones("")
         self.__haCambiado = False
 
-    #Funcion que trae un proveedor y modifica la ifnormacion.
+
+    #Funcion que trae un proveedor y modifica la informacion.
     def getProveedor(self):
         rawProveedor = self.vistaDetalle.findChildren((QTextEdit, QLineEdit, QCheckBox), self.rxProv)
         proveedor = {}
