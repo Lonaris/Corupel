@@ -438,7 +438,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout_2" columnstretch="10,90">
+     <layout class="QGridLayout" name="gridLayout_2" columnstretch="5,95">
       <property name="leftMargin">
        <number>15</number>
       </property>

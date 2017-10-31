@@ -13,7 +13,8 @@ class OperarioView(QtWidgets.QWidget):
         super(OperarioView, self).__init__(parent)
 
         self.vistaDetalle = uic.loadUi("gui/detalles/operario_detalle.ui", self)
-
+        self.vistaDetalle.btn_deshabilitar.hide()
+        self.vistaDetalle.btn_imprimir.hide()
 
     #Funcion que trae un operario y modifica la ifnormacion.
     def getOperario(self):

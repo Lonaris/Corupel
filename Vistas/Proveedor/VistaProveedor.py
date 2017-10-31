@@ -18,7 +18,9 @@ class ProveedorView(QtWidgets.QWidget):
 
         #Traemos el archivo .UI "Proveedores_detalle"
         self.vistaDetalle = uic.loadUi("gui/detalles/proveedor_detalle.ui", self)
-
+        self.vistaDetalle.btn_deshabilitar.hide()
+        self.vistaDetalle.btn_imprimir.hide()
+        
         rxId = QRegExp("[0-9]{0,16}")
         rxNumeros = QRegExp("[0-9]{0,20}")
 
