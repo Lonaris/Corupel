@@ -1,7 +1,7 @@
-# proveedor_view.py
+    # proveedor_view.py
 
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox, QTextEdit
+from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox, QTextEdit, QMessageBox
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import pyqtSignal, QRegExp, Qt
 
@@ -20,6 +20,7 @@ class ProveedorView(QtWidgets.QWidget):
         self.vistaDetalle = uic.loadUi("gui/detalles/proveedor_detalle.ui", self)
         self.vistaDetalle.btn_deshabilitar.hide()
         self.vistaDetalle.btn_imprimir.hide()
+
         
         rxId = QRegExp("[0-9]{0,16}")
         rxNumeros = QRegExp("[0-9]{0,20}")
@@ -32,7 +33,8 @@ class ProveedorView(QtWidgets.QWidget):
 
         self.__activarBotones("")
 
-    #Funcion que trae un proveedor y modifica la ifnormacion.
+
+    #Funcion que trae un proveedor y modifica la informacion.
     def getProveedor(self):
         rawProveedor = self.vistaDetalle.findChildren((QTextEdit, QLineEdit, QCheckBox), self.rxProv)
         proveedor = {}
@@ -75,6 +77,7 @@ class ProveedorView(QtWidgets.QWidget):
         for campo in camposAResetear:
             campo.setText("")
 
+
     def __activarBotones(self, snl):
         if snl:
             self.vistaDetalle.btn_nuevo.setEnabled(False)
@@ -83,6 +86,9 @@ class ProveedorView(QtWidgets.QWidget):
             self.vistaDetalle.btn_nuevo.setEnabled(True)
             self.vistaDetalle.btn_modificar.setEnabled(False)
 
+
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             self.close()
+
+

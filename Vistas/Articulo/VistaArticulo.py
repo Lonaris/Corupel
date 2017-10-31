@@ -5,6 +5,8 @@ from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QCheckBox
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import pyqtSignal, QRegExp, Qt
 
+
+
 #Creamos la clase ArticuloView
 class ArticuloView(QtWidgets.QWidget):
 
@@ -21,14 +23,20 @@ class ArticuloView(QtWidgets.QWidget):
         rxId = QRegExp("[0-9]{0,16}")
         rxBarras = QRegExp(".{0,20}")
         rxDesc = QRegExp(".{0,30}")
+
         #ocultamos los botones que no vamos a usar por el momento.
         self.vistaDetalle.btn_deshabilitar.hide()
         self.vistaDetalle.btn_imprimir.hide()
-        
+
+        #Conectamos el evento modificar y guardar con la funcion "operacionCOmpletada"
+        self.vistaDetalle.btn_modificar.clicked.connect(self.operacionCompletada)
+        self.vistaDetalle.btn_nuevo.clicked.connect(self.operacionCompletada)
+
         self.agrupacion = ('Insumos', 'Reparacion', 'Inversion')
 
-        self.vistaDetalle.art_marca.hide()
-        self.vistaDetalle.art_agrupacion.hide()
+        #self.vistaDetalle.art_marca.hide()
+        #self.vistaDetalle.art_agrupacion.hide()
+
 
         self.vistaDetalle.art_id.setValidator(QRegExpValidator(rxId))
         self.vistaDetalle.art_cod_barras.setValidator(QRegExpValidator(rxBarras))
@@ -40,9 +48,9 @@ class ArticuloView(QtWidgets.QWidget):
 
         self.__haCambiado = False
 
-# Las siguientes líneas son para conectar los eventos en los
-# que los campos son modificados, en caso de modificarse alguno
-# levanto una bandera que me indica que se modificó un campo
+        # Las siguientes líneas son para conectar los eventos en los
+        # que los campos son modificados, en caso de modificarse alguno
+        # levanto una bandera que me indica que se modificó un campo
 
         self.vistaDetalle.art_id.textChanged.connect(self.__articuloHaCambiado)
         self.vistaDetalle.art_cod_barras.textChanged.connect(self.__articuloHaCambiado)
@@ -86,7 +94,7 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_stock_minimo.setText(str(articulo[6]))
         # self.vistaDetalle.art_activo.setEnabled()
 
-# Cuando seteo un artículo, la bandera debe ponerse en FALSO
+        # Cuando seteo un artículo, la bandera debe ponerse en FALSO
         self.__haCambiado = False
 
     def resetArticulo(self):
@@ -100,8 +108,8 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.comp_costo.setText("")
         self.vistaDetalle.comp_stock_actual.setText("")
 
-# Cuando pongo todos los campos en blanco (no es una modificacion
-#de usuario), debo poner la bandera en FALSO
+        # Cuando pongo todos los campos en blanco (no es una modificacion
+        #de usuario), debo poner la bandera en FALSO
         self.__haCambiado = False
 
     def errorDeCampo(self, descripcion):
@@ -133,13 +141,25 @@ class ArticuloView(QtWidgets.QWidget):
     def resetCambios(self):
         self.__haCambiado = False
 
-# El evento de cerrar ventana se dispara y verifica
-# que no haya sido modificado ningún campo
 
-    def closeEvent(self, event):
-        if not self.__haCambiado:
-            event.accept()
-            return
-        resultado = QMessageBox.question(self, "Salir..", "¿Desea cancelar el ingreso del nuevo articulo? No se guardaran los registros", QMessageBox.Yes | QMessageBox.No)
-        if resultado == QMessageBox.Yes: event.accept()
-        else: event.ignore()
+    # El evento de cerrar ventana se dispara y verifica
+    # que no haya sido modificado ningún campo
+
+        #if not self.__haCambiado:
+         #   event.accept()
+          #  return
+        #resultado = QMessageBox.question(self, "Confirmar..", "¿Desea confirmar los cambios?", QMessageBox.Yes | QMessageBox.No)
+        #if resultado == QMessageBox.Yes: event.accept()
+        #else: event.ignore()
+
+    #ejemplo de dialogo
+    def operacionCompletada(self):
+        if self.__haCambiado:
+           msg = QMessageBox()
+           msg.setIcon(QMessageBox.Information)
+           msg.setText("Operacion Completada")
+           retval = msg.exec_()
+
+
+
+

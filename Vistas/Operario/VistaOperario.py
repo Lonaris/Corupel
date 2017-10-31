@@ -1,7 +1,7 @@
 # operario_view.py
 
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel
+from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel, QMessageBox
 from PyQt5.QtCore import pyqtSignal, QRegExp, Qt
 
 #Creamos la clase OperarioView
@@ -15,6 +15,7 @@ class OperarioView(QtWidgets.QWidget):
         self.vistaDetalle = uic.loadUi("gui/detalles/operario_detalle.ui", self)
         self.vistaDetalle.btn_deshabilitar.hide()
         self.vistaDetalle.btn_imprimir.hide()
+
 
     #Funcion que trae un operario y modifica la ifnormacion.
     def getOperario(self):
@@ -45,3 +46,7 @@ class OperarioView(QtWidgets.QWidget):
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             self.close()
+
+
+
+    
