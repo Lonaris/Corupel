@@ -1,6 +1,7 @@
 # VistaIngreso.py
 
 from PyQt5 import QtWidgets, uic
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import pyqtSignal, QRegExp
 from PyQt5.QtGui import QRegExpValidator
 
@@ -12,6 +13,9 @@ class IngresoView(QtWidgets.QWidget):
         self.vista = uic.loadUi("gui/ingresos/Ingreso.ui", self)
 
         self.vista.tbl_articulos.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+
+        #Conectamos el evento modificar y guardar con la funcion "operacionCOmpletada"
+        self.vista.btn_guardar.clicked.connect(self.operacionCompletada)
 
         rxPref = QRegExp("[0-9]{0,10}")
         rxNum = QRegExp("^[0-9]{0,20}$")
@@ -56,3 +60,12 @@ class IngresoView(QtWidgets.QWidget):
         self.vista.rem_numero.setText("")
         self.vista.fact_numero.setText("")
         self.vista.fact_tipo.setCurrentIndex(0)
+
+
+    #ejemplo de dialogo
+    def operacionCompletada(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setText("Operacion realizada con éxito")
+        msg.setWindowTitle("Mensaje de confirmación")
+        retval = msg.exec_()

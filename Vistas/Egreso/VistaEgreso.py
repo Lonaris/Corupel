@@ -1,6 +1,7 @@
 # VistaEgreso.py
 
 from PyQt5 import QtWidgets, uic
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import pyqtSignal
 
 class EgresoView(QtWidgets.QWidget):
@@ -9,6 +10,9 @@ class EgresoView(QtWidgets.QWidget):
         super(EgresoView, self).__init__(parent)
 
         self.vista = uic.loadUi("gui/egresos/Egreso.ui", self)
+        self.vista.tbl_egresos.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
+        #Conectamos el evento modificar y guardar con la funcion "operacionCOmpletada"
+        self.vista.btn_guardar.clicked.connect(self.operacionCompletada)
 
     def setOperario(self, proveedor):
         self.vista.ope_legajo.setText(str(proveedor[0]))
@@ -36,3 +40,10 @@ class EgresoView(QtWidgets.QWidget):
     def resetDetalles(self):
         self.vista.egr_numero.setText("")
         self.vista.move_destino.setCurrentIndex(0)
+
+    def operacionCompletada(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setText("Operacion realizada con éxito")
+        msg.setWindowTitle("Mensaje de confirmación")
+        retval = msg.exec_()
