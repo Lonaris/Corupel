@@ -157,5 +157,6 @@ class ArticuloView(QtWidgets.QWidget):
         if self.__haCambiado:
            msg = QMessageBox()
            msg.setIcon(QMessageBox.Information)
-           msg.setText("Operacion Completada")
+           msg.setText("Operacion realizada con éxito")
+           msg.setWindowTitle("Mensaje de confirmación")
            retval = msg.exec_()

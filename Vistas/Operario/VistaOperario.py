@@ -16,6 +16,10 @@ class OperarioView(QtWidgets.QWidget):
         self.vistaDetalle.btn_deshabilitar.hide()
         self.vistaDetalle.btn_imprimir.hide()
 
+        #Conectamos el evento modificar y guardar con la funcion "operacionCOmpletada"
+        self.vistaDetalle.btn_modificar.clicked.connect(self.operacionCompletada)
+        self.vistaDetalle.btn_nuevo.clicked.connect(self.operacionCompletada)
+
         self.vistaDetalle.ope_legajo.textChanged.connect(self.__operarioHaCambiado)
         self.vistaDetalle.ope_nombre.textChanged.connect(self.__operarioHaCambiado)
         self.vistaDetalle.ope_apellido.textChanged.connect(self.__operarioHaCambiado)
@@ -73,3 +77,12 @@ class OperarioView(QtWidgets.QWidget):
 
     def __operarioHaCambiado(self):
         self.__haCambiado = True
+
+    #ejemplo de dialogo
+    def operacionCompletada(self):
+        if self.__haCambiado:
+           msg = QMessageBox()
+           msg.setIcon(QMessageBox.Information)
+           msg.setText("Operacion realizada con éxito")
+           msg.setWindowTitle("Mensaje de confirmación")
+           retval = msg.exec_()

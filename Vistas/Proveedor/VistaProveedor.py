@@ -21,6 +21,9 @@ class ProveedorView(QtWidgets.QWidget):
         self.vistaDetalle.btn_deshabilitar.hide()
         self.vistaDetalle.btn_imprimir.hide()
 
+        self.vistaDetalle.btn_modificar.clicked.connect(self.operacionCompletada)
+        self.vistaDetalle.btn_nuevo.clicked.connect(self.operacionCompletada)
+
         rxId = QRegExp("[0-9]{0,16}")
         rxNumeros = QRegExp("[0-9]{0,20}")
 
@@ -118,3 +121,12 @@ class ProveedorView(QtWidgets.QWidget):
         resultado = QMessageBox.question(self, "Salir..", "¿Desea cancelar el ingreso del nuevo articulo? No se guardaran los registros", QMessageBox.Yes | QMessageBox.No)
         if resultado == QMessageBox.Yes: event.accept()
         else: event.ignore()
+
+
+    def operacionCompletada(self):
+        if self.__haCambiado:
+           msg = QMessageBox()
+           msg.setIcon(QMessageBox.Information)
+           msg.setText("Operacion realizada con éxito")
+           msg.setWindowTitle("Mensaje de confirmación")
+           retval = msg.exec_()

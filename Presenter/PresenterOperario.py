@@ -51,8 +51,8 @@ class OperarioPresenter(object):
     def crearOperario(self):
         operario = self.vistaDetalle.getOperario()
         if self.model.crearOperario(operario):
-            self.verOprerarios()
-            self.vistDetalle.resetCambios()
+            self.verOperarios()
+            self.vistaDetalle.resetCambios()
             self.vistaDetalle.close()
 
     def modificarOperario(self):
