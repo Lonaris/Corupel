@@ -12,7 +12,7 @@ from PyQt5.QtCore import Qt, QModelIndex
 class ArticuloPresenter(object):
     def __init__(self):
         self.provModel = PModel.ModeloProveedor(propiedades = ["Codigo", "Nombre", "Teléfono"])
-        self.model = AModel.ModeloArticulo(propiedades = ["Codigo", "Descripcion", "Marca"])
+        self.model = AModel.ModeloArticulo(propiedades = ["Codigo", "Descripcion", "Marca",])
         self.desModel = DModel.ModeloDestino()
 
         self.vistaDetalle = AView.ArticuloView(self)
@@ -21,6 +21,8 @@ class ArticuloPresenter(object):
         self.relacionador = RPresenter.RelacionadorPresenter("proveedores", self)
 
         self.vistaLista.tbl_articulos.setModel(self.model)
+
+
         self.vistaLista.tbl_articulos.doubleClicked.connect(self.verDetalles)
 
         self.vistaDetalle.btn_nuevo.clicked.connect(self.crearArticulo)

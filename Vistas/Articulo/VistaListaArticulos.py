@@ -1,6 +1,7 @@
 # VistaListaArticulos.py
 
-from PyQt5 import QtWidgets, uic
+from PyQt5 import QtWidgets, uic, QtGui
+from PyQt5.QtWidgets import QHeaderView
 from PyQt5.QtCore import pyqtSignal
 
 class ListaArticuloView(QtWidgets.QWidget):
@@ -12,5 +13,8 @@ class ListaArticuloView(QtWidgets.QWidget):
         tabla = self.vistaLista.tbl_articulos
 
         tabla.horizontalHeader().setStretchLastSection(True)
-
+        tabla.horizontalHeader().setSectionResizeMode(0)
+        tabla.horizontalHeader().setDefaultSectionSize(100)
+        #tabla.horizontalHeader().setColumnWidth( 0, 160 )
+        #tabla.horizontalHeader().setCascadingSectionResizes(True)
         # tabla.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)

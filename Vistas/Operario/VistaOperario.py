@@ -66,9 +66,9 @@ class OperarioView(QtWidgets.QWidget):
 
     def closeEvent(self, event):
         if not self.__haCambiado:
-            event.accept()
-            return
-        resultado = QMessageBox.question(self, "Salir..", "¿Desea cancelar el ingreso del nuevo articulo? No se guardaran los registros", QMessageBox.Yes | QMessageBox.No)
+           event.accept()
+           return
+        resultado = QMessageBox.question(self, "Atencion", "No se guardarán los cambios. ¿Desea salir?", QMessageBox.Yes | QMessageBox.No)
         if resultado == QMessageBox.Yes: event.accept()
         else: event.ignore()
 

@@ -148,7 +148,7 @@ class ArticuloView(QtWidgets.QWidget):
         if not self.__haCambiado:
            event.accept()
            return
-        resultado = QMessageBox.question(self, "Confirmar..", "¿Desea confirmar los cambios?", QMessageBox.Yes | QMessageBox.No)
+        resultado = QMessageBox.question(self, "Atencion", "No se guardarán los cambios. ¿Desea salir?", QMessageBox.Yes | QMessageBox.No)
         if resultado == QMessageBox.Yes: event.accept()
         else: event.ignore()
 
@@ -158,5 +158,5 @@ class ArticuloView(QtWidgets.QWidget):
            msg = QMessageBox()
            msg.setIcon(QMessageBox.Information)
            msg.setText("Operacion realizada con éxito")
-           msg.setWindowTitle("Mensaje de confirmación")
+           msg.setWindowTitle("...")
            retval = msg.exec_()

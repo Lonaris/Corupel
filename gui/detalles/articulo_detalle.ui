@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>813</width>
-    <height>448</height>
+    <height>470</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -1210,8 +1210,14 @@ background-color: #ffffff;
             <property name="text">
              <string/>
             </property>
+            <property name="maxLength">
+             <number>50000</number>
+            </property>
             <property name="frame">
              <bool>true</bool>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Normal</enum>
             </property>
             <property name="dragEnabled">
              <bool>false</bool>
