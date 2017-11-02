@@ -95,8 +95,22 @@ class IngresoPresenter(object):
             return False
 
         if self.model.crearIngreso(proveedor, comprobantes):
+            self.sumarStockArticulos()
+
             self.reiniciarMenu()
 
+    def sumarStockArticulos(self):
+        articulos = self.model.getArticulos()
+        print (articulos)
+        for articulo in articulos:
+            stock_actual = self.artModel.verDetallesArticulo(campos = ["art_stock_actual"], condiciones = [("art_id", "=", articulo[0])])
+            articulo = {
+                "art_id" : articulo[0],
+                "art_stock_actual" : stock_actual[0] + articulo[1]
+            }
+            print("/n/nSTOCK PREVIO AL STOCK ACTUAL: ", stock_actual[0])
+            print("/n/nSTOCK ACTUAL ACTUAL: ", articulo["art_stock_actual"])
+            articulo = self.artModel.modificarArticulo(articulo)
 
     def modificarIngreso(self):
         ingreso = self.vista.getIngreso()

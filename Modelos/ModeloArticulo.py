@@ -29,8 +29,8 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         'art_marca' : {'type' : 'string' },
         'art_agrupacion' : {'type' : 'string' },
         'art_stock_minimo' : {'type' : 'integer'},
-        'art_destino' : {'type' : 'integer'}
-        # 'art_stock_actual',
+        'art_destino' : {'type' : 'integer'},
+        'art_stock_actual' : {'type' : 'integer'}
         # 'art_activo' : {'type' : 'integer' }
         }
 
@@ -42,7 +42,7 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
             'Marca',
             'Agrupacion',
             # 'art_stock_min', 'art_stock_actual',
-            # 'Estado'
+            'Stock'
         ]
 
         if propiedades:
@@ -56,7 +56,7 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
             'Marca' : 'art_marca',
             'Agrupacion' : 'art_agrupacion',
             # 'art_stock_min', 'art_stock_actual',
-            # 'Stock' : 'art_stock_actual',
+            'Stock' : 'art_stock_actual',
             'Stock mínimo' : 'art_stock_minimo',
             # 'Estado' : 'art_activo',
         }
@@ -141,19 +141,19 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         articulo['art_activo'] = 1
         self.__querier.actualizarElemento(articulo)
 
-    def verCantidadesArticulo(self, condiciones = None):
-        cantidades = self.__querierMovi.traerElementos(campos = ["movi_restante", "movi_costo "],
+    def verCostosArticulo(self, condiciones = None):
+        costos = self.__querierMovi.traerElementos(campos = ["movi_costo "],
             condiciones = condiciones, orden=("movi_id","ASC"))
-        if cantidades:
+        if costos:
 
-            self.__costos['primer_costo'] = str(cantidades[0][1])
-            self.__costos['ultimo_costo'] = str(cantidades[len(cantidades)-1][1])
+            self.__costos['primer_costo'] = str(costos[0][0])
+            self.__costos['ultimo_costo'] = str(costos[len(costos)-1][1])
             costoTotal = 0
-            for cantidad in cantidades:
-                costoTotal += cantidad[1]
-            self.__costos['costo_promedio'] = str(costoTotal/len(cantidades))
-        # self.articulo.append(cantidades)
-        return cantidades
+            for costo in costos:
+                costoTotal += costo[0]
+            self.__costos['costo_promedio'] = str(costoTotal/len(costos))
+        # self.articulo.append(costos)
+        return costos
 
     def getId(self):
         return self.articulo[0]

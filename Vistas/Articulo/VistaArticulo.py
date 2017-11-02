@@ -92,6 +92,7 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_destino.setCurrentIndex(articulo[4])
         self.vistaDetalle.art_agrupacion.setCurrentText(articulo[5])
         self.vistaDetalle.art_stock_minimo.setText(str(articulo[6]))
+        self.vistaDetalle.art_stock_actual.setText(str(articulo[7]))
         # self.vistaDetalle.art_activo.setEnabled()
 
         # Cuando seteo un artículo, la bandera debe ponerse en FALSO
@@ -106,7 +107,7 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_agrupacion.setCurrentText("Insumos")
         self.vistaDetalle.art_stock_minimo.setText("")
         self.vistaDetalle.comp_costo.setText("")
-        self.vistaDetalle.comp_stock_actual.setText("")
+        self.vistaDetalle.art_stock_actual.setText("")
 
         # Cuando pongo todos los campos en blanco (no es una modificacion
         #de usuario), debo poner la bandera en FALSO
@@ -119,7 +120,7 @@ class ArticuloView(QtWidgets.QWidget):
 
     def setTotales(self, totales):
         if totales:
-            self.vistaDetalle.comp_stock_actual.setText(str(totales.pop(0)))
+            self.vistaDetalle.art_stock_actual.setText(str(totales.pop(0)))
             # self.vistaDetalle.comp_costo.addItems(totales)
 
     def __activarBotones(self, snl):

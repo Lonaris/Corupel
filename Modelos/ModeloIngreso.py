@@ -144,6 +144,13 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
     def reiniciarTablaIngreso(self):
         self.removeRows()
 
+    def getArticulos(self):
+        articulos = []
+        for movimiento in self.__movimientos:
+            if movimiento[0] == '': continue
+            articulos.append((movimiento[0], movimiento[2]))
+        return articulos
+    
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
 # ===============================================================

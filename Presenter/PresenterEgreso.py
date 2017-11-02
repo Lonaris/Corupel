@@ -14,25 +14,18 @@ class EgresoPresenter(object):
         self.vista = EView.EgresoView(self)
         self.model = EModel.ModeloEgreso()
         self.desModel = DModel.ModeloDestino()
+        self.artModel = AModel.ModeloArticulo(propiedades = ["Codigo", "Descripcion"]) #Agregar Stock
         # self.vistaLista = PLView.ListaEgresosView(self)
 
         self.vista.tbl_egresos.setModel(self.model)
-        self.vista.tbl_egresos.horizontalHeader().resizeSection(1, 300)
         self.model.dataChanged.connect(self.__sumador)
         self.vista.move_destino.setModel(self.desModel)
         # self.vistaLista.tbl_egresos.setModel(self.model)
         # self.vistaLista.tbl_egresos.doubleClicked.connect(self.verDetalles)
+        self.vista.tbl_articulos.setModel(self.artModel)
 
+        self.vista.btn_buscar.clicked.connect(self.__buscarArticulosDisponibles)
         self.vista.btn_guardar.clicked.connect(self.crearEgreso)
-        # self.vista.btn_modificar.clicked.connect(self.modificarEgreso)
-        # self.vista.btn_deshabilitar.clicked.connect(self.deshabilitarEgreso)
-
-        # self.vistaLista.ln_buscar.returnPressed.connect(self.verEgresos)
-        # self.vistaLista.btn_buscar.clicked.connect(self.verEgresos)
-        # self.vistaLista.btn_nuevo.clicked.connect(self.verNuevo)
-        # self.verEgresos(limite = 5)
-
-        # self.vista.elem_id.returnPressed.connect(self.__refrescar)
 
         self.vista.ope_legajo.returnPressed.connect(self.__buscarOperario)
 
@@ -75,6 +68,7 @@ class EgresoPresenter(object):
         print("CREO EL EGRESO")
 
         if self.model.crearEgreso(operario, detalles):
+            self.restarStockAticulos()
             self.reiniciarMenu()
 
     def modificarEgreso(self):
@@ -85,6 +79,28 @@ class EgresoPresenter(object):
     def deshabilitarEgreso(self):
         egreso = self.vista.getEgreso()
         # self.model.toggleEgresoActivo(egreso)
+
+    def restarStockAticulos(self):
+        articulos = self.model.getArticulos()
+        print (articulos)
+        for articulo in articulos:
+            stock_actual = self.artModel.verDetallesArticulo(campos = ["art_stock_actual"], condiciones = [("art_id", "=", articulo[0])])
+            articulo = {
+                "art_id" : articulo[0],
+                "art_stock_actual" : stock_actual[0] - articulo[1]
+            }
+            print("/n/nSTOCK PREVIO A LA RESTA DE STOCK ACTUAL: ", stock_actual[0])
+            print("/n/nSTOCK ACTUAL ACTUAL: ", articulo["art_stock_actual"])
+            articulo = self.artModel.modificarArticulo(articulo)
+
+    def __buscarArticulosDisponibles(self):
+
+        destino = self.vista.move_destino.currentIndex()
+        descripcion = self.vista.buscador.text()
+        condiciones = [("art_stock_actual", ">", 0), ("art_descripcion", "LIKE", "'%{}%'".format(descripcion))]
+        if  destino != 0:
+            condiciones.append(("art_destino", "=", destino))
+        self.artModel.verListaArticulos(condiciones = condiciones)
 
     def __refrescar(self):
         elemId = self.vista.elem_id.text()

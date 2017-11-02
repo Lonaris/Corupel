@@ -99,6 +99,9 @@
         </item>
         <item row="0" column="1">
          <widget class="QComboBox" name="move_destino">
+          <property name="focusPolicy">
+           <enum>Qt::StrongFocus</enum>
+          </property>
           <property name="editable">
            <bool>false</bool>
           </property>
@@ -140,7 +143,7 @@
            <string notr="true"/>
           </property>
           <property name="text">
-           <string>Buscar (Enter)</string>
+           <string>Buscar (Ctrl + B)</string>
           </property>
           <property name="icon">
            <iconset>
@@ -151,6 +154,9 @@
             <width>10</width>
             <height>10</height>
            </size>
+          </property>
+          <property name="shortcut">
+           <string>Ctrl+B</string>
           </property>
          </widget>
         </item>
@@ -214,7 +220,11 @@
          </widget>
         </item>
         <item row="3" column="2" rowspan="2" colspan="2">
-         <widget class="QTableView" name="tableView"/>
+         <widget class="QTableView" name="tbl_articulos">
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -434,12 +444,15 @@
  </widget>
  <tabstops>
   <tabstop>ope_legajo</tabstop>
-  <tabstop>ope_nombre</tabstop>
   <tabstop>egr_numero</tabstop>
+  <tabstop>move_destino</tabstop>
   <tabstop>move_sector</tabstop>
   <tabstop>tbl_egresos</tabstop>
   <tabstop>btn_agregar_art</tabstop>
   <tabstop>btn_guardar</tabstop>
+  <tabstop>btn_buscar</tabstop>
+  <tabstop>buscador</tabstop>
+  <tabstop>tbl_articulos</tabstop>
  </tabstops>
  <resources/>
  <connections/>

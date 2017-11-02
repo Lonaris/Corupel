@@ -12,7 +12,7 @@ from PyQt5.QtCore import Qt, QModelIndex
 class ArticuloPresenter(object):
     def __init__(self):
         self.provModel = PModel.ModeloProveedor(propiedades = ["Codigo", "Nombre", "Teléfono"])
-        self.model = AModel.ModeloArticulo(propiedades = ["Codigo", "Descripcion", "Marca",])
+        self.model = AModel.ModeloArticulo(propiedades = ["Codigo", "Descripcion", "Marca", "Stock"])
         self.desModel = DModel.ModeloDestino()
 
         self.vistaDetalle = AView.ArticuloView(self)
@@ -52,10 +52,10 @@ class ArticuloPresenter(object):
     def verDetalles(self, articulo):
         if articulo:
             articulo = self.model.verDetallesArticulo(articulo)
-            cantidades = self.model.verCantidadesArticulo(condiciones = [('movimientos_ingreso.art_id', ' = ', articulo[0]), ('movimientos_ingreso.movi_restante', ' > ', 0)])
+            # costos = self.model.verCostosArticulo(condiciones = [('movimientos_ingreso.art_id', ' = ', articulo[0]), ('movimientos_ingreso.movi_restante', ' > ', 0)])
             totales = []
-            if cantidades:
-                totales = self.__calcularTotales(cantidades)
+            # if costos:
+            #     totales = self.__calcularTotales(costos)
 
             self.vistaDetalle.setArticulo(articulo)
             self.vistaDetalle.setTotales(totales)
@@ -107,10 +107,10 @@ class ArticuloPresenter(object):
         if artId:
             print("DEBUG - ART_ID = ", artId)
             articulo = self.model.verDetallesArticulo(condiciones = [('art_id', ' = ', artId)])
-            cantidades = self.model.verCantidadesArticulo(condiciones = [('movimientos_ingreso.art_id', ' = ', artId)])
+            costos = self.model.vercostosArticulo(condiciones = [('movimientos_ingreso.art_id', ' = ', artId)])
             totales = {}
-            if cantidades:
-                totales = self.__calcularTotales(cantidades)
+            if costos:
+                totales = self.__calcularTotales(costos)
 
             self.provModel.verListaProveedores(condiciones = [("articulos_de_proveedores.articulo", " = ", artId)],
                 campos = ["prov_id", "prov_nombre", "prov_telefono"],
@@ -122,20 +122,18 @@ class ArticuloPresenter(object):
         if not articulo:
             self.vistaDetalle.resetArticulo()
 
-    def __calcularTotales(self, cantidades):
-        totalCantidad = 0
+    def __calcularTotales(self, costos):
         promedioCosto = 0
-        ultimo = len(cantidades) - 1
+        ultimo = len(costos) - 1
 
-        for cantidad in cantidades:
-            totalCantidad += cantidad[0]
+        for cantidad in costos:
             promedioCosto += cantidad[1]
 
-        promedioCosto /= len(cantidades)
-        primerCosto = cantidades[0][1]
-        ultimoCosto = cantidades[ultimo][1]
+        promedioCosto /= len(costos)
+        primerCosto = costos[0][1]
+        ultimoCosto = costos[ultimo][1]
 
-        return [totalCantidad, primerCosto, promedioCosto, ultimoCosto]
+        return [primerCosto, promedioCosto, ultimoCosto]
 
     def __actualizarCostos(self):
         index = self.vistaDetalle.opcion_costo.currentIndex()
@@ -143,18 +141,10 @@ class ArticuloPresenter(object):
             self.vistaDetalle.comp_costo.setText(self.model.primerCosto())
         elif index == 1:
             self.vistaDetalle.comp_costo.setText(self.model.ultimoCosto())
-        elif index == 2:
-            self.vistaDetalle.comp_costo.setText(self.model.CostoPromedio())
+        # elif index == 2:
+        #     self.vistaDetalle.comp_costo.setText(self.model.CostoPromedio())
 
     def __asociar(self):
         idArticulo = self.model.getId()
         print("idArticulo contiene lo siguiente: ", idArticulo)
         self.relacionador.activar(idArticulo)
-    #
-    # def confirmarSalir(self):
-    #     # IMPLEMENTAR
-    #     pass
-    #
-    # def confirmarGuardar(self):
-    #     # IMPLEMENTAR
-    #     pass

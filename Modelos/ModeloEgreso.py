@@ -131,6 +131,13 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
         self.egreso = {}
         self.removeRows()
 
+    def getArticulos(self):
+        articulos = []
+        for movimiento in self.__movimientos:
+            if movimiento[0] == '': continue
+            articulos.append((movimiento[0], movimiento[2]))
+        return articulos
+
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
 # ===============================================================
@@ -174,29 +181,23 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
 
             self.__articulo = {}
 
-            stockTotal = 0
+            stockMaximo = 0
             if column == 0:
                 try:
                     value = int(value)
-                    # resultado = self.__querierArt.traerElementos(campos = ("art_id", "art_descripcion"), condiciones = [("art_id", " = ", value), ("prov_id", " = ", provId)], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'])
-                    resultado = self.__querierArt.traerElementos(campos = ("art_id", "art_descripcion"),
+                    resultado = self.__querierArt.traerElementos(campos = ("art_id", "art_descripcion", "art_stock_actual"),
                         condiciones = [("art_id", " = ", value)])
-                    cantidadesRestantes = self.__querierMovi.traerElementos(campos = ["movi_restante"], condiciones = [("art_id", " = ", value), ("movi_restante", " > ", 0)])
-                    print("DEBUG - Cantidades restantes del articulo: ", cantidadesRestantes)
-                    for cantidad in cantidadesRestantes:
-                        stockTotal += cantidad[0]
-                    print ("DEBUG - Stock total del articulo. ", stockTotal)
+                    stockMaximo = resultado[0][2]
                     self.__articulo = list(resultado[0])
-                    self.__articulo.append(stockTotal)
                     print(self.__articulo)
                 except:
                     return False
                 if not self.__movimientos[row][0]:
                     self.insertRows(self.rowCount(self), 1)
-                    self.__maximos.insert(self.rowCount(self), stockTotal)
+                    self.__maximos.insert(self.rowCount(self), stockMaximo)
                 else:
                     self.__movimientos[row] = self.__articulo
-                    self.__maximos[row] = stockTotal
+                    self.__maximos[row] = stockMaximo
                 self.dataChanged.emit(index, index)
                 return True
             else:
