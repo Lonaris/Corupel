@@ -79,7 +79,7 @@ class ModeloInforme(QtCore.QAbstractTableModel):
             self.informe = qr.traerElementos(campos = campos,
                 condiciones = condiciones,
                 uniones = uniones)
-            print(self.informe)
+            # print(self.informe)
             self.__acomodarInforme(tipo = filtros['tipo'])
         except:
             # print("ERROR - ", qr.errorcode())
@@ -106,6 +106,9 @@ class ModeloInforme(QtCore.QAbstractTableModel):
             self.__header = ["Fecha", "Descripcion", "Cantidad"]
         self.informe = reinforme
 
+    def getHeader(self):
+        return self.__header
+    
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
 # ===============================================================

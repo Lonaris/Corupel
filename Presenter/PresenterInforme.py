@@ -5,6 +5,9 @@ import Modelos.ModeloInforme as InModel
 import Modelos.ModeloDestino as DModel
 from datetime import date
 
+import csv
+from PyQt5.QtWidgets import QFileDialog
+
 class InformePresenter(object):
     def __init__(self):
         self.model = InModel.ModeloInforme()
@@ -14,6 +17,7 @@ class InformePresenter(object):
 
         self.vista.filtro_destino.setModel(self.desModel)
         self.vista.btn_ejecutar.clicked.connect(self.ejecutarInforme)
+        self.vista.btn_guardar.clicked.connect(self.handleSave)
 
         self.iniciarFecha()
 
@@ -70,3 +74,28 @@ class InformePresenter(object):
         self.__filtros['hasta'] = hasta
 
         print(self.__filtros)
+
+    def handleSave(self):
+        path = QFileDialog.getSaveFileName(
+                None, 'Save File', '', 'CSV(*.csv)')
+        if path[0]:
+            with open(path[0], 'wt') as stream:
+                writer = csv.writer(stream)
+
+                #Encabezado
+                titulo = self.vista.filtro_principal.currentText()
+                desde = "Desde {}".format(self.__filtros['desde'])
+                hasta = "Hasta {}".format(self.__filtros['hasta'])
+
+                writer.writerow([titulo, desde, hasta])
+                header = self.model.getHeader()
+                writer.writerow(header)
+
+                #Columnas de los datos
+                for row in range(self.model.rowCount(None)):
+                    rowdata = []
+                    for column in range(self.model.columnCount(None)):
+                        item = self.model.informe[row][column]
+                        teext = str(item).encode('utf-8')
+                        rowdata.append(item)
+                    writer.writerow(rowdata)
