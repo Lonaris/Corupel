@@ -14,11 +14,11 @@ class PrincipalPresenter(QtWidgets.QWidget):
         # pp = PresenterProveedor.ProveedorPresenter()
         # pa = PresenterArticulo.ArticuloPresenter()
         # po = PresenterOperario.OperarioPresenter()
-        pi = PresenterIngreso.IngresoPresenter()
-        pe = PresenterEgreso.EgresoPresenter()
+        # pi = PresenterIngreso.IngresoPresenter()
+        # pe = PresenterEgreso.EgresoPresenter()
         pin = PresenterInforme.InformePresenter()
 
-        self.presenters = [ pi, pe, pin]
+        self.presenters = [pin]
 
         menu = {}
 
@@ -35,14 +35,15 @@ class PrincipalPresenter(QtWidgets.QWidget):
         # self.vista.btn_main_articulos.clicked.connect(self.mostrarArticulos)
         # self.vista.btn_main_proveedores.clicked.connect(self.mostrarProveedores)
         # self.vista.btn_main_operarios.clicked.connect(self.mostrarOperarios)
-        self.vista.btn_main_ingresos.clicked.connect(self.mostrarIngresos)
-        self.vista.btn_main_egresos.clicked.connect(self.mostrarEgresos)
+        # self.vista.btn_main_ingresos.clicked.connect(self.mostrarIngresos)
+        # self.vista.btn_main_egresos.clicked.connect(self.mostrarEgresos)
         self.vista.btn_main_informes.clicked.connect(self.mostrarInformes)
 
         self.vista.btn_main_configuracion.hide()
         self.vista.btn_main_destinos.hide()
+
         # self.mostrarArticulos()
-        self.mostrarIngresos()
+        self.mostrarInformes()
 
     # def mostrarArticulos(self):
     #     self.contenido.setCurrentIndex(0)
@@ -53,14 +54,14 @@ class PrincipalPresenter(QtWidgets.QWidget):
     # def mostrarOperarios(self):
     #     self.contenido.setCurrentIndex(2)
 
-    def mostrarIngresos(self):
-        self.contenido.setCurrentIndex(0)
-
-    def mostrarEgresos(self):
-        self.contenido.setCurrentIndex(1)
+    # def mostrarIngresos(self):
+    #     self.contenido.setCurrentIndex(0)
+    #
+    # def mostrarEgresos(self):
+    #     self.contenido.setCurrentIndex(1)
 
     def mostrarInformes(self):
-        self.contenido.setCurrentIndex(2)
+        self.contenido.setCurrentIndex(0)
 
     def limpiarInterfaz(self):
         self.presenters[3].reiniciarMenu()
