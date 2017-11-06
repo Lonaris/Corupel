@@ -107,7 +107,7 @@ class ArticuloPresenter(object):
         if artId:
             print("DEBUG - ART_ID = ", artId)
             articulo = self.model.verDetallesArticulo(condiciones = [('art_id', ' = ', artId)])
-            costos = self.model.vercostosArticulo(condiciones = [('movimientos_ingreso.art_id', ' = ', artId)])
+            costos = self.model.verCostosArticulo(condiciones = [('movimientos_ingreso.art_id', ' = ', artId)])
             totales = {}
             if costos:
                 totales = self.__calcularTotales(costos)
