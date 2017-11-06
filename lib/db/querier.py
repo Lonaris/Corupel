@@ -1,5 +1,6 @@
 # querier.py
 import mysql.connector
+import socket
 from mysql.connector import errorcode
 # import config
 
@@ -97,6 +98,15 @@ class Querier(object):
         db.close()
 
         return respuesta
+
+    def setConexion(self, user, password, host):
+        self.user = user
+        self.password = password
+        self.host = host
+
+    def agregarUsuario(self, username, password):
+        hostname = socket.gethostname()
+        grant = "GRANT SELECT, INSERT, UPDATE ON corupel.* TO '{}'@'{}' IDENTIFIED BY '{}'".format(self.user, hostname, self.password)
 
     def __unirTabla(self, tabla, on):
         union = "JOIN {} ON {} ".format(tabla, on)
