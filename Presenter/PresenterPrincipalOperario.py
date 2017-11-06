@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QModelIndex, QAbstractItemModel, QRegExp
 from Vistas import VistaPrincipal
-from Presenter import PresenterProveedor, PresenterArticulo, PresenterOperario, PresenterIngreso, PresenterEgreso
+from Presenter import PresenterProveedor, PresenterArticulo, PresenterOperario, PresenterIngreso, PresenterEgreso, PresenterInforme
 
 class PrincipalPresenter(QtWidgets.QWidget):
 
@@ -16,8 +16,9 @@ class PrincipalPresenter(QtWidgets.QWidget):
         # po = PresenterOperario.OperarioPresenter()
         pi = PresenterIngreso.IngresoPresenter()
         pe = PresenterEgreso.EgresoPresenter()
+        pin = PresenterInforme.InformePresenter()
 
-        self.presenters = [ pi, pe]
+        self.presenters = [ pi, pe, pin]
 
         menu = {}
 
@@ -36,21 +37,29 @@ class PrincipalPresenter(QtWidgets.QWidget):
         # self.vista.btn_main_operarios.clicked.connect(self.mostrarOperarios)
         self.vista.btn_main_ingresos.clicked.connect(self.mostrarIngresos)
         self.vista.btn_main_egresos.clicked.connect(self.mostrarEgresos)
+        self.vista.btn_main_informes.clicked.connect(self.mostrarInformes)
 
         # self.mostrarArticulos()
         self.mostrarIngresos()
 
-    def mostrarArticulos(self):
-        self.contenido.setCurrentIndex(0)
-
-    def mostrarProveedores(self):
-        self.contenido.setCurrentIndex(1)
-
-    def mostrarOperarios(self):
-        self.contenido.setCurrentIndex(2)
+    # def mostrarArticulos(self):
+    #     self.contenido.setCurrentIndex(0)
+    #
+    # def mostrarProveedores(self):
+    #     self.contenido.setCurrentIndex(1)
+    #
+    # def mostrarOperarios(self):
+    #     self.contenido.setCurrentIndex(2)
 
     def mostrarIngresos(self):
         self.contenido.setCurrentIndex(0)
 
     def mostrarEgresos(self):
         self.contenido.setCurrentIndex(1)
+
+    def mostrarInformes(self):
+        self.contenido.setCurrentIndex(2)
+
+    def limpiarInterfaz(self):
+        self.presenters[3].reiniciarMenu()
+        self.presenters[4].reiniciarMenu()

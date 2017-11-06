@@ -4,7 +4,7 @@ CREATE TABLE `articulos` (
   `art_descripcion` varchar(100) NOT NULL,
   `art_marca` varchar(20) NOT NULL,
   `art_destino` int(16) UNSIGNED,
-  `art_agrupacion` varchar(20) NOT NULL,
+  `art_agrupacion` varchar(20) ,
   `art_stock_minimo` int(8) NOT NULL,
   `art_stock_actual` int(8) UNSIGNED NOT NULL  DEFAULT 0,
   `art_activo` tinyint (1) NOT NULL DEFAULT 1
