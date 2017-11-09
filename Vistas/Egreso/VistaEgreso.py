@@ -10,7 +10,6 @@ class EgresoView(QtWidgets.QWidget):
         super(EgresoView, self).__init__(parent)
 
         self.vista = uic.loadUi("gui/egresos/Egreso.ui", self)
-        self.vista.tbl_egresos.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
         #Conectamos el evento modificar y guardar con la funcion "operacionCOmpletada"
         self.vista.btn_guardar.clicked.connect(self.operacionCompletada)
 

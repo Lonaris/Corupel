@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QModelIndex, QAbstractItemModel, QRegExp
 from Vistas import VistaPrincipal
-from Presenter import PresenterProveedor, PresenterArticulo, PresenterOperario, PresenterIngreso, PresenterEgreso, PresenterInforme
+from Presenter import PresenterProveedor, PresenterArticulo, PresenterOperario, PresenterIngreso, PresenterEgreso, PresenterInforme, PresenterAlerta
 
 class PrincipalPresenter(QtWidgets.QWidget):
 
@@ -17,6 +17,8 @@ class PrincipalPresenter(QtWidgets.QWidget):
         pi = PresenterIngreso.IngresoPresenter()
         pe = PresenterEgreso.EgresoPresenter()
         pin = PresenterInforme.InformePresenter()
+        self.pal = PresenterAlerta.AlertaPresenter()
+        # pal = PresenterAlerta.AlertaPresenter()
 
         self.presenters = [ pa, pp, po, pi, pe, pin]
 
@@ -25,10 +27,10 @@ class PrincipalPresenter(QtWidgets.QWidget):
         self.contenido = self.vista.findChild(QtWidgets.QStackedWidget)
 
         for index, pr in enumerate(self.presenters):
-            if index == 3 or index == 4 or index == 5:
-                self.contenido.insertWidget(index, pr.vista)
-            else:
+            if index == 0 or index == 1 or index == 2:
                 self.contenido.insertWidget(index, pr.vistaLista)
+            else:
+                self.contenido.insertWidget(index, pr.vista)
 
         self.vista.showMaximized()
 
@@ -41,6 +43,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
         self.vista.btn_main_ingresos.clicked.connect(self.mostrarIngresos)
         self.vista.btn_main_egresos.clicked.connect(self.mostrarEgresos)
         self.vista.btn_main_informes.clicked.connect(self.mostrarInformes)
+        self.vista.btn_main_alertas.clicked.connect(self.mostrarAlertas)
 
         self.vista.btn_main_configuracion.hide()
         self.vista.btn_main_destinos.hide()
@@ -50,6 +53,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
         statusBar = self.vista.statusBar().showMessage("Barra de mensajes")
 
         self.mostrarArticulos()
+        self.mostrarAlertas()
 
     def mostrarArticulos(self):
         self.contenido.setCurrentIndex(0)
@@ -68,6 +72,12 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
     def mostrarInformes(self):
         self.contenido.setCurrentIndex(5)
+
+    def mostrarAlertas(self):
+        self.pal.vista.show()
+        self.pal.vista.activateWindow()
+        # self.contenido.setCurrentIndex(6)
+        pass
 
     def limpiarInterfaz(self):
         self.presenters[3].reiniciarMenu()

@@ -25,12 +25,14 @@ class IngresoPresenter(object):
 
         self.vista.prov_id.returnPressed.connect(self.__buscarProveedor)
 
-
+        self.headerIngresos = self.vista.tbl_ingresos.horizontalHeader()
         self.__reiniciarFecha()
 
         # print(self.vista.rem_fecha.date())
 
         self.vista.show()
+        self.__redimensionarTablaIngresos()
+        self.__redimensionarTablaBusqueda()
 
     def verIngresos(self, campos = None, condiciones = None, limite = None):
         # texto = self.vistaLista.ln_buscar.text()
@@ -112,6 +114,8 @@ class IngresoPresenter(object):
             print("/n/nSTOCK ACTUAL ACTUAL: ", articulo["art_stock_actual"])
             articulo = self.artModel.modificarArticulo(articulo)
 
+        self.vista.operacionCompletada()
+
     def modificarIngreso(self):
         ingreso = self.vista.getIngreso()
         # self.model.modificarIngreso(ingreso)
@@ -130,6 +134,7 @@ class IngresoPresenter(object):
             # self.artModel.verListaArticulos(campos = ["art_id", "art_descripcion"], condiciones = [('articulos_de_proveedores.proveedor', ' = ', provId)], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'] )
         else:
             self.vista.resetProveedor()
+            self.artModel.reiniciarTabla()
 
     def __sumador(self):
         self.__totalArticulos = 0
@@ -156,3 +161,13 @@ class IngresoPresenter(object):
 
         self.vista.rem_fecha.setDate(QDate(hoy))
         self.vista.fact_fecha.setDate(QDate(hoy))
+
+    def __redimensionarTablaIngresos(self):
+        self.headerIngresos.resizeSection(0, 50)
+        self.headerIngresos.resizeSection(2, 80)
+        self.headerIngresos.resizeSection(3, 80)
+        self.headerIngresos.setSectionResizeMode(1, 1)
+
+    def __redimensionarTablaBusqueda(self):
+        self.headerIngresos.resizeSection(0, 50)
+        self.headerIngresos.setSectionResizeMode(1, 1)

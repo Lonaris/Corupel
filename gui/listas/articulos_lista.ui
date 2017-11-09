@@ -224,6 +224,9 @@ background-color: #BAC1D7
      </item>
      <item row="2" column="0" colspan="2">
       <widget class="QTableView" name="tbl_articulos">
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
        <property name="tabKeyNavigation">
         <bool>false</bool>
        </property>
@@ -231,7 +234,7 @@ background-color: #BAC1D7
         <enum>QAbstractItemView::SelectRows</enum>
        </property>
        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-        <bool>true</bool>
+        <bool>false</bool>
        </attribute>
        <attribute name="verticalHeaderVisible">
         <bool>false</bool>

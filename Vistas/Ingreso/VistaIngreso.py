@@ -15,7 +15,7 @@ class IngresoView(QtWidgets.QWidget):
         self.vista.tbl_articulos.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
 
         #Conectamos el evento modificar y guardar con la funcion "operacionCOmpletada"
-        self.vista.btn_guardar.clicked.connect(self.operacionCompletada)
+        # self.vista.btn_guardar.clicked.connect(self.operacionCompletada)
 
         rxPref = QRegExp("[0-9]{0,10}")
         rxNum = QRegExp("^[0-9]{0,20}$")

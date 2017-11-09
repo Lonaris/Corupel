@@ -14,7 +14,7 @@ class EgresoPresenter(object):
         self.vista = EView.EgresoView(self)
         self.model = EModel.ModeloEgreso()
         self.desModel = DModel.ModeloDestino()
-        self.artModel = AModel.ModeloArticulo(propiedades = ["Codigo", "Descripcion"]) #Agregar Stock
+        self.artModel = AModel.ModeloArticulo(propiedades = ["Codigo", "Descripcion", "Stock"]) #Agregar Stock
         # self.vistaLista = PLView.ListaEgresosView(self)
 
         self.vista.tbl_egresos.setModel(self.model)
@@ -28,13 +28,14 @@ class EgresoPresenter(object):
         self.vista.btn_guardar.clicked.connect(self.crearEgreso)
 
         self.vista.ope_legajo.returnPressed.connect(self.__buscarOperario)
-
+        self.headerPrincipal = self.vista.tbl_egresos.horizontalHeader()
         # hoy = datetime.date.today()
         #
         # self.vista.egr_fecha.setDate(QDate(hoy))
         self.__reiniciarFecha()
         self.vista.show()
         # self.activarBotones()
+        self.__redimensionarTablaPrincipal()
 
     def verEgresos(self, campos = None, condiciones = None, limite = None):
         # texto = self.vistaLista.ln_buscar.text()
@@ -92,6 +93,8 @@ class EgresoPresenter(object):
             print("/n/nSTOCK PREVIO A LA RESTA DE STOCK ACTUAL: ", stock_actual[0])
             print("/n/nSTOCK ACTUAL ACTUAL: ", articulo["art_stock_actual"])
             articulo = self.artModel.modificarArticulo(articulo)
+            self.__redimensionarTablaBusqueda()
+        self.__redimensionarTablaBusqueda()
 
     def __buscarArticulosDisponibles(self):
 
@@ -101,6 +104,7 @@ class EgresoPresenter(object):
         if  destino != 0:
             condiciones.append(("art_destino", "=", destino))
         self.artModel.verListaArticulos(condiciones = condiciones)
+        self.__redimensionarTablaBusqueda()
 
     def __refrescar(self):
         elemId = self.vista.elem_id.text()
@@ -123,6 +127,7 @@ class EgresoPresenter(object):
             self.vista.setOperario(operario)
         else:
             self.vista.resetOperario()
+        # self.__redimensionarTablaPrincipal()
 
     def __sumador(self):
         self.__totalArticulos = 0
@@ -144,3 +149,15 @@ class EgresoPresenter(object):
         hoy = datetime.date.today()
 
         self.vista.egr_fecha.setDate(QDate(hoy))
+
+    def __redimensionarTablaPrincipal(self):
+        self.headerPrincipal.resizeSection(0, 50)
+        self.headerPrincipal.resizeSection(2, 100)
+        self.headerPrincipal.setSectionResizeMode(1, 1)
+
+    def __redimensionarTablaBusqueda(self):
+        self.headerBusqueda = self.vista.tbl_articulos.horizontalHeader()
+
+        self.headerBusqueda.resizeSection(0, 50)
+        self.headerBusqueda.resizeSection(2, 50)
+        self.headerBusqueda.setSectionResizeMode(1, 1)

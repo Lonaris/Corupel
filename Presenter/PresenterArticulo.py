@@ -39,8 +39,9 @@ class ArticuloPresenter(object):
         self.vistaLista.ln_buscar.returnPressed.connect(self.verArticulos)
         self.vistaLista.btn_buscar.clicked.connect(self.verArticulos)
 
+        self.header = self.vistaLista.tbl_articulos.horizontalHeader()
         self.model.verListaArticulos()
-
+        self.__redimensionarTabla()
         self.vistaLista.show()
 
     def verArticulos(self, campos = None, condiciones = None, limite = None):
@@ -48,6 +49,8 @@ class ArticuloPresenter(object):
         texto = "'%{}%'".format(texto)
         condiciones = [('art_descripcion', ' LIKE ', texto)]
         self.model.verListaArticulos(campos, condiciones, limite)
+
+        self.__redimensionarTabla()
 
     def verDetalles(self, articulo):
         if articulo:
@@ -64,6 +67,7 @@ class ArticuloPresenter(object):
 
         self.vistaDetalle.show()
         self.vistaDetalle.activateWindow()
+        self.__redimensionarTabla()
 
     def crearArticulo(self):
         # print("DEBUG - Tipo de objeto de artículo_ ", type(articulo))
@@ -82,6 +86,7 @@ class ArticuloPresenter(object):
         #     self.vistaDetalle.errorDeCampo(error)
         # else:
         #     self.vistaDetalle.articuloGuardado()
+        self.__redimensionarTabla()
 
     def modificarArticulo(self):
         articulo = self.vistaDetalle.getArticulo()
@@ -89,6 +94,7 @@ class ArticuloPresenter(object):
             self.verArticulos()
             self.vistaDetalle.resetCambios()
             self.vistaDetalle.close()
+        self.__redimensionarTabla()
 
     def deshabilitarArticulo(self, articulo):
 
@@ -121,6 +127,7 @@ class ArticuloPresenter(object):
                     self.vistaDetalle.setTotales(totales)
         if not articulo:
             self.vistaDetalle.resetArticulo()
+        self.__redimensionarTabla()
 
     def __calcularTotales(self, costos):
         promedioCosto = 0
@@ -148,3 +155,9 @@ class ArticuloPresenter(object):
         idArticulo = self.model.getId()
         print("idArticulo contiene lo siguiente: ", idArticulo)
         self.relacionador.activar(idArticulo)
+
+    def __redimensionarTabla(self):
+        self.header.resizeSection(0, 50)
+        self.header.resizeSection(2, 150)
+        self.header.resizeSection(3, 50)
+        self.header.setSectionResizeMode(1, 1)

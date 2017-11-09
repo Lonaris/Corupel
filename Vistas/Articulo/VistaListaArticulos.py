@@ -11,10 +11,3 @@ class ListaArticuloView(QtWidgets.QWidget):
 
         self.vistaLista = uic.loadUi("gui/listas/articulos_lista.ui", self)
         tabla = self.vistaLista.tbl_articulos
-
-        tabla.horizontalHeader().setStretchLastSection(True)
-        tabla.horizontalHeader().setSectionResizeMode(1)
-        tabla.horizontalHeader().setDefaultSectionSize(100)
-        #tabla.horizontalHeader().setColumnWidth( 0, 160 )
-        #tabla.horizontalHeader().setCascadingSectionResizes(True)
-        # tabla.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)

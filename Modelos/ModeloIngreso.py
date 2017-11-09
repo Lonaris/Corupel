@@ -8,9 +8,6 @@ from lib.db import querier
 import cerberus, decimal, mysql.connector
 # from lib import Validator
 
-
-# Cambios para github solamente de prueba.
-
 class ModeloIngreso(QtCore.QAbstractTableModel):
 
     # db = mysql.connector.connect(user = 'admin', password = 'admin1234', host = '127.0.0.1', database = 'corupel')
@@ -150,7 +147,7 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
             if movimiento[0] == '': continue
             articulos.append((movimiento[0], movimiento[2]))
         return articulos
-    
+
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
 # ===============================================================

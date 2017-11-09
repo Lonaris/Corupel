@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1034</width>
-    <height>660</height>
+    <height>711</height>
    </rect>
   </property>
   <property name="palette">
@@ -480,7 +480,7 @@
          <property name="rightMargin">
           <number>15</number>
          </property>
-         <item row="9" column="0" colspan="2">
+         <item row="11" column="0" colspan="2">
           <widget class="QPushButton" name="btn_main_configuracion">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -577,7 +577,7 @@ background-color: #BAC1D7
            </property>
           </widget>
          </item>
-         <item row="8" column="0" colspan="2">
+         <item row="9" column="0" colspan="2">
           <widget class="QPushButton" name="btn_main_destinos">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -616,7 +616,7 @@ background-color: #BAC1D7
            </property>
           </widget>
          </item>
-         <item row="10" column="0">
+         <item row="12" column="0">
           <spacer name="verticalSpacer">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -837,6 +837,45 @@ background-color: #BAC1D7
            </property>
            <property name="shortcut">
             <string>Alt+5</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="0" colspan="2">
+          <widget class="QPushButton" name="btn_main_alertas">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#btn_main_alertas{
+background-color:#B7BEDF;
+color: #000000;
+}
+
+#btn_main_alertas:hover{
+background-color: #BAC1D7 
+	}</string>
+           </property>
+           <property name="text">
+            <string>Alertas  (Ctrl + A)</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>ico/alerta.ico</normaloff>ico/alerta.ico</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="shortcut">
+            <string>Ctrl+A</string>
            </property>
           </widget>
          </item>

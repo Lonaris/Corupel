@@ -19,3 +19,7 @@ class RelacionadorView(QtWidgets.QWidget):
 
     def getBusqueda(self):
         return self.vista.buscador.text()
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Escape:
+            self.close()

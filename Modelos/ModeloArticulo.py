@@ -42,6 +42,7 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
             'Marca',
             'Agrupacion',
             # 'art_stock_min', 'art_stock_actual',
+            'Stock mínimo'
             'Stock'
         ]
 
