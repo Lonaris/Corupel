@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QModelIndex, QAbstractItemModel, QRegExp
 from Vistas import VistaPrincipal
-from Presenter import PresenterProveedor, PresenterArticulo, PresenterOperario, PresenterIngreso, PresenterEgreso, PresenterInforme, PresenterAlerta
+from Presenter import PresenterProveedor, PresenterArticulo, PresenterOperario, PresenterIngreso, PresenterEgreso, PresenterInforme, PresenterAlerta, PresenterDestino
 
 class PrincipalPresenter(QtWidgets.QWidget):
 
@@ -17,17 +17,17 @@ class PrincipalPresenter(QtWidgets.QWidget):
         pi = PresenterIngreso.IngresoPresenter()
         pe = PresenterEgreso.EgresoPresenter()
         pin = PresenterInforme.InformePresenter()
+        pd = PresenterDestino.DestinoPresenter()
         self.pal = PresenterAlerta.AlertaPresenter()
-        # pal = PresenterAlerta.AlertaPresenter()
 
-        self.presenters = [ pa, pp, po, pi, pe, pin]
+        self.presenters = [ pa, pp, po, pi, pe, pin, pd]
 
         menu = {}
 
         self.contenido = self.vista.findChild(QtWidgets.QStackedWidget)
 
         for index, pr in enumerate(self.presenters):
-            if index == 0 or index == 1 or index == 2:
+            if index == 0 or index == 1 or index == 2 or index == 6:
                 self.contenido.insertWidget(index, pr.vistaLista)
             else:
                 self.contenido.insertWidget(index, pr.vista)
@@ -44,9 +44,9 @@ class PrincipalPresenter(QtWidgets.QWidget):
         self.vista.btn_main_egresos.clicked.connect(self.mostrarEgresos)
         self.vista.btn_main_informes.clicked.connect(self.mostrarInformes)
         self.vista.btn_main_alertas.clicked.connect(self.mostrarAlertas)
+        self.vista.btn_main_destinos.clicked.connect(self.mostrarDestinos)
 
         self.vista.btn_main_configuracion.hide()
-        self.vista.btn_main_destinos.hide()
 
         self.contenido.currentChanged.connect(self.limpiarInterfaz)
 
@@ -76,8 +76,10 @@ class PrincipalPresenter(QtWidgets.QWidget):
     def mostrarAlertas(self):
         self.pal.vista.show()
         self.pal.vista.activateWindow()
-        # self.contenido.setCurrentIndex(6)
-        pass
+
+    def mostrarDestinos(self):
+        self.contenido.setCurrentIndex(6)
+
 
     def limpiarInterfaz(self):
         self.presenters[3].reiniciarMenu()

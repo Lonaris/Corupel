@@ -1096,7 +1096,7 @@
          <number>1</number>
         </property>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="ope_nombre">
+         <widget class="QLineEdit" name="des_descripcion">
           <property name="enabled">
            <bool>true</bool>
           </property>
@@ -1120,7 +1120,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="ope_legajo">
+         <widget class="QLineEdit" name="des_id">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -1141,7 +1141,7 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QLabel" name="label_legajo">
+         <widget class="QLabel" name="label_codigo">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -1173,7 +1173,7 @@
          </widget>
         </item>
         <item row="3" column="0">
-         <widget class="QLabel" name="label_nombre">
+         <widget class="QLabel" name="label_observaciones">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -1205,7 +1205,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="ope_apellido">
+         <widget class="QLineEdit" name="des_maquina">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -1226,7 +1226,7 @@
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QLabel" name="label_apellido">
+         <widget class="QLabel" name="label_maquina">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -1291,9 +1291,9 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>ope_legajo</tabstop>
-  <tabstop>ope_apellido</tabstop>
-  <tabstop>ope_nombre</tabstop>
+  <tabstop>des_id</tabstop>
+  <tabstop>des_maquina</tabstop>
+  <tabstop>des_descripcion</tabstop>
  </tabstops>
  <resources/>
  <connections/>
