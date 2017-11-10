@@ -21,7 +21,7 @@ class DestinoView(QtWidgets.QWidget):
         self.vistaDetalle = uic.loadUi("gui/detalles/destino_detalle.ui", self)
 
         rxId = QRegExp("[0-9]{0,16}")
-        rxDesc = QRegExp(".{0,30}")
+        rxDesc = QRegExp(".{0,20}")
 
         #ocultamos los botones que no vamos a usar por el momento.
         self.vistaDetalle.btn_deshabilitar.hide()
