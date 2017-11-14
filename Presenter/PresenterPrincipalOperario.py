@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QModelIndex, QAbstractItemModel, QRegExp
 from Vistas import VistaPrincipal
-from Presenter import PresenterProveedor, PresenterArticulo, PresenterOperario, PresenterIngreso, PresenterEgreso, PresenterInforme
+from Presenter import PresenterProveedor, PresenterArticulo, PresenterOperario, PresenterIngreso, PresenterEgreso, PresenterInforme, PresenterAlerta
 
 class PrincipalPresenter(QtWidgets.QWidget):
 
@@ -17,6 +17,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
         pi = PresenterIngreso.IngresoPresenter()
         pe = PresenterEgreso.EgresoPresenter()
         pin = PresenterInforme.InformePresenter()
+        self.pal = PresenterAlerta.AlertaPresenter()
 
         self.presenters = [ pi, pe, pin]
 
@@ -38,12 +39,14 @@ class PrincipalPresenter(QtWidgets.QWidget):
         self.vista.btn_main_ingresos.clicked.connect(self.mostrarIngresos)
         self.vista.btn_main_egresos.clicked.connect(self.mostrarEgresos)
         self.vista.btn_main_informes.clicked.connect(self.mostrarInformes)
+        self.vista.btn_main_alertas.clicked.connect(self.mostrarAlertas)
 
         self.vista.btn_main_configuracion.hide()
         self.vista.btn_main_destinos.hide()
         # self.mostrarArticulos()
         self.mostrarIngresos()
-
+        self.mostrarAlertas()
+        
     # def mostrarArticulos(self):
     #     self.contenido.setCurrentIndex(0)
     #
@@ -61,6 +64,10 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
     def mostrarInformes(self):
         self.contenido.setCurrentIndex(2)
+
+    def mostrarAlertas(self):
+        self.pal.vista.show()
+        self.pal.vista.activateWindow()
 
     def limpiarInterfaz(self):
         self.presenters[3].reiniciarMenu()
