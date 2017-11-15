@@ -2,7 +2,7 @@
 
 from PyQt5 import QtWidgets, uic
 # from PyQt5.QtWidgets import QFormLayout, QLineEdit, QComboBox, QLabel
-from PyQt5.QtCore import QRegExp
+from PyQt5.QtCore import QRegExp, Qt
 
 class RelacionadorView(QtWidgets.QWidget):
 

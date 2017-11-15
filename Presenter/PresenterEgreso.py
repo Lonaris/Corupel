@@ -45,6 +45,7 @@ class EgresoPresenter(object):
 
     def verNuevo(self):
         self.vista.resetEgreso()
+        self.artModel.reiniciarTabla()
         self.verDetalles()
 
     def verDetalles(self, egreso = None):
@@ -116,6 +117,7 @@ class EgresoPresenter(object):
                 self.vista.setEgreso(egreso)
         if not egreso:
             self.vista.resetEgreso()
+            self.artModel.reiniciarTabla()
 
     def __buscarOperario(self):
         opeLeg = self.vista.getOperario()
@@ -142,6 +144,7 @@ class EgresoPresenter(object):
 
     def reiniciarMenu(self):
         self.vista.resetEgreso()
+        self.artModel.reiniciarTabla()
         self.model.reiniciarTablaEgreso()
         self.__reiniciarFecha()
 

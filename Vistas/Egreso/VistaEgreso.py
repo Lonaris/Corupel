@@ -13,6 +13,8 @@ class EgresoView(QtWidgets.QWidget):
         #Conectamos el evento modificar y guardar con la funcion "operacionCOmpletada"
         self.vista.btn_guardar.clicked.connect(self.operacionCompletada)
 
+        self.__haCambiado = False
+
     def setOperario(self, proveedor):
         self.vista.ope_legajo.setText(str(proveedor[0]))
         self.vista.ope_nombre.setText(proveedor[1])
@@ -40,9 +42,24 @@ class EgresoView(QtWidgets.QWidget):
         self.vista.egr_numero.setText("")
         self.vista.move_destino.setCurrentIndex(0)
 
+    def __egresoHaCambiado(self):
+        self.__haCambiado = True
+
+    def resetCambios(self):
+        self.__haCambiado = False
+
+    def closeEvent(self, event):
+        if not self.__haCambiado:
+            event.accept()
+            return
+        resultado = QMessageBox.question(self, "Atencion", "No se guardarán los cambios. ¿Desea salir?", QMessageBox.Yes | QMessageBox.No)
+        if resultado == QMessageBox.Yes: event.accept()
+        else: event.ignore()
+
     def operacionCompletada(self):
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Information)
-        msg.setText("Operacion realizada con éxito")
-        msg.setWindowTitle("Mensaje de confirmación")
-        retval = msg.exec_()
+        if self.__haCambiado:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Operacion realizada con éxito")
+            msg.setWindowTitle("Mensaje de confirmación")
+            retval = msg.exec_()
