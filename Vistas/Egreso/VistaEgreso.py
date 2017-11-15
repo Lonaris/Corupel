@@ -15,12 +15,12 @@ class EgresoView(QtWidgets.QWidget):
 
         self.__haCambiado = False
 
-    def setOperario(self, proveedor):
-        self.vista.ope_legajo.setText(str(proveedor[0]))
-        self.vista.ope_nombre.setText(proveedor[1])
+    def setOperario(self, operario):
+        self.vista.ope_legajo.setText(str(operario[0]))
+        self.vista.ope_nombre.setText(operario[1])
 
     def getOperario(self):
-        return self.vista.ope_legajo.text()
+        return (self.vista.ope_legajo.text(), self.vista.ope_nombre.text())
 
     def resetOperario(self):
         self.vista.ope_legajo.setText("")

@@ -61,15 +61,16 @@ class EgresoPresenter(object):
         operario = self.vista.getOperario()
         detalles = self.vista.getDetalles()
 
-        if not operario:
+        if not operario[1]:
             print("ERROR, falta operario")
             return False
         if not detalles[0]:
+            print("ERROR, falta destino")
             return False
 
         print("CREO EL EGRESO")
 
-        if self.model.crearEgreso(operario, detalles):
+        if self.model.crearEgreso(operario[0], detalles):
             self.restarStockAticulos()
             self.reiniciarMenu()
 
@@ -120,7 +121,8 @@ class EgresoPresenter(object):
             self.artModel.reiniciarTabla()
 
     def __buscarOperario(self):
-        opeLeg = self.vista.getOperario()
+        operario = self.vista.getOperario()
+        opeLeg = operario[0]
         operario = {}
 
         if opeLeg:
