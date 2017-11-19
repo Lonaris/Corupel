@@ -176,7 +176,7 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
             row = index.row()
             column = index.column()
             value = self.__movimientos[row][column]
-
+            print(self.__movimientos[row][column])
             return value
 
     def setData(self, index, value, role = QtCore.Qt.EditRole):
@@ -208,13 +208,13 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
                     self.__movimientos[row] = self.__articulo
                 self.dataChanged.emit(index, index)
                 return True
-            # elif column == 3:
-            #     try:
-            #         value = decimal.Decimal(value)
-            #         if value < 0:
-            #             return False
-            #     except:
-            #         return False
+            elif column == 3:
+                try:
+                    decvalue = decimal.Decimal(value)
+                    if decvalue <= 0:
+                        return False
+                except:
+                    return False
             else:
                 try:
                     value = int(value)

@@ -6,7 +6,7 @@ import Modelos.ModeloArticulo as AModel
 import Modelos.ModeloIngreso as IModel
 from PyQt5.QtCore import Qt, QModelIndex, QDate
 from PyQt5 import QtWidgets
-import datetime
+import datetime, decimal
 
 class IngresoPresenter(object):
     def __init__(self):
@@ -146,7 +146,7 @@ class IngresoPresenter(object):
             if type(movimiento[2]) == str:
                 continue
             self.__totalArticulos += movimiento[2]
-            self.__totalCosto += movimiento[2] * movimiento[3]
+            self.__totalCosto += movimiento[2] * decimal.Decimal(movimiento[3])
         self.vista.setTotales(self.__totalArticulos, self.__totalCosto)
 
     def reiniciarMenu(self):
