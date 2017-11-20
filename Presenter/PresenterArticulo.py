@@ -32,6 +32,12 @@ class ArticuloPresenter(object):
         self.vistaDetalle.tbl_proveedores.setModel(self.provModel)
         self.vistaDetalle.opcion_costo.currentIndexChanged.connect(self.__actualizarCostos)
         self.vistaDetalle.art_destino.setModel(self.desModel)
+        self.vistaDetalle.art_stock_actual.returnPressed.connect(self.__agregarStockExcp)
+
+        # self.vistaDetalle.btn_nuevo.hide()
+        # self.vistaDetalle.btn_modificar.hide()
+        # self.vistaDetalle.btn_deshabilitar.hide()
+        # self.vistaDetalle.btn_nuevo_prov.hide()
 
         self.vistaDetalle.btn_nuevo_prov.clicked.connect(self.__asociar)
 
@@ -128,6 +134,16 @@ class ArticuloPresenter(object):
         if not articulo:
             self.vistaDetalle.resetArticulo()
         self.__redimensionarTabla()
+
+    def __agregarStockExcp(self):
+        try:
+            stock = int(self.vistaDetalle.art_stock_actual.text())
+        except:
+            stock = 0
+        stockModel = self.model.stockActual()
+        print("STOCKS: ", stock, stockModel)
+        if stock < stockModel:
+            self.vistaDetalle.art_stock_actual.setText(str(stockModel))
 
     def __calcularTotales(self, costos):
         promedioCosto = 0

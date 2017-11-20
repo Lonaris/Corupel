@@ -162,6 +162,11 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
     def reiniciarTabla(self):
         self.articulos = []
         self.layoutChanged.emit()
+
+    def stockActual(self):
+        print ("CUAL ES EL STOCK: ", self.articulo)
+        return self.articulo[7]
+
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
 # ===============================================================

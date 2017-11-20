@@ -23,6 +23,7 @@ class ArticuloView(QtWidgets.QWidget):
         rxId = QRegExp("[0-9]{0,16}")
         rxBarras = QRegExp(".{0,20}")
         rxDesc = QRegExp(".{0,100}")
+        rxNum = QRegExp("[0-9]{0,8}")
 
         #ocultamos los botones que no vamos a usar por el momento.
         self.vistaDetalle.btn_deshabilitar.hide()
@@ -41,6 +42,8 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_id.setValidator(QRegExpValidator(rxId))
         self.vistaDetalle.art_cod_barras.setValidator(QRegExpValidator(rxBarras))
         self.vistaDetalle.art_descripcion.setValidator(QRegExpValidator(rxDesc))
+        self.vistaDetalle.art_stock_actual.setValidator(QRegExpValidator(rxNum))
+        self.vistaDetalle.art_stock_minimo.setValidator(QRegExpValidator(rxNum))
 
         self.vistaDetalle.art_id.textChanged.connect(self.__activarBotones)
 
@@ -77,6 +80,8 @@ class ArticuloView(QtWidgets.QWidget):
             articulo['art_id'] = int(articulo['art_id'])
         if articulo['art_stock_minimo']:
             articulo['art_stock_minimo'] = int(articulo['art_stock_minimo'])
+        if articulo['art_stock_actual']:
+            articulo['art_stock_actual'] = int(articulo['art_stock_actual'])
 
         return articulo
 
