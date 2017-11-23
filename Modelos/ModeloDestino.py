@@ -20,8 +20,8 @@ class ModeloDestino(QtCore.QAbstractListModel):
         orden = ("des_maquina", "ASC")
         print("REINICIO EL MODELO")
         try:
-            resultados = self.__querier.traerElementos(campos = ["des_maquina"], orden = orden )
-            resulta2 = self.__querier.traerElementos(campos = ["des_id"], orden = orden)
+            resultados = self.__querier.traerElementos(campos = ["des_maquina"])
+            resulta2 = self.__querier.traerElementos(campos = ["des_id"])
             for resultado in resulta2:
                 self.__desIds.append(resulta2[0])
             for resultado in resultados:

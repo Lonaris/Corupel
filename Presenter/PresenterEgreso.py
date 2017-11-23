@@ -5,6 +5,7 @@ import Modelos.ModeloArticulo as AModel
 import Modelos.ModeloEgreso as EModel
 import Modelos.ModeloDestino as DModel
 from PyQt5.QtCore import Qt, QModelIndex, QDate
+from PyQt5.QtWidgets import QMessageBox
 import datetime
 
 
@@ -62,13 +63,11 @@ class EgresoPresenter(object):
         detalles = self.vista.getDetalles()
 
         if not operario[1]:
-            print("ERROR, falta operario")
+            self.mensajeDeError("Error: Falta operario")
             return False
         if not detalles[0]:
-            print("ERROR, falta destino")
+            self.mensajeDeError("Error: Falta operario")
             return False
-
-        print("CREO EL EGRESO")
 
         if self.model.crearEgreso(operario[0], detalles):
             self.restarStockAticulos()
@@ -94,7 +93,7 @@ class EgresoPresenter(object):
             }
             print("/n/nSTOCK PREVIO A LA RESTA DE STOCK ACTUAL: ", stock_actual[0])
             print("/n/nSTOCK ACTUAL ACTUAL: ", articulo["art_stock_actual"])
-            articulo = self.artModel.modificarArticulo(articulo)
+            articulo = self.artModel.modificarArticulo(articulo, 0)
             self.__redimensionarTablaBusqueda()
         self.__redimensionarTablaBusqueda()
 
@@ -166,3 +165,10 @@ class EgresoPresenter(object):
         self.headerBusqueda.resizeSection(0, 50)
         self.headerBusqueda.resizeSection(2, 50)
         self.headerBusqueda.setSectionResizeMode(1, 1)
+
+    def mensajeDeError(self, mensaje):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setText(mensaje)
+        msg.setWindowTitle("Error")
+        retval = msg.exec_()

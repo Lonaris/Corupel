@@ -12,7 +12,7 @@ from PyQt5.QtCore import Qt, QModelIndex
 class ArticuloPresenter(object):
     def __init__(self):
         self.provModel = PModel.ModeloProveedor(propiedades = ["Codigo", "Nombre", "Teléfono"])
-        self.model = AModel.ModeloArticulo(propiedades = ["Codigo", "Descripcion", "Marca", "Stock"])
+        self.model = AModel.ModeloArticulo(propiedades = ["Codigo", "Descripcion", "Marca", "Destino", "Stock"])
         self.desModel = DModel.ModeloDestino()
 
         self.vistaDetalle = AView.ArticuloView(self)
@@ -32,7 +32,7 @@ class ArticuloPresenter(object):
         self.vistaDetalle.tbl_proveedores.setModel(self.provModel)
         self.vistaDetalle.opcion_costo.currentIndexChanged.connect(self.__actualizarCostos)
         self.vistaDetalle.art_destino.setModel(self.desModel)
-        self.vistaDetalle.art_stock_actual.returnPressed.connect(self.__agregarStockExcp)
+        self.vistaDetalle.art_stock_actual.returnPressed.connect(self.agregarStockExcp)
 
         # self.vistaDetalle.btn_nuevo.hide()
         # self.vistaDetalle.btn_modificar.hide()
@@ -46,7 +46,7 @@ class ArticuloPresenter(object):
         self.vistaLista.btn_buscar.clicked.connect(self.verArticulos)
 
         self.header = self.vistaLista.tbl_articulos.horizontalHeader()
-        self.model.verListaArticulos()
+        self.verArticulos()
         self.__redimensionarTabla()
         self.vistaLista.show()
 
@@ -54,7 +54,9 @@ class ArticuloPresenter(object):
         texto = self.vistaLista.ln_buscar.text()
         texto = "'%{}%'".format(texto)
         condiciones = [('art_descripcion', ' LIKE ', texto)]
-        self.model.verListaArticulos(campos, condiciones, limite)
+        campos = ["art_id", "art_descripcion", "art_marca", "des_maquina", "art_stock_actual"]
+        uniones = [("destinos", "articulos.art_destino = destinos.des_id")]
+        self.model.verListaArticulos(campos, condiciones, limite, uniones)
 
         self.__redimensionarTabla()
 
@@ -96,7 +98,7 @@ class ArticuloPresenter(object):
 
     def modificarArticulo(self):
         articulo = self.vistaDetalle.getArticulo()
-        if self.model.modificarArticulo(articulo):
+        if self.model.modificarArticulo(articulo, 7):
             self.verArticulos()
             self.vistaDetalle.resetCambios()
             self.vistaDetalle.close()
@@ -135,7 +137,7 @@ class ArticuloPresenter(object):
             self.vistaDetalle.resetArticulo()
         self.__redimensionarTabla()
 
-    def __agregarStockExcp(self):
+    def agregarStockExcp(self):
         try:
             stock = int(self.vistaDetalle.art_stock_actual.text())
         except:
@@ -175,5 +177,6 @@ class ArticuloPresenter(object):
     def __redimensionarTabla(self):
         self.header.resizeSection(0, 50)
         self.header.resizeSection(2, 150)
-        self.header.resizeSection(3, 50)
+        self.header.resizeSection(3, 150)
+        self.header.resizeSection(4, 50)
         self.header.setSectionResizeMode(1, 1)

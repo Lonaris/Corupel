@@ -19,6 +19,7 @@ class ArticuloView(QtWidgets.QWidget):
 
         #Traemos el archivo .UI "Articulos_detalle"
         self.vistaDetalle = uic.loadUi("gui/detalles/articulo_detalle.ui", self)
+        self.presenter = presenter
 
         rxId = QRegExp("[0-9]{0,16}")
         rxBarras = QRegExp(".{0,20}")
@@ -146,7 +147,6 @@ class ArticuloView(QtWidgets.QWidget):
     #Esta es la funcion resetCambios que interactua con el archivo PresenterArticulo
     def resetCambios(self):
         self.__haCambiado = False
-
 
     # El evento de cerrar ventana se dispara y verifica
     # que no haya sido modificado ningún campo

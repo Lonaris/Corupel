@@ -206,7 +206,7 @@
            <enum>QAbstractScrollArea::AdjustIgnored</enum>
           </property>
           <property name="editTriggers">
-           <set>QAbstractItemView::DoubleClicked</set>
+           <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked</set>
           </property>
           <property name="tabKeyNavigation">
            <bool>true</bool>
@@ -221,6 +221,12 @@
         </item>
         <item row="3" column="2" rowspan="2" colspan="2">
          <widget class="QTableView" name="tbl_articulos">
+          <property name="editTriggers">
+           <set>QAbstractItemView::DoubleClicked</set>
+          </property>
+          <property name="tabKeyNavigation">
+           <bool>false</bool>
+          </property>
           <attribute name="horizontalHeaderStretchLastSection">
            <bool>false</bool>
           </attribute>

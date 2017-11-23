@@ -41,7 +41,7 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
             'Descripcion',
             'Marca',
             'Agrupacion',
-            # 'art_stock_min', 'art_stock_actual',
+            'Destino'
             'Stock mínimo'
             'Stock'
         ]
@@ -57,6 +57,7 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
             'Marca' : 'art_marca',
             'Agrupacion' : 'art_agrupacion',
             # 'art_stock_min', 'art_stock_actual',
+            'Destino' : 'art_destino',
             'Stock' : 'art_stock_actual',
             'Stock mínimo' : 'art_stock_minimo',
             # 'Estado' : 'art_activo',
@@ -113,8 +114,11 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         return self.articulo
 
 
-    def modificarArticulo(self, articulo):
+    def modificarArticulo(self, articulo, stockIx):
         v = self.__v.validate(articulo, self.__scArticulo)
+        print("ARTICULOOO ", self.articulo)
+        if articulo['art_stock_actual'] < self.stockActual(stockIx):
+            return False
         if v:
             self.__querier.actualizarElemento(articulo)
         else:
@@ -163,8 +167,8 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         self.articulos = []
         self.layoutChanged.emit()
 
-    def stockActual(self):
-        return self.articulo[7]
+    def stockActual(self, stockIx):
+        return self.articulo[stockIx]
 
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt

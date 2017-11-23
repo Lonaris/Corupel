@@ -19,7 +19,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
         pin = PresenterInforme.InformePresenter()
         self.pal = PresenterAlerta.AlertaPresenter()
 
-        self.presenters = [pp, pa, po, pin]
+        self.presenters = [pa, pp, po, pin]
 
         menu = {}
 

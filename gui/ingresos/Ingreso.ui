@@ -42,10 +42,10 @@
            <enum>Qt::TabFocus</enum>
           </property>
           <property name="editTriggers">
-           <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+           <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked</set>
           </property>
           <property name="tabKeyNavigation">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <attribute name="horizontalHeaderStretchLastSection">
            <bool>false</bool>
