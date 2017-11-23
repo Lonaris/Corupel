@@ -19,24 +19,26 @@ class IngresoView(QtWidgets.QWidget):
 
         rxPref = QRegExp("[0-9]{0,10}")
         rxNum = QRegExp("^[0-9]{0,20}$")
-        rxId = QRegExp("^[0-9]{0,16}$")
+        # rxId = QRegExp("^[0-9]{0,16}$")
 
-        self.vista.prov_id.setValidator(QRegExpValidator(rxId))
+        # self.vista.prov_id.setValidator(QRegExpValidator(rxId))
         self.vista.rem_prefijo.setValidator(QRegExpValidator(rxPref))
         self.vista.rem_numero.setValidator(QRegExpValidator(rxNum))
         self.vista.fact_prefijo.setValidator(QRegExpValidator(rxPref))
         self.vista.fact_numero.setValidator(QRegExpValidator(rxNum))
 
-    def setProveedor(self, proveedor):
-        self.vista.prov_id.setText(str(proveedor[0]))
-        self.vista.prov_nombre.setText(proveedor[1])
-
+    # def setProveedor(self, proveedor):
+    #     self.vista.prov_id.setText(str(proveedor[0]))
+    #     self.vista.prov_nombre.setText(proveedor[1])
+    #
     def getProveedor(self):
-        return self.vista.prov_id.text()
-
+    #     return self.vista.prov_id.text()
+        return self.vista.prov_proveedor.currentText()
+    
     def resetProveedor(self):
-        self.vista.prov_id.setText("")
-        self.vista.prov_nombre.setText("")
+        # self.vista.prov_id.setText("")
+        # self.vista.prov_nombre.setText("")
+        self.vista.prov_proveedor.setCurrentIndex(0)
 
     def setTotales(self, totalArticulos, totalCosto):
         self.tot_cant.setText(str(totalArticulos))

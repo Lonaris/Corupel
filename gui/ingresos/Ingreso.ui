@@ -504,33 +504,16 @@
        </property>
        <layout class="QFormLayout" name="formLayout_2">
         <item row="2" column="0">
-         <widget class="QLabel" name="label_codigo">
+         <widget class="QLabel" name="label_nombre_3">
           <property name="text">
-           <string>Codigo interno</string>
+           <string>Nombre Completo</string>
           </property>
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="prov_id">
-          <property name="focusPolicy">
-           <enum>Qt::StrongFocus</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_nombre_2">
-          <property name="text">
-           <string>Nombre</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="prov_nombre">
-          <property name="enabled">
+         <widget class="QComboBox" name="prov_proveedor">
+          <property name="editable">
            <bool>false</bool>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
           </property>
          </widget>
         </item>
@@ -574,7 +557,7 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>prov_id</tabstop>
+  <tabstop>prov_proveedor</tabstop>
   <tabstop>rem_prefijo</tabstop>
   <tabstop>rem_numero</tabstop>
   <tabstop>fact_tipo</tabstop>

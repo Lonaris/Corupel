@@ -121,9 +121,11 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
     def buscarProveedor(self, campos = None, condiciones = None):
         self.__proveedor = {}
         resultado = self.__querierProv.traerElementos(campos, condiciones)
+        print("BUSCOOOO")
         if resultado:
             self.reiniciarTablaIngreso()
             self.__proveedor = resultado[0]
+            print("PROVEEEEEEE ", self.__proveedor)
         return self.__proveedor
 
     def getMovimientos(self):

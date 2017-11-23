@@ -3,6 +3,7 @@
 import Vistas.Ingreso.VistaIngreso as IView
 # import Modelos.ModeloIngreso as EModel
 import Modelos.ModeloArticulo as AModel
+import Modelos.ModeloProveedor as PModel
 import Modelos.ModeloIngreso as IModel
 from PyQt5.QtCore import Qt, QModelIndex, QDate
 from PyQt5 import QtWidgets
@@ -14,16 +15,19 @@ class IngresoPresenter(object):
         self.vista = IView.IngresoView(self)
         self.model = IModel.ModeloIngreso()
         self.artModel = AModel.ModeloArticulo(propiedades = ["Codigo", "Descripcion"])
+        self.provModel = PModel.ModeloProveedor(propiedades = ["Nombre"])
         # self.vistaLista = PLView.ListaIngresosView(self)
 
         self.vista.tbl_ingresos.setModel(self.model)
+        self.vista.prov_proveedor.setModel(self.provModel)
         self.model.dataChanged.connect(self.__sumador)
         # self.vistaLista.tbl_ingresos.doubleClicked.connect(self.verDetalles)
 
         self.vista.tbl_articulos.setModel(self.artModel)
         self.vista.btn_guardar.clicked.connect(self.crearIngreso)
 
-        self.vista.prov_id.returnPressed.connect(self.__buscarProveedor)
+        # self.vista.prov_id.returnPressed.connect(self.__buscarProveedor)
+        self.vista.prov_proveedor.currentIndexChanged.connect(self.__buscarProveedor)
 
         self.headerIngresos = self.vista.tbl_ingresos.horizontalHeader()
         self.__reiniciarFecha()
@@ -31,6 +35,7 @@ class IngresoPresenter(object):
         # print(self.vista.rem_fecha.date())
 
         self.vista.show()
+        self.__verProveedores()
         self.__redimensionarTablaIngresos()
         self.__redimensionarTablaBusqueda()
 
@@ -74,6 +79,8 @@ class IngresoPresenter(object):
         if not proveedor:
             print("ERROR, falta proveedor")
             return (False)
+        else:
+            proveedor = self.provModel.getIdByNombre(proveedor)
 
         if not self.model.hayMovimientos():
             print("NO HAY MOVIMIENTOS")
@@ -121,20 +128,16 @@ class IngresoPresenter(object):
         # self.model.modificarIngreso(ingreso)
 
     def __buscarProveedor(self):
-        provId = self.vista.getProveedor()
-        proveedor = {}
+        proveedor = self.vista.getProveedor()
+        provId = self.provModel.getIdByNombre(proveedor)
+        print("ASSASAFASFASDASds")
+        self.model.buscarProveedor(campos = ["prov_id"], condiciones = [("prov_id","=", provId)])
 
-        if provId:
-            proveedor = self.model.buscarProveedor(campos = ("prov_id", "prov_nombre"), condiciones = [("prov_id", " = ", provId)])
-        if proveedor:
-            self.vista.setProveedor(proveedor)
-            self.artModel.verListaArticulos(condiciones = [("articulos_de_proveedores.proveedor", " = ", provId)],
-                campos = ["art_id", "art_descripcion"],
-                uniones = [['articulos_de_proveedores', '`articulos`.`art_id` = `articulos_de_proveedores`.`articulo`']])
+        self.artModel.verListaArticulos(condiciones = [("articulos_de_proveedores.proveedor", " = ", provId)],
+            campos = ["art_id", "art_descripcion"],
+            uniones = [['articulos_de_proveedores', '`articulos`.`art_id` = `articulos_de_proveedores`.`articulo`']])
             # self.artModel.verListaArticulos(campos = ["art_id", "art_descripcion"], condiciones = [('articulos_de_proveedores.proveedor', ' = ', provId)], union = ['articulos_de_proveedores', '`proveedores`.`prov_id` = `articulos_de_proveedores`.`proveedor`'] )
-        else:
-            self.vista.resetProveedor()
-            self.artModel.reiniciarTabla()
+        # self.artModel.reiniciarTabla()
 
     def __sumador(self):
         self.__totalArticulos = 0
@@ -171,3 +174,7 @@ class IngresoPresenter(object):
     def __redimensionarTablaBusqueda(self):
         self.headerIngresos.resizeSection(0, 50)
         self.headerIngresos.setSectionResizeMode(1, 1)
+
+    def __verProveedores(self):
+        orden = ("prov_nombre", "ASC")
+        self.provModel.verListaProveedores(orden = orden)

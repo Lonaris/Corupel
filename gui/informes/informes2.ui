@@ -71,6 +71,9 @@
      </item>
      <item row="4" column="0" colspan="3">
       <widget class="QTableView" name="tbl_informe">
+       <property name="tabKeyNavigation">
+        <bool>false</bool>
+       </property>
        <attribute name="horizontalHeaderStretchLastSection">
         <bool>true</bool>
        </attribute>

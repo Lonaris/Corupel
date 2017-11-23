@@ -114,11 +114,12 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         return self.articulo
 
 
-    def modificarArticulo(self, articulo, stockIx):
+    def modificarArticulo(self, articulo, stockIx = None):
         v = self.__v.validate(articulo, self.__scArticulo)
         print("ARTICULOOO ", self.articulo)
-        if articulo['art_stock_actual'] < self.stockActual(stockIx):
-            return False
+        if stockIx:
+            if articulo['art_stock_actual'] < self.stockActual(stockIx):
+                return False
         if v:
             self.__querier.actualizarElemento(articulo)
         else:

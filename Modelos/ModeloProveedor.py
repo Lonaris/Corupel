@@ -74,11 +74,11 @@ class ModeloProveedor(QtCore.QAbstractTableModel):
             print("ERRORES: ",self.__v.errors)
         return v
 
-    def verListaProveedores(self, campos = None, condiciones = None, limite = None, uniones = None):
+    def verListaProveedores(self, campos = None, condiciones = None, limite = None, uniones = None, orden = None):
         if not campos:
             campos = self.__busqueda
 
-        self.proveedores = self.__querier.traerElementos(campos, condiciones, limite, uniones)
+        self.proveedores = self.__querier.traerElementos(campos, condiciones, limite, uniones, orden)
         self.layoutChanged.emit()
 
     def verDetallesProveedor(self, proveedor, condiciones = None, campos = None):
@@ -107,6 +107,13 @@ class ModeloProveedor(QtCore.QAbstractTableModel):
 
     def getId(self):
         return self.proveedor[0]
+
+    def getIdByNombre(self, nombre):
+        campos = ["prov_id"]
+        condiciones = [("prov_nombre", "LIKE", "'%{}%'".format(nombre))]
+        resultado = self.__querier.traerElementos(campos = campos, condiciones = condiciones)
+
+        return resultado[0][0]
 
     # def asociarProveedor(self, proveedor = { 'prov_nombre' : 'Indeterminado' }):
     #     # El ID de proveedor por defecto no debe ser 0000, sino el que sea creado para el proveedor con nombre "Indeterminado"
