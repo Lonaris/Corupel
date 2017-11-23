@@ -17,6 +17,7 @@ class Querier(object):
 
         self.user = "root"
         self.password = "admin1234"
+        # self.host = "192.168.1.190"
         self.host = "127.0.0.1"
         self.database = "corupel"
 

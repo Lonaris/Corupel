@@ -27,6 +27,17 @@ Parámetros:
 
 ##### insertarElemento(elemento)
 ##### traerElemento(elemento)
+##### traerElementos(campos, condiciones, limite, uniones, orden)
+
+| Parámetro   | Tipo                | Valor por Defecto |
+| ------------|---------------------|-------------------|
+| campos      | [string, ]          | Ninguno           |
+| condiciones | [(str, str, str), ] | Obligatorio       |
+| limite      | string              | Obligatorio       |
+| uniones     | string              | Obligatorio       |
+| orden       | (string, string)    | Ninguno           |
+
+
 ##### actualizarElemento(elemento)
 ##### unirTabla()
 
