@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>808</width>
-    <height>620</height>
+    <width>1050</width>
+    <height>706</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout" rowstretch="0,10,10,80">
-   <item row="0" column="0">
+  <layout class="QGridLayout" name="gridLayout_3" columnstretch="20,80">
+   <item row="0" column="0" colspan="2">
     <widget class="QLabel" name="label">
      <property name="font">
       <font>
@@ -32,53 +32,240 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QGroupBox" name="groupBox_3">
+    <widget class="QGroupBox" name="groupBox_4">
      <property name="styleSheet">
-      <string notr="true">#groupBox_3{
+      <string notr="true">#groupBox_4{
 	background-color: #F2F6FD;
 	}</string>
      </property>
      <property name="title">
       <string/>
      </property>
-     <layout class="QGridLayout" name="gridLayout_6" columnstretch="0,0,0,0,0,0,0">
-      <item row="1" column="1">
-       <widget class="QLabel" name="label_desde">
-        <property name="text">
-         <string>Desde</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QDateEdit" name="fecha_desde">
-        <property name="focusPolicy">
-         <enum>Qt::ClickFocus</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4">
-       <widget class="QDateEdit" name="fecha_hasta">
-        <property name="focusPolicy">
-         <enum>Qt::ClickFocus</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="5">
-       <widget class="QPushButton" name="btn_ejecutar">
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_7" columnstretch="0">
+      <item row="6" column="0">
+       <widget class="QGroupBox" name="groupBox_2">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="maximumSize">
-         <size>
-          <width>200</width>
-          <height>200</height>
-         </size>
+        <property name="title">
+         <string/>
         </property>
-        <property name="styleSheet">
-         <string notr="true">#btn_ejecutar{
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_desde_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Desde</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="lineEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="lineEdit_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Artículo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0">
+          <widget class="QLabel" name="label_hasta_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Hasta</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Proveedor:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="2">
+          <widget class="QComboBox" name="filtro_operario">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <item>
+            <property name="text">
+             <string>Operario</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="QLabel" name="label_5">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Busqueda Avanzada</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="2">
+          <widget class="QComboBox" name="filtro_agrupacion">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <item>
+            <property name="text">
+             <string>Agrupacion</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Insumos</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Reparacion</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Inversion</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QComboBox" name="filtro_movimiento_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <item>
+            <property name="text">
+             <string>Todos los movimientos</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ingresos</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Egresos</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="2">
+          <widget class="QComboBox" name="filtro_destino">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <item>
+            <property name="text">
+             <string>Destino</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="8" column="0" colspan="2">
+          <widget class="QDateEdit" name="fecha_desde_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="0" colspan="2">
+          <widget class="QDateEdit" name="fecha_hasta_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="0" colspan="2">
+          <widget class="QPushButton" name="btn_ejecutar">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>200</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#btn_ejecutar{
 	background-color: #196F3D;
 	color: #ffffff;
 	font-family: 'Ariall';
@@ -89,70 +276,232 @@
 #btn_ejecutar:hover{
 	background-color: #04B431;
 	}</string>
-        </property>
-        <property name="text">
-         <string>Ejecutar Informe</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../ico/accept_database.ico</normaloff>../ico/accept_database.ico</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
+           </property>
+           <property name="text">
+            <string>Ejecutar Informe</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../ico/accept_database.ico</normaloff>../ico/accept_database.ico</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_3">
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="groupBox">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="title">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_hasta_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Hasta</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QDateEdit" name="fecha_desde_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QDateEdit" name="fecha_hasta_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>Busqueda Simple</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QComboBox" name="filtro_movimiento_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <item>
+            <property name="text">
+             <string>Todos los movimientos</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ingresos</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Egresos</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_desde_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Desde</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QPushButton" name="btn_ejecutar_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>200</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#btn_ejecutar_2{
+	background-color: #196F3D;
+	color: #ffffff;
+	font-family: 'Ariall';
+	font-size: 11px;
+	border-radius: 5px;
+	}
+
+#btn_ejecutar_2:hover{
+	background-color: #04B431;
+	}</string>
+           </property>
+           <property name="text">
+            <string>Ejecutar Informe</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../ico/accept_database.ico</normaloff>../ico/accept_database.ico</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="5" column="0">
+       <widget class="Line" name="line">
         <property name="font">
          <font>
           <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="text">
-         <string>Generar Movimientos</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="label_hasta">
-        <property name="text">
-         <string>Hasta</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="6">
-       <widget class="QPushButton" name="btn_guardar">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>200</width>
-          <height>200</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">#btn_guardar{
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="btn_guardar">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>200</width>
+       <height>200</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#btn_guardar{
 	background-color: #D68910  ;
 	color: #ffffff;
 	font-family: 'Ariall';
@@ -163,128 +512,23 @@
 #btn_guardar:hover{
 	background-color: #F1C40F ;
 	}</string>
-        </property>
-        <property name="text">
-         <string>Guardar (Ctrl+S)</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../ico/save.ico</normaloff>../ico/save.ico</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     </property>
+     <property name="text">
+      <string>Guardar (Ctrl+S)</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../ico/save.ico</normaloff>../ico/save.ico</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#groupBox{
-	background-color: #F2F6FD;
-	}</string>
-     </property>
-     <property name="title">
-      <string>Filtrar por:</string>
-     </property>
-     <property name="checkable">
-      <bool>false</bool>
-     </property>
-     <property name="checked">
-      <bool>false</bool>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="1">
-       <widget class="QComboBox" name="filtro_destino">
-        <item>
-         <property name="text">
-          <string>Destino</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QComboBox" name="filtro_articulo">
-        <item>
-         <property name="text">
-          <string>Articulo</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QComboBox" name="filtroproveedor">
-        <item>
-         <property name="text">
-          <string>Proveedor</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QComboBox" name="filtro_agrupacion">
-        <item>
-         <property name="text">
-          <string>Agrupacion</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Insumos</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Reparacion</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Inversion</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QComboBox" name="filtro_operario">
-        <item>
-         <property name="text">
-          <string>Operario</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QComboBox" name="filtro_movimiento">
-        <item>
-         <property name="text">
-          <string>Todos los movimientos</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Ingresos</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Egresos</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="3" column="0">
+   <item row="1" column="1" rowspan="2">
     <widget class="QTableView" name="tbl_informe">
      <attribute name="horizontalHeaderStretchLastSection">
       <bool>true</bool>
