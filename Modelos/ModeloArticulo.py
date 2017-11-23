@@ -164,7 +164,6 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
         self.layoutChanged.emit()
 
     def stockActual(self):
-        print ("CUAL ES EL STOCK: ", self.articulo)
         return self.articulo[7]
 
 # ===============================================================

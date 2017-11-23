@@ -19,6 +19,9 @@ class OperarioPresenter(object):
         self.vistaDetalle.btn_modificar.clicked.connect(self.modificarOperario)
         # self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarOperario)
 
+        # self.vistaDetalle.btn_nuevo.hide()
+        # self.vistaDetalle.btn_modificar.hide()
+
         self.vistaLista.ln_buscar.returnPressed.connect(self.verOperarios)
         self.vistaLista.btn_buscar.clicked.connect(self.verOperarios)
         self.vistaLista.btn_nuevo.clicked.connect(self.verNuevo)

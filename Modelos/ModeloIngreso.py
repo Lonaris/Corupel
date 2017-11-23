@@ -176,7 +176,6 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
             row = index.row()
             column = index.column()
             value = self.__movimientos[row][column]
-            print(self.__movimientos[row][column])
             return value
 
     def setData(self, index, value, role = QtCore.Qt.EditRole):
@@ -184,14 +183,15 @@ class ModeloIngreso(QtCore.QAbstractTableModel):
             row = index.row()
             column = index.column()
 
-            for articulo in self.__movimientos:
-                if value == str(articulo[0]):
-                    return (False)
+
 
             self.__articulo = {}
             if self.__proveedor:
                 provId = self.__proveedor[0]
             if column == 0:
+                for articulo in self.__movimientos:
+                    if value == str(articulo[0]):
+                        return (False)
                 try:
                     value = int(value)
                     resultado = self.__querierArt.traerElementos(campos = ("art_id", "art_descripcion"),

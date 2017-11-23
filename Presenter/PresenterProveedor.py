@@ -24,6 +24,10 @@ class ProveedorPresenter(object):
         self.vistaDetalle.btn_nuevo_art.clicked.connect(self.__asociar)
         # self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarProveedor)
 
+        # self.vistaDetalle.btn_nuevo.hide()
+        # self.vistaDetalle.btn_modificar.hide()
+        # self.vistaDetalle.btn_nuevo_art.hide()
+
         self.vistaLista.ln_buscar.returnPressed.connect(self.verProveedores)
         self.vistaLista.btn_buscar.clicked.connect(self.verProveedores)
         self.vistaLista.btn_nuevo.clicked.connect(self.verNuevo)

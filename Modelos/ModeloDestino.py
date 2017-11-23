@@ -15,10 +15,15 @@ class ModeloDestino(QtCore.QAbstractListModel):
         self.__querier = querier.Querier(tabla = "destinos", prefijo = "des_")
 
         self.__destinos = ["Destino"]
+        self.__desIds = []
+
+        orden = ("des_maquina", "ASC")
         print("REINICIO EL MODELO")
         try:
-            resultados = self.__querier.traerElementos(campos = ["des_maquina"] )
-            # print("Resultados: ", resultados)
+            resultados = self.__querier.traerElementos(campos = ["des_maquina"], orden = orden )
+            resulta2 = self.__querier.traerElementos(campos = ["des_id"], orden = orden)
+            for resultado in resulta2:
+                self.__desIds.append(resulta2[0])
             for resultado in resultados:
                 self.__destinos.append(resultado[0])
             self.layoutChanged.emit()

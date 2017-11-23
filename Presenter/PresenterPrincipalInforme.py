@@ -26,7 +26,10 @@ class PrincipalPresenter(QtWidgets.QWidget):
         self.contenido = self.vista.findChild(QtWidgets.QStackedWidget)
 
         for index, pr in enumerate(self.presenters):
-            self.contenido.insertWidget(index, pr.vista)
+            if index == 3:
+                self.contenido.insertWidget(index, pr.vista)
+            else:
+                self.contenido.insertWidget(index, pr.vistaLista)
 
         self.vista.show()
 
@@ -36,8 +39,6 @@ class PrincipalPresenter(QtWidgets.QWidget):
         self.vista.btn_main_articulos.clicked.connect(self.mostrarArticulos)
         self.vista.btn_main_proveedores.clicked.connect(self.mostrarProveedores)
         self.vista.btn_main_operarios.clicked.connect(self.mostrarOperarios)
-        # self.vista.btn_main_ingresos.clicked.connect(self.mostrarIngresos)
-        # self.vista.btn_main_egresos.clicked.connect(self.mostrarEgresos)
         self.vista.btn_main_informes.clicked.connect(self.mostrarInformes)
         self.vista.btn_main_alertas.clicked.connect(self.mostrarAlertas)
 
@@ -56,12 +57,6 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
     def mostrarOperarios(self):
         self.contenido.setCurrentIndex(2)
-
-    # def mostrarIngresos(self):
-    #     self.contenido.setCurrentIndex(0)
-    #
-    # def mostrarEgresos(self):
-    #     self.contenido.setCurrentIndex(1)
 
     def mostrarInformes(self):
         self.contenido.setCurrentIndex(3)

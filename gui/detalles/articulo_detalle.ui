@@ -1159,38 +1159,6 @@ background-color: #F4F4F4
             </property>
            </widget>
           </item>
-          <item row="9" column="1">
-           <widget class="QLabel" name="art_stock_actual">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <family>DokChampa</family>
-              <pointsize>10</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#art_stock_actual{
-background-color: #ffffff;
-}</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="1">
            <widget class="QLineEdit" name="art_descripcion">
             <property name="sizePolicy">
@@ -1746,6 +1714,39 @@ background-color: #ffffff;
             </item>
            </widget>
           </item>
+          <item row="9" column="1">
+           <widget class="QLineEdit" name="art_stock_actual">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>DokChampa</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+            <property name="dragEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1876,16 +1877,21 @@ background-color: #ffffff;
   </action>
  </widget>
  <tabstops>
+  <tabstop>art_id</tabstop>
   <tabstop>art_cod_barras</tabstop>
   <tabstop>art_descripcion</tabstop>
   <tabstop>art_marca</tabstop>
   <tabstop>art_agrupacion</tabstop>
   <tabstop>art_destino</tabstop>
   <tabstop>art_stock_minimo</tabstop>
+  <tabstop>art_stock_actual</tabstop>
   <tabstop>opcion_costo</tabstop>
   <tabstop>tbl_proveedores</tabstop>
-  <tabstop>art_id</tabstop>
   <tabstop>btn_nuevo_prov</tabstop>
+  <tabstop>btn_imprimir</tabstop>
+  <tabstop>btn_modificar</tabstop>
+  <tabstop>btn_deshabilitar</tabstop>
+  <tabstop>btn_nuevo</tabstop>
  </tabstops>
  <resources/>
  <connections/>
