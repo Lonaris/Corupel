@@ -17,7 +17,7 @@ class EgresoView(QtWidgets.QWidget):
 
     def setOperario(self, operario):
         self.vista.ope_legajo.setText(str(operario[0]))
-        self.vista.ope_nombre.setText(operario[1])
+        self.vista.ope_nombre.setText(operario[1] + " " + operario[2])
 
     def getOperario(self):
         return (self.vista.ope_legajo.text(), self.vista.ope_nombre.text())

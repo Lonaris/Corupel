@@ -44,9 +44,14 @@ class ProveedorPresenter(object):
         # self.activarBotonesArticulos()
 
     def verProveedores(self, campos = None, condiciones = None, limite = None):
-        texto = self.vistaLista.ln_buscar.text()
-        texto = "'%{}%'".format(texto)
-        condiciones = [('prov_nombre', ' LIKE ', texto)]
+        busqueda = self.vistaLista.ln_buscar.text()
+        condiciones = []
+        try:
+            busqueda = int(busqueda)
+            condiciones = [("prov_id", "=", busqueda)]
+        except:
+            busqueda = "'%{}%'".format(busqueda)
+            condiciones = [('prov_nombre', ' LIKE ', busqueda)]
         self.model.verListaProveedores(campos, condiciones, limite)
 
     def verNuevo(self):

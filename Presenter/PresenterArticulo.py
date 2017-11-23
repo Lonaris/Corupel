@@ -51,9 +51,14 @@ class ArticuloPresenter(object):
         self.vistaLista.show()
 
     def verArticulos(self, campos = None, condiciones = None, limite = None):
-        texto = self.vistaLista.ln_buscar.text()
-        texto = "'%{}%'".format(texto)
-        condiciones = [('art_descripcion', ' LIKE ', texto)]
+        busqueda = self.vistaLista.ln_buscar.text()
+        condiciones = []
+        try:
+            busqueda = int(busqueda)
+            condiciones = [('art_id', "=", busqueda)]
+        except:
+            busqueda = "'%{}%'".format(busqueda)
+            condiciones = [('art_descripcion', ' LIKE ', busqueda)]
         campos = ["art_id", "art_descripcion", "art_marca", "des_maquina", "art_stock_actual"]
         uniones = [("destinos", "articulos.art_destino = destinos.des_id")]
         self.model.verListaArticulos(campos, condiciones, limite, uniones)
@@ -142,7 +147,7 @@ class ArticuloPresenter(object):
             stock = int(self.vistaDetalle.art_stock_actual.text())
         except:
             stock = 0
-        stockModel = self.model.stockActual()
+        stockModel = self.model.stockActual(7)
         print("STOCKS: ", stock, stockModel)
         if stock < stockModel:
             self.vistaDetalle.art_stock_actual.setText(str(stockModel))

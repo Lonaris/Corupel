@@ -262,6 +262,9 @@
             <height>30</height>
            </size>
           </property>
+          <property name="shortcut">
+           <string>Return</string>
+          </property>
          </widget>
         </item>
         <item row="1" column="0">

@@ -27,6 +27,7 @@ class EgresoPresenter(object):
 
         self.vista.btn_buscar.clicked.connect(self.__buscarArticulosDisponibles)
         self.vista.btn_guardar.clicked.connect(self.crearEgreso)
+        self.vista.buscador.returnPressed.connect(self.__buscarArticulosDisponibles)
 
         self.vista.ope_legajo.returnPressed.connect(self.__buscarOperario)
         self.headerPrincipal = self.vista.tbl_egresos.horizontalHeader()
@@ -100,8 +101,12 @@ class EgresoPresenter(object):
     def __buscarArticulosDisponibles(self):
 
         destino = self.vista.move_destino.currentIndex()
-        descripcion = self.vista.buscador.text()
-        condiciones = [("art_stock_actual", ">", 0), ("art_descripcion", "LIKE", "'%{}%'".format(descripcion))]
+        busqueda = self.vista.buscador.text()
+        try:
+            busqueda = int(busqueda)
+            condiciones = [("art_stock_actual", ">", 0), ("art_id", "=", busqueda)]
+        except:
+            condiciones = [("art_stock_actual", ">", 0), ("art_descripcion", "LIKE", "'%{}%'".format(busqueda))]
         if  destino != 0:
             condiciones.append(("art_destino", "=", destino))
         self.artModel.verListaArticulos(condiciones = condiciones)
@@ -125,7 +130,7 @@ class EgresoPresenter(object):
         operario = {}
 
         if opeLeg:
-            operario = self.model.buscarOperario(campos = ("ope_legajo", "ope_nombre"), condiciones = [("ope_legajo", " = ", opeLeg)])
+            operario = self.model.buscarOperario(campos = ("ope_legajo", "ope_nombre", "ope_apellido"), condiciones = [("ope_legajo", " = ", opeLeg)])
         if operario:
             self.vista.setOperario(operario)
         else:

@@ -34,9 +34,15 @@ class OperarioPresenter(object):
         # self.activarBotones()
 
     def verOperarios(self, campos = None, condiciones = None, limite = None):
-        texto = self.vistaLista.ln_buscar.text()
-        texto = "'%{}%'".format(texto)
-        condiciones = [('ope_nombre', ' LIKE ', texto)]
+        busqueda = self.vistaLista.ln_buscar.text()
+        condiciones = []
+        try:
+            busqueda = int(busqueda)
+            condiciones = [("ope_legajo", "=", busqueda)]
+        except:
+            #HACKEADISIMO
+            busqueda = "'%{}%' or ope_apellido LIKE '%{}%'".format(busqueda, busqueda)
+            condiciones = [('ope_nombre', ' LIKE ', busqueda)]
         self.model.verListaOperarios(campos, condiciones, limite)
 
     def verNuevo(self):
