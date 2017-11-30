@@ -56,20 +56,27 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
         egreso = { 'egr_fecha' : hoy, 'ope_legajo' : operario }
 
         self.__querier.insertarElemento(egreso)
+
+        print("egreso creado")
+
         egrId = self.__querier.traerElementos(campos = ["egr_id"], orden = ("egr_id", "DESC"), limite = 1)
         egrId = egrId[0][0]
 
+        print("id de egreso tomado")
+
         for movimiento in self.__movimientos:
+            # SI EL MOVIMIENTO ESTÁ EN 0 LO IGNORA
             if movimiento[2] == 0 or movimiento[2] == '':
                 continue
+
             movimiento = { 'art_id' : movimiento[0],
             'egr_id' : egrId,
-            'move_cantidad' : movimiento[2],
+            'move_cantidad' : int(movimiento[2]),
             'move_destino' : detalles[0],
             'move_sector' : detalles[1]
             }
 
-            stock = int(movimiento['move_cantidad'])
+            stock = movimiento['move_cantidad']
             restantesIn = self.__querierMovi.traerElementos(campos = ["movi_id, movi_restante"],
                 orden = ("movi_id", "ASC"),
                 condiciones = [("art_id", " = ", movimiento['art_id'])])
@@ -91,13 +98,6 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
                 self.__querierMovi.actualizarElemento(elemento)
         # self.reiniciarTablaEgreso()
         return True
-
-    def verListaEgresos(self, campos = None, condiciones = None, limite = None):
-        if not campos:
-            campos = self.__busqueda
-
-        self.__movimientos = self.__querier.traerElementos(campos, condiciones, limite)
-        self.layoutChanged.emit()
 
     def verDetallesEgreso(self, egreso, campos = None, condiciones = None):
         egreso = self.__movimientos[egreso.row()]

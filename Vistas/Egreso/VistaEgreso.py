@@ -20,7 +20,9 @@ class EgresoView(QtWidgets.QWidget):
         self.vista.ope_nombre.setText(operario[1] + " " + operario[2])
 
     def getOperario(self):
-        return (self.vista.ope_legajo.text(), self.vista.ope_nombre.text())
+        legajo = self.vista.ope_legajo.text()
+        nombre = self.vista.ope_nombre.text()
+        return (legajo, nombre)
 
     def resetOperario(self):
         self.vista.ope_legajo.setText("")
@@ -31,8 +33,8 @@ class EgresoView(QtWidgets.QWidget):
 
     def getDetalles(self):
         destino = self.vista.move_destino.currentIndex()
-        sector = self.vista.move_sector.currentText()
-        return (destino, sector)
+        agrupacion = self.vista.move_sector.currentText()
+        return (destino, agrupacion)
 
     def resetEgreso(self):
         self.resetOperario()

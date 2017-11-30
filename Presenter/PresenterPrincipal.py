@@ -74,6 +74,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
         self.contenido.setCurrentIndex(5)
 
     def mostrarAlertas(self):
+        self.pal.verElementos()
         self.pal.vista.show()
         self.pal.vista.activateWindow()
 

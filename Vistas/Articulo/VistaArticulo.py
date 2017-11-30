@@ -27,7 +27,6 @@ class ArticuloView(QtWidgets.QWidget):
         rxNum = QRegExp("[0-9]{0,8}")
 
         #ocultamos los botones que no vamos a usar por el momento.
-        self.vistaDetalle.btn_deshabilitar.hide()
         self.vistaDetalle.btn_imprimir.hide()
 
         #Conectamos el evento modificar y guardar con la funcion "operacionCOmpletada"
@@ -99,7 +98,6 @@ class ArticuloView(QtWidgets.QWidget):
         self.vistaDetalle.art_agrupacion.setCurrentText(articulo[5])
         self.vistaDetalle.art_stock_minimo.setText(str(articulo[6]))
         self.vistaDetalle.art_stock_actual.setText(str(articulo[7]))
-        # self.vistaDetalle.art_activo.setEnabled()
 
         # Cuando seteo un artículo, la bandera debe ponerse en FALSO
         self.__haCambiado = False

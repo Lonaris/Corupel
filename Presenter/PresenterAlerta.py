@@ -23,7 +23,7 @@ class AlertaPresenter(object):
 
     def verElementos(self, campos = None, condiciones = None, limite = None):
         campos = ["art_id", "art_descripcion", "art_stock_actual", "art_stock_minimo"]
-        condiciones = [("art_stock_actual", "<" ,"art_stock_minimo")]
+        condiciones = [("art_stock_actual", "<" ,"art_stock_minimo"), ("art_activo","=","1")]
         self.model.verListaArticulos(campos, condiciones)
         self.header.resizeSection(0, 50)
         self.header.resizeSection(2, 50)

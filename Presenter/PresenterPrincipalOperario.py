@@ -46,7 +46,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
         # self.mostrarArticulos()
         self.mostrarIngresos()
         self.mostrarAlertas()
-        
+
     # def mostrarArticulos(self):
     #     self.contenido.setCurrentIndex(0)
     #
@@ -66,6 +66,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
         self.contenido.setCurrentIndex(2)
 
     def mostrarAlertas(self):
+        self.pal.verElementos()
         self.pal.vista.show()
         self.pal.vista.activateWindow()
 

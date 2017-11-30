@@ -28,6 +28,7 @@ class ArticuloPresenter(object):
         self.vistaDetalle.btn_nuevo.clicked.connect(self.crearArticulo)
         self.vistaDetalle.btn_modificar.clicked.connect(self.modificarArticulo)
         self.vistaDetalle.btn_deshabilitar.clicked.connect(self.deshabilitarArticulo)
+        self.vistaDetalle.btn_habilitar.clicked.connect(self.habilitarArticulo)
         self.vistaDetalle.art_id.returnPressed.connect(self.refrescar)
         self.vistaDetalle.tbl_proveedores.setModel(self.provModel)
         self.vistaDetalle.opcion_costo.currentIndexChanged.connect(self.__actualizarCostos)
@@ -95,10 +96,6 @@ class ArticuloPresenter(object):
             self.vistaDetalle.resetCambios()
             #Cierra la Ventana
             self.vistaDetalle.close()
-        # if error:
-        #     self.vistaDetalle.errorDeCampo(error)
-        # else:
-        #     self.vistaDetalle.articuloGuardado()
         self.__redimensionarTabla()
 
     def modificarArticulo(self):
@@ -109,12 +106,17 @@ class ArticuloPresenter(object):
             self.vistaDetalle.close()
         self.__redimensionarTabla()
 
-    def deshabilitarArticulo(self, articulo):
-
-        articulo = {articulo.objectName() : articulo.text()}
+    def deshabilitarArticulo(self):
+        articulo = { 'art_id' : int(self.vistaDetalle.art_id.text())}
         print(articulo)
-
         self.model.deshabilitarArticulo(articulo)
+        self.vistaDetalle.close()
+
+    def habilitarArticulo(self):
+        articulo = { 'art_id' : int(self.vistaDetalle.art_id.text())}
+        print(articulo)
+        self.model.habilitarArticulo(articulo)
+        self.vistaDetalle.close()
 
     def nuevoArticulo(self):
         self.vistaDetalle.resetArticulo()
@@ -147,10 +149,10 @@ class ArticuloPresenter(object):
             stock = int(self.vistaDetalle.art_stock_actual.text())
         except:
             stock = 0
-        stockModel = self.model.stockActual(7)
-        print("STOCKS: ", stock, stockModel)
-        if stock < stockModel:
-            self.vistaDetalle.art_stock_actual.setText(str(stockModel))
+        # stockModel = self.model.stockActual(7)
+        # print("STOCKS: ", stock, stockModel)
+        # if stock < stockModel:
+        #     self.vistaDetalle.art_stock_actual.setText(str(stockModel))
 
     def __calcularTotales(self, costos):
         promedioCosto = 0

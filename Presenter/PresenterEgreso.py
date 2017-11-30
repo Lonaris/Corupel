@@ -22,7 +22,6 @@ class EgresoPresenter(object):
         self.model.dataChanged.connect(self.__sumador)
         self.vista.move_destino.setModel(self.desModel)
         # self.vistaLista.tbl_egresos.setModel(self.model)
-        # self.vistaLista.tbl_egresos.doubleClicked.connect(self.verDetalles)
         self.vista.tbl_articulos.setModel(self.artModel)
 
         self.vista.btn_buscar.clicked.connect(self.__buscarArticulosDisponibles)
@@ -39,26 +38,6 @@ class EgresoPresenter(object):
         # self.activarBotones()
         self.__redimensionarTablaPrincipal()
 
-    def verEgresos(self, campos = None, condiciones = None, limite = None):
-        # texto = self.vistaLista.ln_buscar.text()
-        texto = "'%{}%'".format(texto)
-        condiciones = [('elem_nombre', ' LIKE ', texto)]
-        # self.model.verListaEgresos(campos, condiciones, limite)
-
-    def verNuevo(self):
-        self.vista.resetEgreso()
-        self.artModel.reiniciarTabla()
-        self.verDetalles()
-
-    def verDetalles(self, egreso = None):
-        if egreso:
-            # egreso = self.model.verDetallesEgreso(egreso)
-            self.vista.setEgreso(egreso)
-            # self.artModel.verListaArticulos(condiciones = [('elem_id', ' = ', egreso[0])])
-
-        self.vista.show()
-        self.vista.activateWindow()
-
     def crearEgreso(self):
         operario = self.vista.getOperario()
         detalles = self.vista.getDetalles()
@@ -67,17 +46,12 @@ class EgresoPresenter(object):
             self.mensajeDeError("Error: Falta operario")
             return False
         if not detalles[0]:
-            self.mensajeDeError("Error: Falta operario")
+            self.mensajeDeError("Error: Falta Destino")
             return False
 
         if self.model.crearEgreso(operario[0], detalles):
             self.restarStockAticulos()
             self.reiniciarMenu()
-
-    def modificarEgreso(self):
-        egreso = self.vista.getEgreso()
-        # self.model.modificarEgreso(egreso)
-        self.verEgresos()
 
     def deshabilitarEgreso(self):
         egreso = self.vista.getEgreso()
@@ -94,9 +68,11 @@ class EgresoPresenter(object):
             }
             print("/n/nSTOCK PREVIO A LA RESTA DE STOCK ACTUAL: ", stock_actual[0])
             print("/n/nSTOCK ACTUAL ACTUAL: ", articulo["art_stock_actual"])
-            articulo = self.artModel.modificarArticulo(articulo, 0)
-            self.__redimensionarTablaBusqueda()
-        self.__redimensionarTablaBusqueda()
+            index = 0
+            articulo = self.artModel.modificarArticulo(articulo, index)
+            print("Se ha logrado la modificacion")
+            # self.__redimensionarTablaBusqueda()
+        # self.__redimensionarTablaBusqueda()
 
     def __buscarArticulosDisponibles(self):
 
