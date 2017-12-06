@@ -82,7 +82,8 @@ class ArticuloView(QtWidgets.QWidget):
             articulo['art_stock_minimo'] = int(articulo['art_stock_minimo'])
         if articulo['art_stock_actual']:
             articulo['art_stock_actual'] = int(articulo['art_stock_actual'])
-
+        else:
+            articulo['art_stock_actual'] = 0
         return articulo
 
 

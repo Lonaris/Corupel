@@ -92,7 +92,10 @@ class ModeloArticulo(QtCore.QAbstractTableModel):
             campos = self.__busqueda
 
         self.articulos = self.__querier.traerElementos(campos, condiciones, limite, uniones)
-        self.layoutChanged.emit()
+        if self.articulos:
+            self.layoutChanged.emit()
+            return True
+        return False
 
     def verDetallesArticulo(self, articulo = QtCore.QModelIndex(), campos = None, condiciones = None):
 

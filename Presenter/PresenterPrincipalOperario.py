@@ -13,20 +13,23 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
         # pp = PresenterProveedor.ProveedorPresenter()
         # pa = PresenterArticulo.ArticuloPresenter()
-        # po = PresenterOperario.OperarioPresenter()
+        po = PresenterOperario.OperarioPresenter()
         pi = PresenterIngreso.IngresoPresenter()
         pe = PresenterEgreso.EgresoPresenter()
         pin = PresenterInforme.InformePresenter()
         self.pal = PresenterAlerta.AlertaPresenter()
 
-        self.presenters = [ pi, pe, pin]
+        self.presenters = [ pi, pe, po, pin]
 
         menu = {}
 
         self.contenido = self.vista.findChild(QtWidgets.QStackedWidget)
 
         for index, pr in enumerate(self.presenters):
-            self.contenido.insertWidget(index, pr.vista)
+            if index == 2:
+                self.contenido.insertWidget(index, pr.vistaLista)
+            else:
+                self.contenido.insertWidget(index, pr.vista)
 
         self.vista.show()
 
@@ -35,7 +38,7 @@ class PrincipalPresenter(QtWidgets.QWidget):
 
         # self.vista.btn_main_articulos.clicked.connect(self.mostrarArticulos)
         # self.vista.btn_main_proveedores.clicked.connect(self.mostrarProveedores)
-        # self.vista.btn_main_operarios.clicked.connect(self.mostrarOperarios)
+        self.vista.btn_main_operarios.clicked.connect(self.mostrarOperarios)
         self.vista.btn_main_ingresos.clicked.connect(self.mostrarIngresos)
         self.vista.btn_main_egresos.clicked.connect(self.mostrarEgresos)
         self.vista.btn_main_informes.clicked.connect(self.mostrarInformes)
@@ -53,17 +56,17 @@ class PrincipalPresenter(QtWidgets.QWidget):
     # def mostrarProveedores(self):
     #     self.contenido.setCurrentIndex(1)
     #
-    # def mostrarOperarios(self):
-    #     self.contenido.setCurrentIndex(2)
-
     def mostrarIngresos(self):
         self.contenido.setCurrentIndex(0)
 
     def mostrarEgresos(self):
         self.contenido.setCurrentIndex(1)
 
-    def mostrarInformes(self):
+    def mostrarOperarios(self):
         self.contenido.setCurrentIndex(2)
+
+    def mostrarInformes(self):
+        self.contenido.setCurrentIndex(3)
 
     def mostrarAlertas(self):
         self.pal.verElementos()

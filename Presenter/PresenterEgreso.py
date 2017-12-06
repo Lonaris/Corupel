@@ -83,10 +83,10 @@ class EgresoPresenter(object):
             condiciones = [("art_stock_actual", ">", 0), ("art_id", "=", busqueda)]
         except:
             condiciones = [("art_stock_actual", ">", 0), ("art_descripcion", "LIKE", "'%{}%'".format(busqueda))]
-        if  destino != 0:
-            condiciones.append(("art_destino", "=", destino))
-        self.artModel.verListaArticulos(condiciones = condiciones)
-        self.__redimensionarTablaBusqueda()
+        # if  destino != 0:
+        #     condiciones.append(("art_destino", "=", destino))
+        if self.artModel.verListaArticulos(condiciones = condiciones):
+            self.__redimensionarTablaBusqueda()
 
     def __refrescar(self):
         elemId = self.vista.elem_id.text()
