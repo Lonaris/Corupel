@@ -34,7 +34,8 @@ class EgresoView(QtWidgets.QWidget):
     def getDetalles(self):
         destino = self.vista.move_destino.currentIndex()
         agrupacion = self.vista.move_sector.currentText()
-        return (destino, agrupacion)
+        vale = self.vista.egr_numero.text()
+        return (destino, agrupacion, vale)
 
     def resetEgreso(self):
         self.resetOperario()

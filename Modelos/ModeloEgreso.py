@@ -53,7 +53,7 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
 
         hoy = date.today()
 
-        egreso = { 'egr_fecha' : hoy, 'ope_legajo' : operario }
+            egreso = { 'egr_fecha' : hoy, 'ope_legajo' : operario , 'egr_vale' : detalles[2] }
 
         self.__querier.insertarElemento(egreso)
 
@@ -73,7 +73,7 @@ class ModeloEgreso(QtCore.QAbstractTableModel):
             'egr_id' : egrId,
             'move_cantidad' : int(movimiento[2]),
             'move_destino' : detalles[0],
-            'move_sector' : detalles[1]
+            'move_sector' : detalles[1],
             }
 
             stock = movimiento['move_cantidad']

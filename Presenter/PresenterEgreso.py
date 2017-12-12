@@ -88,18 +88,6 @@ class EgresoPresenter(object):
         if self.artModel.verListaArticulos(condiciones = condiciones):
             self.__redimensionarTablaBusqueda()
 
-    def __refrescar(self):
-        elemId = self.vista.elem_id.text()
-        egreso = {}
-        if elemId:
-            # egreso = self.model.verDetallesEgreso(egreso = QModelIndex(), condiciones = [('elem_id', ' = ', elemId)])
-            # self.artModel.verListaArticulos(condiciones = [('elem_id', ' = ', elemId)])
-            if egreso:
-                self.vista.setEgreso(egreso)
-        if not egreso:
-            self.vista.resetEgreso()
-            self.artModel.reiniciarTabla()
-
     def __buscarOperario(self):
         operario = self.vista.getOperario()
         opeLeg = operario[0]
