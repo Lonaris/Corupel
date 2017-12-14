@@ -111,9 +111,15 @@ class ModeloProveedor(QtCore.QAbstractTableModel):
     def getIdByNombre(self, nombre):
         campos = ["prov_id"]
         condiciones = [("prov_nombre", "LIKE", "'%{}%'".format(nombre))]
-        resultado = self.__querier.traerElementos(campos = campos, condiciones = condiciones)
+        try:
+            resultado = self.__querier.traerElementos(campos = campos, condiciones = condiciones)
+            return resultado[0][0]
+        except:
+            return 0
 
-        return resultado[0][0]
+    def agregarNone(self):
+        self.proveedores.insert(0, ["Proveedor"])
+        self.layoutChanged.emit()
 
     # def asociarProveedor(self, proveedor = { 'prov_nombre' : 'Indeterminado' }):
     #     # El ID de proveedor por defecto no debe ser 0000, sino el que sea creado para el proveedor con nombre "Indeterminado"

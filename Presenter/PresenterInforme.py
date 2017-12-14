@@ -3,6 +3,7 @@
 import Vistas.VistaInforme as InView
 import Modelos.ModeloInforme as InModel
 import Modelos.ModeloDestino as DModel
+import Modelos.ModeloProveedor as PModel
 from datetime import date
 
 import csv
@@ -12,23 +13,28 @@ class InformePresenter(object):
     def __init__(self):
         self.model = InModel.ModeloInforme()
         self.desModel = DModel.ModeloDestino()
+        self.provModel = PModel.ModeloProveedor(propiedades = ["Nombre"])
         self.vista = InView.InformeView(self)
         self.vista.tbl_informe.setModel(self.model)
 
-        self.vista.filtro_destino.setModel(self.desModel)
-        self.vista.btn_ejecutar.clicked.connect(self.ejecutarInforme)
+        self.vista.filtro_destino_av.setModel(self.desModel)
+        self.vista.filtro_proveedor_av.setModel(self.provModel)
+        self.vista.btn_ejecutar_sp.clicked.connect(self.ejecutarInformeSp)
+        self.vista.btn_ejecutar_av.clicked.connect(self.ejecutarInformeAv)
         self.vista.btn_guardar.clicked.connect(self.handleSave)
 
         self.iniciarFecha()
+        self.__verProveedores()
 
         self.vista.show()
 
         self.__filtros = {
             'tipo' : '',
-            'busqueda' : '',
+            'articulo' : '',
             'desde' : '',
             'hasta' : '',
-            'tercero' : '',
+            'operario' : '',
+            'proveedor' : '',
             'destino' : '',
             'agrupacion' : ''
         }
@@ -45,35 +51,29 @@ class InformePresenter(object):
                 dia -= 1
         self.vista.setFechas(desde, hoy)
 
-    def ejecutarInforme(self):
-        self.prepararFiltros()
+    def ejecutarInformeSp(self):
+        self.prepararFiltrosSp()
         self.model.traerInforme(self.__filtros)
 
-    def prepararFiltros(self):
-        filtros = self.vista.getFiltros()
+    def ejecutarInformeAv(self):
+        self.prepararFiltrosAv()
+        self.model.traerInforme(self.__filtros)
 
-# Los valores para el filtro 'tipo' son:
-# 0 - Ingreso de Artículos
-# 1 - Egreso de Artículos
-# 2 - Ingreso de Artículos por Proveedor
-# 3 - Egreso de Artículos por Operario
+    def prepararFiltrosSp(self):
+        filtros = self.vista.getFiltrosSp()
+        desde = date(filtros['desde'].year(), filtros['desde'].month(), filtros['desde'].day())
+        hasta = date(filtros['hasta'].year(), filtros['hasta'].month(), filtros['hasta'].day())
+        filtros['desde'] = desde
+        filtros['hasta'] = hasta
+        self.__filtros = filtros
 
-        desde = date(filtros[5].year(), filtros[5].month(), filtros[5].day())
-        hasta = date(filtros[6].year(), filtros[6].month(), filtros[6].day())
-        self.__filtros['tipo'] = filtros[0]
-        self.__filtros['destino'] = filtros[1]
-        if not filtros[2] == 'Agrupacion':
-            self.__filtros['agrupacion'] = filtros[2]
-        else: self.__filtros['agrupacion'] = None
-        self.__filtros['busqueda'] = filtros[4]
-        try:
-            self.__filtros['tercero'] = int(filtros[3])
-        except:
-            self.__filtros['tercero'] = None
-        self.__filtros['desde'] = desde
-        self.__filtros['hasta'] = hasta
-
-        print(self.__filtros)
+    def prepararFiltrosAv(self):
+        filtros = self.vista.getFiltrosAv()
+        desde = date(filtros['desde'].year(), filtros['desde'].month(), filtros['desde'].day())
+        hasta = date(filtros['hasta'].year(), filtros['hasta'].month(), filtros['hasta'].day())
+        filtros['desde'] = desde
+        filtros['hasta'] = hasta
+        self.__filtros = filtros
 
     def handleSave(self):
         path = QFileDialog.getSaveFileName(
@@ -99,3 +99,8 @@ class InformePresenter(object):
                         teext = str(item).encode('utf-8')
                         rowdata.append(item)
                     writer.writerow(rowdata)
+
+    def __verProveedores(self):
+        orden = ("prov_nombre", "ASC")
+        self.provModel.verListaProveedores(orden = orden)
+        self.provModel.agregarNone()
