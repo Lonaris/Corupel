@@ -27,6 +27,7 @@ class ModeloInforme(QtCore.QAbstractTableModel):
         campos = []
         condiciones = []
         unionones = []
+        group = []
 
         print (filtros)
 
@@ -59,7 +60,12 @@ class ModeloInforme(QtCore.QAbstractTableModel):
                 ("ingresos.ing_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta']))
                 ]
 
-
+            try:
+                if filtros['agrupar']:
+                    campos[6] = "SUM(movi_cantidad)"
+                    group.append("articulos.art_id")
+            except:
+                pass
         elif filtros['tipo'] == 2:
             campos = [
                 "articulos.art_id",
@@ -87,6 +93,13 @@ class ModeloInforme(QtCore.QAbstractTableModel):
                 ("egr_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta']))
 
             ]
+
+            try:
+                if filtros['agrupar']:
+                    campos[5] = "SUM(move_cantidad)"
+                    group.append("articulos.art_id")
+            except:
+                pass
             # if filtros['agrupacion']:
             #     condiciones.append(("articulos.art_agrupacion", "LIKE", "'{}'".format(filtros['agrupacion'])))
             # if filtros['destino']:
@@ -98,6 +111,9 @@ class ModeloInforme(QtCore.QAbstractTableModel):
 
         else:
             return False
+
+
+
 
         try:
             if filtros['articulo']:
@@ -124,7 +140,8 @@ class ModeloInforme(QtCore.QAbstractTableModel):
             qr = querier.Querier(tabla = tablas)
             self.informe = qr.traerElementos(campos = campos,
                 condiciones = condiciones,
-                uniones = uniones
+                uniones = uniones,
+                groupby = group
                 )
             print("\n\n\nDEBUG - INFORME: ", self.informe)
             self.__acomodarInforme(tipo = filtros['tipo'])
@@ -141,6 +158,7 @@ class ModeloInforme(QtCore.QAbstractTableModel):
                 item = list(item)
                 item[1] = str(item[1])
                 item[7] = str(item[7])
+                item[6] = str(item[6])
                 item[8] = str(item[8])
                 reinforme.append(item)
             self.__header = [
@@ -157,6 +175,7 @@ class ModeloInforme(QtCore.QAbstractTableModel):
             for item in self.informe:
                 item = list(item)
                 item[2] = str(item[2])
+                item[5] = str(item[5])
                 item[7] = str(item[7])
                 reinforme.append(item)
 

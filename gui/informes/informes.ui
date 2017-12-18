@@ -60,71 +60,7 @@
          <set>Qt::AlignCenter</set>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0" colspan="2">
-          <widget class="QLabel" name="label_titulo_2">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Busqueda Avanzada</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_articulo">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Artículo</string>
-           </property>
-          </widget>
-         </item>
-         <item row="9" column="0" colspan="2">
-          <widget class="QDateEdit" name="fecha_desde_av">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::ClickFocus</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0" colspan="2">
-          <widget class="QComboBox" name="filtro_movimiento_av">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <item>
-            <property name="text">
-             <string>Todos los movimientos</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Ingresos</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Egresos</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="8" column="0">
+         <item row="9" column="0">
           <widget class="QLabel" name="label_desde_av">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -137,21 +73,23 @@
            </property>
           </widget>
          </item>
-         <item row="10" column="0">
-          <widget class="QLabel" name="label_hasta_av">
+         <item row="6" column="0" colspan="2">
+          <widget class="QComboBox" name="filtro_proveedor_av">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="text">
-            <string>Hasta</string>
-           </property>
+           <item>
+            <property name="text">
+             <string>Proveedor</string>
+            </property>
+           </item>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="filtro_articulo_av">
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="filtro_operario_av">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -160,7 +98,7 @@
            </property>
           </widget>
          </item>
-         <item row="12" column="0" colspan="2">
+         <item row="13" column="0" colspan="2">
           <widget class="QPushButton" name="btn_ejecutar_av">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -202,22 +140,43 @@
            </property>
           </widget>
          </item>
-         <item row="6" column="0" colspan="2">
-          <widget class="QComboBox" name="filtro_destino_av">
+         <item row="12" column="0" colspan="2">
+          <widget class="QDateEdit" name="fecha_hasta_av">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <item>
-            <property name="text">
-             <string>Destino</string>
-            </property>
-           </item>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
           </widget>
          </item>
-         <item row="7" column="0" colspan="2">
+         <item row="10" column="0" colspan="2">
+          <widget class="QDateEdit" name="fecha_desde_av">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="filtro_articulo_av">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0" colspan="2">
           <widget class="QComboBox" name="filtro_agrupacion_av">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -247,8 +206,34 @@
            </item>
           </widget>
          </item>
-         <item row="5" column="0" colspan="2">
-          <widget class="QComboBox" name="filtro_proveedor_av">
+         <item row="0" column="0" colspan="2">
+          <widget class="QLabel" name="label_titulo_2">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Busqueda Avanzada</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="0">
+          <widget class="QLabel" name="label_hasta_av">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Hasta</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0" colspan="2">
+          <widget class="QComboBox" name="filtro_destino_av">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -257,25 +242,12 @@
            </property>
            <item>
             <property name="text">
-             <string>Proveedor</string>
+             <string>Destino</string>
             </property>
            </item>
           </widget>
          </item>
-         <item row="11" column="0" colspan="2">
-          <widget class="QDateEdit" name="fecha_hasta_av">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::ClickFocus</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
+         <item row="4" column="0">
           <widget class="QLabel" name="label_operario">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -288,13 +260,48 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
-          <widget class="QLineEdit" name="filtro_operario_av">
+         <item row="1" column="0" colspan="2">
+          <widget class="QComboBox" name="filtro_movimiento_av">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <item>
+            <property name="text">
+             <string>Todos los movimientos</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ingresos</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Egresos</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_articulo">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Artículo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="filtro_agrupar_av">
+           <property name="text">
+            <string>Agrupar por artículo</string>
            </property>
           </widget>
          </item>

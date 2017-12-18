@@ -33,6 +33,7 @@ class InformeView(QtWidgets.QWidget):
         if self.vista.filtro_agrupacion_av.currentIndex():
             filtros['agrupacion'] = self.vista.filtro_agrupacion_av.currentText()
         filtros['articulo'] = self.vista.filtro_articulo_av.text()
+        filtros['agrupar'] = self.vista.filtro_agrupar_av.isChecked()
         filtros['desde'] = self.vista.fecha_desde_av.date()
         filtros['hasta'] = self.vista.fecha_hasta_av.date()
         return filtros
