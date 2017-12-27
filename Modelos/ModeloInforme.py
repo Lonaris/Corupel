@@ -26,8 +26,9 @@ class ModeloInforme(QtCore.QAbstractTableModel):
         tablas = ''
         campos = []
         condiciones = []
-        unionones = []
+        uniones = []
         group = []
+        orden = []
 
         print (filtros)
 
@@ -39,9 +40,9 @@ class ModeloInforme(QtCore.QAbstractTableModel):
                 "art_descripcion",
                 "art_agrupacion",
                 "des_maquina",
-                "movi_cantidad",
+                "SUM(movi_cantidad)",
                 "movi_costo",
-                "movi_cantidad * movi_costo as total"
+                "SUM(movi_cantidad * movi_costo) as total"
                 ]
 
             # "ingresos.ing_fecha", "articulos.art_descripcion", "movimientos_ingreso.movi_cantidad", "movimientos_ingreso.movi_costo"]
@@ -59,6 +60,10 @@ class ModeloInforme(QtCore.QAbstractTableModel):
             condiciones = [
                 ("ingresos.ing_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta']))
                 ]
+
+            group.append("articulos.art_id")
+
+            orden = ("articulos.art_agrupacion", "ASC")
 
             try:
                 if filtros['agrupar']:
@@ -122,7 +127,7 @@ class ModeloInforme(QtCore.QAbstractTableModel):
             pass
         try:
             if filtros['agrupacion']:
-                condiciones.append(("articulos.art_agrupacion", "LIKE", "'{}'".format(filtros['agrupacion'])))
+                condiciones.append(("movimientos_egreso.move_sector", "LIKE", "'{}'".format(filtros['agrupacion'])))
         except:
             pass
         try:
@@ -141,7 +146,8 @@ class ModeloInforme(QtCore.QAbstractTableModel):
             self.informe = qr.traerElementos(campos = campos,
                 condiciones = condiciones,
                 uniones = uniones,
-                groupby = group
+                groupby = group,
+                orden = orden
                 )
             print("\n\n\nDEBUG - INFORME: ", self.informe)
             self.__acomodarInforme(tipo = filtros['tipo'])

@@ -79,11 +79,11 @@ class Querier(object):
             donde = self.__agregarFiltros(condiciones)
         consulta += donde
 
-        if orden:
-            consulta += " ORDER BY {} {}".format(orden[0], orden[1])
-
         if groupby:
             consulta += " GROUP BY {}".format(groupby[0])
+        
+        if orden:
+            consulta += " ORDER BY {} {}".format(orden[0], orden[1])
 
         if limite:
             consulta += " LIMIT {}".format(limite)
