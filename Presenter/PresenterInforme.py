@@ -7,6 +7,7 @@ import Modelos.ModeloProveedor as PModel
 from datetime import date
 
 import csv
+import xlwt
 from PyQt5.QtWidgets import QFileDialog
 
 class InformePresenter(object):
@@ -21,7 +22,7 @@ class InformePresenter(object):
         self.vista.filtro_proveedor_av.setModel(self.provModel)
         self.vista.btn_ejecutar_sp.clicked.connect(self.ejecutarInformeSp)
         self.vista.btn_ejecutar_av.clicked.connect(self.ejecutarInformeAv)
-        self.vista.btn_guardar.clicked.connect(self.handleSave)
+        self.vista.btn_guardar.clicked.connect(self.handleSaveXls)
 
         self.iniciarFecha()
         self.__verProveedores()
@@ -42,13 +43,12 @@ class InformePresenter(object):
     def iniciarFecha(self):
         hoy = date.today()
         desde = {}
-        dia = hoy.day
-        for a in range(5):
-            try:
-                desde = date(hoy.year, hoy.month-1, dia)
-                break
-            except:
-                dia -= 1
+        anio = hoy.year
+        mes = hoy.month
+        dia = 1
+
+        desde = date(anio, mes, dia)
+
         self.vista.setFechas(desde, hoy)
 
     def ejecutarInformeSp(self):
@@ -98,6 +98,32 @@ class InformePresenter(object):
                         teext = str(item).encode('utf-8')
                         rowdata.append(item)
                     writer.writerow(rowdata)
+
+    def handleSaveXls(self):
+        path = QFileDialog.getSaveFileName(
+                None, 'Save File', '', 'Excel(*.xls)')
+        if not path[0]:
+            return
+        wb = xlwt.Workbook()
+        ws = wb.add_sheet('Informe - Corupel')
+
+        desde = "Desde {}".format(self.__filtros['desde'])
+        hasta = "Hasta {}".format(self.__filtros['hasta'])
+
+        ws.write(0, 0, desde)
+        ws.write(0, 2, hasta)
+
+        header = self.model.getHeader()
+
+        for index, item in enumerate(header):
+            ws.write(1, index, item)
+
+        for row in range(self.model.rowCount(None)):
+            for column in range(self.model.columnCount(None)):
+                item = self.model.informe[row][column]
+                ws.write(row+2, column, item)
+
+        wb.save(path[0])
 
     def __verProveedores(self):
         orden = ("prov_nombre", "ASC")
