@@ -67,20 +67,18 @@ class ModeloInforme(QtCore.QAbstractTableModel):
 
             try:
                 if filtros['agrupar']:
-                    campos[6] = "SUM(movi_cantidad)"
-                    group.append("articulos.art_id")
+                    campos[6] = "movi_cantidad"
+                    campos[8] = "movi_cantidad * movi_costo as total"
+                    group = []
             except:
                 pass
         elif filtros['tipo'] == 2:
             campos = [
                 "articulos.art_id",
                 "art_descripcion",
-                "egr_fecha",
-                "move_sector",
-                "destinos.des_maquina",
-                "move_cantidad",
-                "egr_vale",
-                "(select movi_costo from movimientos_ingreso where movimientos_ingreso.art_id = articulos.art_id limit 1) as costo"
+                "art_agrupacion",
+                "des_maquina",
+                "sum(move_cantidad)",
                 ]
             tablas = 'movimientos_egreso'
             uniones =[
@@ -88,41 +86,36 @@ class ModeloInforme(QtCore.QAbstractTableModel):
                     "egresos.egr_id = movimientos_egreso.egr_id"],
                 ['articulos',
                     "articulos.art_id = movimientos_egreso.art_id"],
-                ['operarios',
-                    "operarios.ope_legajo = egresos.ope_legajo"],
+                # ['operarios',
+                #     "operarios.ope_legajo = egresos.ope_legajo"],
                 ['destinos',
-                    "destinos.des_id = movimientos_egreso.move_destino"]
+                    "destinos.des_id = articulos.art_destino"]
             ]
             condiciones = [
                 # ("articulos.art_id", "=", "movimientos_egreso.art_id"),
                 ("egr_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta']))
 
             ]
+            group.append("articulos.art_id")
+            orden = ("des_maquina", "ASC")
 
             try:
                 if filtros['agrupar']:
-                    campos[5] = "SUM(move_cantidad)"
-                    group.append("articulos.art_id")
+                    campos[4] = "move_cantidad"
+                    group = []
             except:
                 pass
-            # if filtros['agrupacion']:
-            #     condiciones.append(("articulos.art_agrupacion", "LIKE", "'{}'".format(filtros['agrupacion'])))
-            # if filtros['destino']:
-            #     condiciones.append(("movimientos_egreso.move_destino", "=", filtros['destino']))
-            # if filtros['tercero']:
-            #     uniones.append(['operarios',
-            #         "operarios.ope_legajo = egresos.ope_legajo"])
-            #     condiciones.append(("operarios.ope_legajo", "=", filtros['tercero']))
 
         else:
             return False
 
-
-
-
         try:
             if filtros['articulo']:
-                condiciones.append(("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['articulo'])))
+                try:
+                    busqueda = int(filtros['articulo'])
+                    condiciones.append(("articulos.art_id", "=", busqueda))
+                except:
+                    condiciones.append(("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['articulo'])))
         except:
             pass
         try:
@@ -180,20 +173,15 @@ class ModeloInforme(QtCore.QAbstractTableModel):
         elif tipo == 2:
             for item in self.informe:
                 item = list(item)
-                item[2] = str(item[2])
-                item[5] = str(item[5])
-                item[7] = str(item[7])
+                item[4] = str(item[4])
                 reinforme.append(item)
 
             self.__header = [
             "Codigo de Articulo",
             "Descripcion de Articulo",
-            "Fecha",
             "Agrupacion",
             "Destino",
-            "Cantidad",
-            "Numero de Vale",
-            "Total"
+            "Cantidad"
             ]
 
         print(self.__header)

@@ -83,11 +83,10 @@ class InformePresenter(object):
                 writer = csv.writer(stream)
 
                 #Encabezado
-                titulo = self.vista.filtro_principal.currentText()
                 desde = "Desde {}".format(self.__filtros['desde'])
                 hasta = "Hasta {}".format(self.__filtros['hasta'])
 
-                writer.writerow([titulo, desde, hasta])
+                writer.writerow([desde, hasta])
                 header = self.model.getHeader()
                 writer.writerow(header)
 

@@ -301,7 +301,7 @@
          <item row="3" column="1">
           <widget class="QCheckBox" name="filtro_agrupar_av">
            <property name="text">
-            <string>Agrupar por artículo</string>
+            <string>Desagrupar articulos</string>
            </property>
           </widget>
          </item>
