@@ -130,7 +130,6 @@ class IngresoPresenter(object):
     def __buscarProveedor(self):
         proveedor = self.vista.getProveedor()
         provId = self.provModel.getIdByNombre(proveedor)
-        print("ASSASAFASFASDASds")
         self.model.buscarProveedor(campos = ["prov_id"], condiciones = [("prov_id","=", provId)])
 
         self.artModel.verListaArticulos(condiciones = [("articulos_de_proveedores.proveedor", " = ", provId)],
@@ -178,3 +177,4 @@ class IngresoPresenter(object):
     def __verProveedores(self):
         orden = ("prov_nombre", "ASC")
         self.provModel.verListaProveedores(orden = orden)
+        self.provModel.agregarNone()

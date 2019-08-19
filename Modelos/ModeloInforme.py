@@ -26,60 +26,123 @@ class ModeloInforme(QtCore.QAbstractTableModel):
         tablas = ''
         campos = []
         condiciones = []
-        union = ''
-        on = ''
+        uniones = []
+        group = []
+        orden = []
 
-        if filtros['tipo'] == 0:
-            campos = ["ingresos.ing_fecha", "articulos.art_descripcion", "movimientos_ingreso.movi_cantidad", "movimientos_ingreso.movi_costo"]
-            tablas = 'articulos, movimientos_ingreso'
-            union = 'ingresos'
-            on = "ingresos.ing_id = movimientos_ingreso.ing_id"
-            uniones =[
-                ['ingresos',
-                "ingresos.ing_id = movimientos_ingreso.ing_id"]
-            ]
-            condiciones = [
-                ("articulos.art_id", "=", "movimientos_ingreso.art_id"),
-                ("ingresos.ing_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta'])),
-                ("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['busqueda']))
+        print (filtros)
+
+        if filtros['tipo'] == 1:
+            campos = [
+                "prov_nombre",
+                "ing_fecha",
+                "articulos.art_id",
+                "art_descripcion",
+                "art_agrupacion",
+                "des_maquina",
+                "SUM(movi_cantidad)",
+                "movi_costo",
+                "SUM(movi_cantidad * movi_costo) as total"
                 ]
 
-            if filtros['agrupacion']:
-                condiciones.append(("articulos.art_agrupacion", "LIKE", "'{}'".format(filtros['agrupacion'])))
-            if filtros['tercero']:
-                uniones.append(['proveedores',
-                    "proveedores.prov_id = ingresos.prov_id"])
-                condiciones.append(("proveedores.prov_id", "=", filtros['tercero']))
-
-        elif filtros['tipo'] == 1:
-            campos = ["egr_fecha", "art_descripcion", "move_cantidad"]
-            tablas = 'articulos, movimientos_egreso'
+            # "ingresos.ing_fecha", "articulos.art_descripcion", "movimientos_ingreso.movi_cantidad", "movimientos_ingreso.movi_costo"]
+            tablas = 'movimientos_ingreso'
             uniones =[
-                ['egresos',
-                "egresos.egr_id = movimientos_egreso.egr_id"]
+                ['ingresos',
+                    "ingresos.ing_id = movimientos_ingreso.ing_id"],
+                ['proveedores',
+                    "proveedores.prov_id = ingresos.prov_id"],
+                ['articulos',
+                    "articulos.art_id = movimientos_ingreso.art_id"],
+                ['destinos',
+                    "destinos.des_id = articulos.art_destino"]
             ]
             condiciones = [
-                ("articulos.art_id", "=", "movimientos_egreso.art_id"),
-                ("egr_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta'])),
-                ("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['busqueda']))
+                ("ingresos.ing_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta']))
+                ]
+
+            group.append("articulos.art_id")
+
+            orden = ("articulos.art_agrupacion", "ASC")
+
+            try:
+                if filtros['agrupar']:
+                    campos[6] = "movi_cantidad"
+                    campos[8] = "movi_cantidad * movi_costo as total"
+                    group = []
+            except:
+                pass
+        elif filtros['tipo'] == 2:
+            campos = [
+                "articulos.art_id",
+                "art_descripcion",
+                "art_agrupacion",
+                "des_maquina",
+                "sum(move_cantidad)",
+                ]
+            tablas = 'movimientos_egreso'
+            uniones =[
+                ['egresos',
+                    "egresos.egr_id = movimientos_egreso.egr_id"],
+                ['articulos',
+                    "articulos.art_id = movimientos_egreso.art_id"],
+                # ['operarios',
+                #     "operarios.ope_legajo = egresos.ope_legajo"],
+                ['destinos',
+                    "destinos.des_id = articulos.art_destino"]
             ]
-            if filtros['agrupacion']:
-                condiciones.append(("articulos.art_agrupacion", "LIKE", "'{}'".format(filtros['agrupacion'])))
-            if filtros['destino']:
-                condiciones.append(("movimientos_egreso.move_destino", "=", filtros['destino']))
-            if filtros['tercero']:
-                uniones.append(['operarios',
-                    "operarios.ope_legajo = egresos.ope_legajo"])
-                condiciones.append(("operarios.ope_legajo", "=", filtros['tercero']))
+            condiciones = [
+                # ("articulos.art_id", "=", "movimientos_egreso.art_id"),
+                ("egr_fecha", "BETWEEN", "'{}' AND '{}'".format(filtros['desde'], filtros['hasta']))
+
+            ]
+            group.append("articulos.art_id")
+            orden = ("des_maquina", "ASC")
+
+            try:
+                if filtros['agrupar']:
+                    campos[4] = "move_cantidad"
+                    group = []
+            except:
+                pass
 
         else:
             return False
+
+        try:
+            if filtros['articulo']:
+                try:
+                    busqueda = int(filtros['articulo'])
+                    condiciones.append(("articulos.art_id", "=", busqueda))
+                except:
+                    condiciones.append(("articulos.art_descripcion", "LIKE", "'%{}%'".format(filtros['articulo'])))
+        except:
+            pass
+        try:
+            if filtros['agrupacion']:
+                condiciones.append(("movimientos_egreso.move_sector", "LIKE", "'{}'".format(filtros['agrupacion'])))
+        except:
+            pass
+        try:
+            if filtros['destino']:
+                condiciones.append(("articulos.art_destino", "=", "'{}'".format(filtros['destino'])))
+        except:
+            pass
+        try:
+            if filtros['proveedor']:
+                condiciones.append(("proveedores.prov_nombre", "=", "'{}'".format(filtros['proveedor'])))
+        except:
+            pass
+
         try:
             qr = querier.Querier(tabla = tablas)
             self.informe = qr.traerElementos(campos = campos,
                 condiciones = condiciones,
-                uniones = uniones)
-            # print(self.informe)
+                uniones = uniones,
+                groupby = group,
+                orden = orden
+                )
+            print("\n\n\nDEBUG - INFORME: ", self.informe)
             self.__acomodarInforme(tipo = filtros['tipo'])
         except:
             # print("ERROR - ", qr.errorcode())
@@ -88,27 +151,45 @@ class ModeloInforme(QtCore.QAbstractTableModel):
 
     def __acomodarInforme(self, tipo):
         reinforme = []
-        if tipo == 0 or tipo == 2:
+        if tipo == 1:
 
             for item in self.informe:
                 item = list(item)
-                item.append(str(item[2] * item[3]))
-                item[0] = str(item[0])
-                item[3] = str(item[3])
+                item[1] = str(item[1])
+                item[7] = str(item[7])
+                item[6] = str(item[6])
+                item[8] = str(item[8])
                 reinforme.append(item)
-            self.__header = ["Fecha", "Descripcion", "Cantidad", "Costo", "Costo total"]
-        elif tipo == 1 or tipo == 3:
+            self.__header = [
+            "Proveedor",
+            "Fecha",
+            "Codigo de Articulo",
+            "Descripcion de Articulo",
+            "Agrupacion",
+            "Destino",
+            "Cantidad",
+            "Costo",
+            "Costo total"]
+        elif tipo == 2:
             for item in self.informe:
                 item = list(item)
-                item[0] = str(item[0])
+                item[4] = str(item[4])
                 reinforme.append(item)
 
-            self.__header = ["Fecha", "Descripcion", "Cantidad"]
+            self.__header = [
+            "Codigo de Articulo",
+            "Descripcion de Articulo",
+            "Agrupacion",
+            "Destino",
+            "Cantidad"
+            ]
+
+        print(self.__header)
         self.informe = reinforme
 
     def getHeader(self):
         return self.__header
-    
+
 # ===============================================================
 # Funciones para Modelo de tabla para PyQt
 # ===============================================================
